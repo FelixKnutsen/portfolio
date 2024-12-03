@@ -23,8 +23,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
+
           git config --global user.name "GitHub Action Bot"
           git config --global user.email "action@github.com"
+
           git add README.md
           git commit -m "Update README from FelixKnutsen repository"
           git push https://x-access-token:${GH_TOKEN}@github.com/FelixKnutsen/portfolio.git main
