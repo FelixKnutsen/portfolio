@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout this repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all history
 
       - name: Fetch README from the specified repository
         run: |
@@ -23,10 +25,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-
           git config --global user.name "GitHub Action Bot"
           git config --global user.email "action@github.com"
-
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/FelixKnutsen/portfolio.git
+          git fetch origin
+          git reset --hard origin/main
           git add README.md
           git commit -m "Update README from FelixKnutsen repository"
-          git push https://x-access-token:${GH_TOKEN}@github.com/FelixKnutsen/portfolio.git main
+          git push origin main
