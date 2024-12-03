@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background-color: #0a001f;
+  color: #ffffff;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+h1,
+p {
+  margin: 0;
+}
