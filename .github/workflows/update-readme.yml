@@ -20,11 +20,13 @@ jobs:
           curl -o README.md https://raw.githubusercontent.com/FelixKnutsen/FelixKnutsen/main/README.md
 
       - name: Commit and push changes
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
 
-          git config --local user.name "FelixKnutsen"
-          git config --local user.email "Felixfk@uia.no"
+          git config --global user.name "GitHub Action Bot"
+          git config --global user.email "action@github.com"
 
           git add README.md
           git commit -m "Update README from FelixKnutsen repository"
-          git push
+          git push https://x-access-token:${GH_TOKEN}@github.com/FelixKnutsen/portfolio.git main
