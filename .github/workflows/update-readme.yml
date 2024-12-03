@@ -15,7 +15,9 @@ jobs:
       - name: Checkout this repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # Fetch all history
+
+          fetch-depth: 0 # Fetch full history to avoid sync issues
+
 
       - name: Fetch README from the specified repository
         run: |
@@ -28,8 +30,15 @@ jobs:
           git config --global user.name "GitHub Action Bot"
           git config --global user.email "action@github.com"
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/FelixKnutsen/portfolio.git
+
+
           git fetch origin
-          git reset --hard origin/main
+          git reset --hard origin/main # Sync with remote to avoid conflicts
           git add README.md
-          git commit -m "Update README from FelixKnutsen repository"
-          git push origin main
+
+          # Commit changes if there are any, otherwise skip with no error
+          git commit -m "Update README from FelixKnutsen repository" || echo "No changes to commit"
+
+          # Push changes if there are any, otherwise skip with no error
+          git push origin main || echo "No changes to push"
+
