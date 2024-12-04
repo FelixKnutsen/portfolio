@@ -72,7 +72,7 @@ const LogoCarousel: React.FC = () => {
 const CarouselContainer = styled.div`
   width: 100%;
   overflow: hidden; // Hide excess logos
-  background: #0a001f;
+  background: #ffffff;
   padding: 1rem 0;
 `;
 
