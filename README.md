@@ -5,8 +5,8 @@
 <br>
 <h3>Projects:</h3>
 
-<p>🔭 Currently project: Receipt Storage App</p>
-<p>💡 Future project: Portfolio website, and Recreating checkout system for grocery stores</p><br>
+<p>🔭 Currently project: Portfolio website</p>
+<p>💡 Future project: Receipt Storage App, and Recreating checkout system for grocery stores</p><br>
 
 
 <h2>🌍 Connect with Me:</h2>
