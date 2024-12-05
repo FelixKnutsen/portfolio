@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
-import WelcomeSection from "./components/WelcomeSection";
-import LogoCarousel from "./components/LogoCarousel";
-import Experience from "./components/experience";
-import Footer from "./components/footer";
-import FloatingContactButton from "./components/FloatingContactButton";
+import WelcomeSection from "./components/WelcomeSection.tsx";
+import LogoCarousel from "./components/LogoCarousel.tsx";
+import Experience from "./components/Experience.tsx";
+import Footer from "./components/Footer.tsx";
+import FloatingContactButton from "./components/FloatingContactButton.tsx";
 
 const App: React.FC = () => {
   return (
