@@ -26,7 +26,7 @@ const FloatingContactButton: React.FC = () => {
           <span>Phone:</span> +47 90 40 66 10
         </DropdownItem>
         <DropdownItem>
-          <a href="mailto:felix.knutsen@example.com">Send Email</a>
+          <a href="mailto:felix.knutsen@gmail.com">Send Email</a>
         </DropdownItem>
       </Dropdown>
     </Container>
