@@ -7,7 +7,7 @@ const Experience: React.FC = () => {
       <ExperienceSection>
         <Content>
           <Title>My Projects</Title>
-          <Subtitle>A collection of work I have worked on:</Subtitle>
+          <Subtitle>A collection of my work and experiences:</Subtitle>
           <p>Coming soon</p>
         </Content>
       </ExperienceSection>
