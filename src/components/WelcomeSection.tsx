@@ -11,7 +11,7 @@ const WelcomeSection: React.FC = () => {
         <Introanimated text="My name is Felix Fabricius Knutsen, an inspiring fullstack developer based in Kristiansand. I am a 3rd-year bachelor student in Information Systems at the University of Agder. I am passionate about development and business technology." />
       </Content>
       <ImageContainer>
-        <LogoImage src="public/assets/white_on_trans.png" alt="Felix Logo" />
+        <LogoImage src="assets/white_on_trans.png" alt="Felix Logo" />
         <SocialLinks>
           <SocialLink
             href="https://github.com/FelixKnutsen"
