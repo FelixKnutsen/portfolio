@@ -8,7 +8,7 @@ const WelcomeSection: React.FC = () => {
     <Hero>
       <Content>
         <TextAnimation />
-        <Introanimated text="My name is Felix Fabricius Knutsen, a fullstack developer based in Kristiansand, Norway. I'm a 3rd-year bachelor student in Information Systems at the University of Agder. I’m passionate about development and business technology. My current goal is to increase my knowledge about backend development." />
+        <Introanimated text="My name is Felix Fabricius Knutsen, an inspiring fullstack developer based in Kristiansand. I am a 3rd-year bachelor student in Information Systems at the University of Agder. I am passionate about development and business technology." />
       </Content>
       <ImageContainer>
         <LogoImage src="/assets/white_on_trans.png" alt="Felix Logo" />

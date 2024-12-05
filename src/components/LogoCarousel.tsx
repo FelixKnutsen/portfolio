@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { gsap } from "gsap";
 
@@ -37,11 +37,33 @@ const logos = [
 
 const LogoCarousel: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
-    const carousel = carouselRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.5 } // Trigger when 50% of the element is visible
+    );
 
-    if (carousel) {
+    if (carouselRef.current) {
+      observer.observe(carouselRef.current);
+    }
+
+    return () => {
+      if (carouselRef.current) {
+        observer.unobserve(carouselRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isInView && carouselRef.current) {
+      const carousel = carouselRef.current;
+
       // Duplicate the logos to ensure seamless looping
       const duplicateContent = carousel.innerHTML;
       carousel.innerHTML += duplicateContent;
@@ -51,9 +73,10 @@ const LogoCarousel: React.FC = () => {
         duration: 50, // Smooth scrolling duration
         ease: "none",
         repeat: -2, // Infinite scrolling
+        delay: 0.5, // Delay before starting the animation
       });
     }
-  }, []);
+  }, [isInView]);
 
   return (
     <CarouselContainer>
