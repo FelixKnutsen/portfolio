@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   FaHtml5,
   FaJs,
-  FaReact,
   FaUniversity,
   FaCode,
   FaPython,
