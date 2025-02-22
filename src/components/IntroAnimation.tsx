@@ -30,7 +30,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text }) => {
   return (
     <TextContainer ref={textRef}>
       {text.split(" ").map((word, index) => (
-        <span key={index}>{word}&nbsp;</span> // Wrap each word in a span
+        <span key={index}>{word}&nbsp;</span> // Wrap each word in a
       ))}
     </TextContainer>
   );
@@ -41,9 +41,7 @@ const TextContainer = styled.div`
   display: inline-block;
   font-size: 1.2rem;
   line-height: 1.8;
-i
-
-  span {
+  i span {
     display: inline-block; // Ensure each word animates independently
     white-space: nowrap;
   }
