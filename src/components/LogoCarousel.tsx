@@ -25,7 +25,7 @@ const logos = [
   "https://skillicons.dev/icons?i=docker",
   "https://skillicons.dev/icons?i=git",
   "https://skillicons.dev/icons?i=github",
-  "https://skillicons.dev/icons?i=azure",
+  // "https://skillicons.dev/icons?i=azure",
   "https://skillicons.dev/icons?i=npm",
   "https://skillicons.dev/icons?i=postgres",
 

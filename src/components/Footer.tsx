@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
       <FooterContainer>
         <FooterContent>
           <p>
-            &copy; 2024{" "}
+            &copy; 2025{" "}
             <a href="https://felixknutsen.vercel.app/">
               FelixKnutsen.vercel.app
             </a>
@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
             <FaGithub />
           </a>
           <a
-            href="https://www.linkedin.com/in/felixknutsen/"
+            href="https://www.linkedin.com/in/felix-knutsen/"
             target="_blank"
             rel="noopener noreferrer"
           >

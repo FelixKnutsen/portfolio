@@ -12,6 +12,7 @@ const Experience: React.FC = () => {
         </Content>
       </ExperienceSection>
       <Arc />
+      <Box />
     </>
   );
 };
@@ -58,8 +59,15 @@ const Subtitle = styled.h2`
   margin-bottom: 2rem;
 `;
 
+const Box = styled.div`
+  position: relative;
+  height: 150px;
+  background: #0a001f; /* Background color of the box */
+`;
+
 const Arc = styled.div`
   position: relative;
+  top: 150px;
   height: 150px;
   background: white;
   clip-path: ellipse(60% 70% at 50% 0);

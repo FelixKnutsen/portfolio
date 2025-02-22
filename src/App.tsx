@@ -1,20 +1,18 @@
 import React from "react";
-import "./App.css";
-import WelcomeSection from "./components/WelcomeSection.tsx";
-import LogoCarousel from "./components/LogoCarousel.tsx";
-import Experience from "./components/Experience.tsx";
-import Footer from "./components/Footer.tsx";
-import FloatingContactButton from "./components/FloatingContactButton.tsx";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Home from "./pages/Home";
+import Journey from "./pages/Journey";
 
 const App: React.FC = () => {
   return (
-    <>
-      <WelcomeSection />
-      <LogoCarousel />
-      <Experience />
-      <Footer />
-      <FloatingContactButton />
-    </>
+    <Router>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/journey" element={<Journey />} />
+      </Routes>
+    </Router>
   );
 };
 
