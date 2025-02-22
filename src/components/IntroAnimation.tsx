@@ -41,6 +41,7 @@ const TextContainer = styled.div`
   display: inline-block;
   font-size: 1.2rem;
   line-height: 1.8;
+i
 
   span {
     display: inline-block; // Ensure each word animates independently
