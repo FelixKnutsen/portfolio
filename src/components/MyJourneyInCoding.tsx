@@ -268,7 +268,7 @@ const TimelineContent = styled.div`
     color: rgba(255, 255, 255, 0.8);
 
     @media (max-width: 768px) {
-      font-size: 0.9rem;
+      font-size: 1rem;
       line-height: 1.4;
     }
   }

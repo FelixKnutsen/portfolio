@@ -25,7 +25,6 @@ const logos = [
   "https://skillicons.dev/icons?i=docker",
   "https://skillicons.dev/icons?i=git",
   "https://skillicons.dev/icons?i=github",
-  // "https://skillicons.dev/icons?i=azure",
   "https://skillicons.dev/icons?i=npm",
   "https://skillicons.dev/icons?i=postgres",
 
@@ -72,7 +71,7 @@ const LogoCarousel: React.FC = () => {
         x: `-${carousel.scrollWidth / 2}px`, // Move left by half the content's width
         duration: 50, // Smooth scrolling duration
         ease: "none",
-        repeat: -2, // Infinite scrolling
+        repeat: -1, // Infinite scrolling
         delay: 0.5, // Delay before starting the animation
       });
     }
@@ -94,24 +93,28 @@ const LogoCarousel: React.FC = () => {
 // Styled Components
 const CarouselContainer = styled.div`
   width: 100%;
-  overflow: hidden; // Hide excess logos
+  overflow-x: hidden; /* Hide horizontal overflow */
+  overflow-y: visible; /* Show vertical overflow to display shadows */
   background: #ffffff;
   padding: 1rem 0;
 `;
 
 const Carousel = styled.div`
   display: flex;
-  white-space: nowrap; // Prevent wrapping
+  white-space: nowrap; /* Prevent wrapping */
+  overflow: visible; /* Ensure shadows are visible */
 `;
 
 const Logo = styled.div`
-  flex: none; // Prevent resizing
-  margin-right: 1.5%; // Space between logos
+  flex: none; /* Prevent resizing */
+  margin-right: 1.5%; /* Space between logos */
+  overflow: visible; /* Ensure shadows are visible */
+
   img {
-    width: 80px; // Icon size
+    width: 80px; /* Icon size */
     height: 80px;
-    object-fit: contain; // Maintain aspect ratio
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); // Add shadow effect
+    object-fit: contain; /* Maintain aspect ratio */
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); /* Add shadow effect */
   }
 `;
 
