@@ -1,3 +1,5 @@
+// Experience.tsx
+
 import React from "react";
 import styled from "styled-components";
 
@@ -27,12 +29,16 @@ const ExperienceSection = styled.section`
   background: #ffffff;
   font-family: "Montserrat-Regular";
   color: black;
+
+  @media (max-width: 768px) {
+    padding: 5% 0 0 0;
+  }
 `;
 
 const Content = styled.div`
   width: 100%;
   background: #ffffff;
-  justtify-content: center;
+  justify-content: center;
   text-align: center;
 
   p {
@@ -42,6 +48,8 @@ const Content = styled.div`
     margin-top: 2rem;
 
     @media (max-width: 768px) {
+      font-size: 1rem;
+      line-height: 1.6;
       margin-top: 1rem;
     }
   }
@@ -51,12 +59,21 @@ const Title = styled.h1`
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const Subtitle = styled.h2`
   font-size: 1.5rem;
   font-weight: normal;
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const Box = styled.div`
@@ -72,4 +89,9 @@ const Arc = styled.div`
   background: white;
   clip-path: ellipse(60% 70% at 50% 0);
   z-index: 1;
+
+  @media (max-width: 768px) {
+    height: 80px; /* Adjust the height for mobile view */
+    clip-path: ellipse(80% 20% at 50% 0); /* Make the ellipse flatter */
+  }
 `;
