@@ -41,6 +41,13 @@ const TextContainer = styled.div`
   display: inline-block;
   font-size: 1.2rem;
   line-height: 1.8;
+  margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 0 5%;
+    height: 20rem;
+  }
 
   span {
     display: inline-block; // Ensure each word animates independently

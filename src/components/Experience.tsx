@@ -1,3 +1,5 @@
+// Experience.tsx
+
 import React from "react";
 import styled from "styled-components";
 
@@ -32,7 +34,7 @@ const ExperienceSection = styled.section`
 const Content = styled.div`
   width: 100%;
   background: #ffffff;
-  justtify-content: center;
+  justify-content: center;
   text-align: center;
 
   p {
@@ -72,4 +74,9 @@ const Arc = styled.div`
   background: white;
   clip-path: ellipse(60% 70% at 50% 0);
   z-index: 1;
+
+  @media (max-width: 768px) {
+    height: 150px; /* Adjust the height for mobile view */
+    clip-path: ellipse(80% 30% at 50% 0); /* Make the ellipse flatter */
+  }
 `;
