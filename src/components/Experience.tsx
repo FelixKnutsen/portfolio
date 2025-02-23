@@ -91,7 +91,7 @@ const Arc = styled.div`
   z-index: 1;
 
   @media (max-width: 768px) {
-    height: 80px; /* Adjust the height for mobile view */
+    height: 150px; /* Adjust the height for mobile view */
     clip-path: ellipse(80% 20% at 50% 0); /* Make the ellipse flatter */
   }
 `;
