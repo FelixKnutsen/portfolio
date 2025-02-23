@@ -96,7 +96,7 @@ const CarouselContainer = styled.div`
   overflow-x: hidden; /* Hide horizontal overflow */
   overflow-y: visible; /* Show vertical overflow to display shadows */
   background: #ffffff;
-  padding: 1rem 0;
+  padding: 2rem 0;
 `;
 
 const Carousel = styled.div`
