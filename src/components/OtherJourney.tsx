@@ -1,4 +1,4 @@
-// OtherExperiences.tsx
+// OtherJourney.tsx
 
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
@@ -11,7 +11,7 @@ import { FaShieldAlt, FaUsers } from "react-icons/fa";
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
-const OtherExperiences: React.FC = () => {
+const OtherJourney: React.FC = () => {
   const timelineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const OtherExperiences: React.FC = () => {
     <JourneySection>
       <Title>Other Experiences</Title>
       <Timeline ref={timelineRef}>
-        {otherExperiencesData.map((item, index) => (
+        {OtherJourneyData.map((item, index) => (
           <TimelineItem key={index} className="timeline-item">
             <TimelineIcon>{item.icon}</TimelineIcon>
             <TimelineContent>
@@ -57,7 +57,7 @@ const OtherExperiences: React.FC = () => {
   );
 };
 
-const otherExperiencesData = [
+const OtherJourneyData = [
   {
     date: "2022-",
     title: "Closing Manager at Kiwi",
@@ -76,7 +76,7 @@ const otherExperiencesData = [
     date: "2025-",
     title: "Leader of NITO Students",
     description:
-      "I took on the role of Leader of NITO Students, where I learned to guide a team effectively, manage responsibilities, and inspire collaboration among members.",
+      "I took on the role of Leader of NITO Students, where I'm currently learning to guide a team effectively, manage responsibilities, and inspire collaboration among members.",
     icon: <FaShieldAlt />,
   },
 ];
@@ -87,7 +87,7 @@ const JourneySection = styled.section`
   flex-direction: column;
   align-items: center;
   padding: 0 15%;
-  min-height: 100vh;
+  min-height: 95vh;
   background: #0a001f;
   color: white;
   font-family: "Montserrat-Regular";
@@ -101,7 +101,7 @@ const Title = styled.h1`
   font-size: 3rem;
   text-align: center;
   margin-bottom: 3rem;
-  margin-top: 1rem;
+  margin-top: 3rem;
   background: linear-gradient(90deg, #4facfe, #00f2fe);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -218,4 +218,4 @@ const TimelineDate = styled.div`
   }
 `;
 
-export default OtherExperiences;
+export default OtherJourney;
