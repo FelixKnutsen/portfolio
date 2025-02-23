@@ -1,5 +1,3 @@
-// Experience.tsx
-
 import React from "react";
 import styled from "styled-components";
 
@@ -26,7 +24,7 @@ const ExperienceSection = styled.section`
   padding: 10% 0 0 0;
   align-items: center;
   min-height: 100vh;
-  background: white;
+  background: #ffffff;
   font-family: "Montserrat-Regular";
   color: black;
 `;
@@ -34,7 +32,7 @@ const ExperienceSection = styled.section`
 const Content = styled.div`
   width: 100%;
   background: #ffffff;
-  justify-content: center;
+  justtify-content: center;
   text-align: center;
 
   p {
@@ -69,14 +67,9 @@ const Box = styled.div`
 
 const Arc = styled.div`
   position: relative;
-  top: px;
+  top: 150px;
   height: 150px;
   background: white;
   clip-path: ellipse(60% 70% at 50% 0);
   z-index: 1;
-
-  @media (max-width: 768px) {
-    height: 150px; /* Adjust the height for mobile view */
-    clip-path: ellipse(80% 30% at 50% 0); /* Make the ellipse flatter */
-  }
 `;
