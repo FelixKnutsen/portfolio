@@ -26,7 +26,7 @@ const ExperienceSection = styled.section`
   padding: 10% 0 0 0;
   align-items: center;
   min-height: 100vh;
-  background: #ffffff;
+  background: white;
   font-family: "Montserrat-Regular";
   color: black;
 `;
@@ -69,7 +69,7 @@ const Box = styled.div`
 
 const Arc = styled.div`
   position: relative;
-  top: 150px;
+  top: px;
   height: 150px;
   background: white;
   clip-path: ellipse(60% 70% at 50% 0);
