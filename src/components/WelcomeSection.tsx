@@ -85,7 +85,7 @@ const Hero = styled.section`
 
     /* Adjust the ellipse in mobile view */
     &::after {
-      height: 80px; /* Reduce the height */
+      height: 100px; /* Reduce the height */
       clip-path: ellipse(80% 40% at 50% 100%);
     }
   }
