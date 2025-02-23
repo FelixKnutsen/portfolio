@@ -1,3 +1,5 @@
+// Footer.tsx
+
 import React from "react";
 import styled from "styled-components";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
@@ -43,10 +45,17 @@ const FooterContainer = styled.footer`
   background: #0a001f;
   display: flex;
   justify-content: space-between; /* Align content to edges */
+  align-items: center;
   padding: 0 20%; /* Add padding for space */
-  padding-top: 1%;
   color: white;
   font-family: "Montserrat-Regular";
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: auto; /* Allow height to adjust based on content */
+    padding: 20px 5%; /* Reduce horizontal padding */
+    text-align: center; /* Center text content */
+  }
 `;
 
 const FooterContent = styled.div`
@@ -64,6 +73,11 @@ const FooterContent = styled.div`
       }
     }
   }
+
+  @media (max-width: 768px) {
+    order: 2; /* Place FooterContent after SocialLinks */
+    margin-top: 10px; /* Space between icons and text */
+  }
 `;
 
 const SocialLinks = styled.div`
@@ -72,11 +86,16 @@ const SocialLinks = styled.div`
 
   a {
     color: white;
-    font-size: 2rem; /* Larger icon size */
+    font-size: 2rem; /* Icon size */
     text-decoration: none;
 
     &:hover {
       color: #00aaff; /* Hover effect for icons */
     }
+  }
+
+  @media (max-width: 768px) {
+    order: 1; /* Place SocialLinks before FooterContent */
+    justify-content: center; /* Center the icons */
   }
 `;

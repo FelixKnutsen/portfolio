@@ -139,7 +139,6 @@ const timelineData = [
   },
 ];
 
-// Styled Components
 const JourneySection = styled.section`
   display: flex;
   flex-direction: column;
@@ -152,6 +151,10 @@ const JourneySection = styled.section`
   position: relative;
   overflow: hidden;
   font-family: "Montserrat-Regular";
+
+  @media (max-width: 768px) {
+    padding: 0 5%;
+  }
 `;
 
 const Title = styled.h1`
@@ -161,6 +164,12 @@ const Title = styled.h1`
   background: linear-gradient(90deg, #4facfe, #00f2fe);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin-top: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const Timeline = styled.div`
@@ -177,6 +186,14 @@ const Timeline = styled.div`
     width: 4px;
     height: 100%;
     background: linear-gradient(to bottom, #4facfe, #00f2fe);
+  }
+
+  @media (max-width: 768px) {
+    padding-left: 1rem;
+
+    &::before {
+      left: 0;
+    }
   }
 `;
 
@@ -195,6 +212,11 @@ const TimelineItem = styled.div`
     transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   }
+
+  @media (max-width: 768px) {
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const TimelineIcon = styled.div`
@@ -211,6 +233,13 @@ const TimelineIcon = styled.div`
   justify-content: center;
   font-size: 1.5rem;
   color: #4facfe;
+
+  @media (max-width: 768px) {
+    width: 2.5rem;
+    height: 2.5rem;
+    left: -1rem;
+    font-size: 1.2rem;
+  }
 `;
 
 const TimelineContent = styled.div`
@@ -218,12 +247,22 @@ const TimelineContent = styled.div`
     font-size: 1.8rem;
     margin-bottom: 1rem;
     color: white;
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
   }
 
   p {
     font-size: 1rem;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.8);
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
   }
 `;
 
@@ -232,6 +271,11 @@ const TimelineDate = styled.div`
   font-weight: bold;
   margin-bottom: 0.5rem;
   color: #4facfe;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
 `;
 
 export default MyJourneyInCoding;
