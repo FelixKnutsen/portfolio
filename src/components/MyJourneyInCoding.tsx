@@ -15,6 +15,7 @@ import {
   FaShieldAlt,
   FaJava,
   FaNetworkWired,
+  FaGraduationCap,
 } from "react-icons/fa";
 
 // Register GSAP plugins
@@ -71,57 +72,64 @@ const timelineData = [
     date: "2018",
     title: "Started Learning HTML, CSS, and JavaScript",
     description:
-      "I began my coding journey by exploring the basics of web development, including HTML, CSS, and JavaScript. This experience ignited my passion for creating interactive and dynamic web applications.",
+      "I embarked on my coding journey by studying the fundamentals of web development, including HTML, CSS, and JavaScript. This foundation ignited my passion for creating interactive and dynamic web applications.",
     icon: <FaHtml5 />,
   },
   {
     date: "2019",
     title: "Explored ActionScript",
     description:
-      "I learned ActionScript, which introduced me to object-oriented programming and event-driven development. This foundational knowledge helped me understand essential coding principles.",
+      "I delved into ActionScript, which introduced me to object-oriented programming and event-driven development. This experience enhanced my understanding of essential coding principles.",
     icon: <FaCode />,
   },
   {
     date: "2020 - 2022",
     title: "Web Development Projects",
     description:
-      "I engaged in personal web development projects, experimenting with various designs and functionalities. These projects were not published but significantly enhanced my problem-solving and creative thinking abilities.",
+      "I engaged in personal web development projects, experimenting with various designs and functionalities. These endeavors significantly improved my problem-solving skills and creative thinking.",
     icon: <FaJs />,
   },
   {
     date: "2022-2025",
     title: "Bachelor's in IT and Information Systems",
     description:
-      "I started my academic journey at the University of Agder, where I received formal training in HTML, CSS, JavaScript, and UX design. This deepened my understanding of web development and user-centered design.",
+      "I commenced my academic studies at the University of Agder, receiving formal training in HTML, CSS, JavaScript, and UX design. This education deepened my understanding of web development and user-centered design.",
     icon: <FaUniversity />,
   },
   {
     date: "2023",
     title: "Learning Golang",
     description:
-      "I expanded my knowledge by learning Golang, focusing on networking, information security, and system architecture. This experience broadened my perspective on backend development and secure systems.",
+      "I expanded my knowledge by learning Golang, focusing on networking, information security, and system architecture. This broadened my perspective on backend development and secure systems.",
     icon: <FaNetworkWired />,
   },
   {
     date: "2023",
     title: ".NET, C#, and Database Development",
     description:
-      "I learned .NET, C#, and database management, along with systems analysis and development. During this time, I worked on a prototype for 'Nøsted &', creating a web application for employee progress tracking and information management.",
+      "I studied .NET, C#, and database management, along with systems analysis and development. During this time, I collaborated on a prototype for 'Nøsted &', creating a web application for employee's to log progress tracking and information management.",
     icon: <FaCode />,
   },
   {
     date: "2023",
-    title: "Learning Java and OOP",
+    title: "Learning Java and Object-Oriented Programming",
     description:
       "I delved into Java programming, with a focus on object-oriented programming concepts, which strengthened my understanding of modular and maintainable code design.",
     icon: <FaJava />,
   },
   {
     date: "2024",
-    title: "Python and Information Security",
+    title: "Learning Python",
     description:
-      "I learned Python and studied information security principles. I also explored algorithms, applying theoretical knowledge by developing Python-based solutions.",
+      "I learned Python, exploring its versatile applications in web development, data analysis, and automation. This enhanced my ability to write efficient and readable code across different programming paradigms.",
     icon: <FaPython />,
+  },
+  {
+    date: "2024",
+    title: "Studied Information Security",
+    description:
+      "I studied information security principles, including cybersecurity threats, encryption methods, and secure system design. This deepened my understanding of protecting data and systems against vulnerabilities.",
+    icon: <FaShieldAlt />,
   },
   {
     date: "2024",
@@ -134,8 +142,8 @@ const timelineData = [
     date: "2025-",
     title: "Bachelor Thesis with Phonero",
     description:
-      "I chose to write my bachelor thesis in collaboration with Phonero, integrating my academic learnings with real-world challenges, which significantly enhanced my research and problem-solving skills.",
-    icon: <FaShieldAlt />,
+      "I undertook my bachelor thesis in collaboration with Phonero, integrating my academic learnings with real-world challenges, which significantly enhanced my research and problem-solving skills.",
+    icon: <FaGraduationCap />,
   },
 ];
 
@@ -164,7 +172,7 @@ const Title = styled.h1`
   background: linear-gradient(90deg, #4facfe, #00f2fe);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-top: 1rem;
+  margin-top: 2rem;
 
   @media (max-width: 768px) {
     font-size: 2.5rem;

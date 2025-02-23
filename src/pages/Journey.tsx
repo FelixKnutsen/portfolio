@@ -2,13 +2,15 @@
 
 import React from "react";
 import MyJourneyInCoding from "../components/MyJourneyInCoding";
-import OtherExperiences from "../components/OtherExperiences";
+import OtherJourney from "../components/OtherJourney";
+import Footer from "../components/Footer";
 
 const Journey: React.FC = () => {
   return (
     <>
       <MyJourneyInCoding />
-      <OtherExperiences />
+      <OtherJourney />
+      <Footer />
     </>
   );
 };
