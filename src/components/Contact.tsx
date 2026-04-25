@@ -93,9 +93,9 @@ export default function Contact() {
         >
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-2">
-              <label className="block font-label-caps text-label-caps text-slate-700 dark:text-slate-300" htmlFor="name">{content.contact.form.nameLabel}</label>
+              <label className="block font-label-caps text-label-caps text-slate-600 dark:text-slate-400" htmlFor="name">{content.contact.form.nameLabel}</label>
               <input
-                className="w-full px-4 py-3 rounded-lg bg-surface-bright dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-secondary-container focus:ring-1 focus:ring-secondary-container outline-none transition-all text-slate-900 dark:text-slate-50 font-body-md"
+                className="w-full px-4 py-3 rounded-lg bg-surface-bright dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-secondary-container focus:ring-1 focus:ring-secondary-container outline-none transition-all text-slate-800 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500 font-body-md"
                 id="name"
                 placeholder={content.contact.form.namePlaceholder}
                 type="text"
@@ -106,9 +106,9 @@ export default function Contact() {
             </div>
 
             <div className="space-y-2">
-              <label className="block font-label-caps text-label-caps text-slate-700 dark:text-slate-300" htmlFor="email">{content.contact.form.emailLabel}</label>
+              <label className="block font-label-caps text-label-caps text-slate-600 dark:text-slate-400" htmlFor="email">{content.contact.form.emailLabel}</label>
               <input
-                className="w-full px-4 py-3 rounded-lg bg-surface-bright dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-secondary-container focus:ring-1 focus:ring-secondary-container outline-none transition-all text-slate-900 dark:text-slate-50 font-body-md"
+                className="w-full px-4 py-3 rounded-lg bg-surface-bright dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-secondary-container focus:ring-1 focus:ring-secondary-container outline-none transition-all text-slate-800 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500 font-body-md"
                 id="email"
                 placeholder={content.contact.form.emailPlaceholder}
                 type="email"
@@ -119,9 +119,9 @@ export default function Contact() {
             </div>
 
             <div className="space-y-2">
-              <label className="block font-label-caps text-label-caps text-slate-700 dark:text-slate-300" htmlFor="subject">{content.contact.form.subjectLabel}</label>
+              <label className="block font-label-caps text-label-caps text-slate-600 dark:text-slate-400" htmlFor="subject">{content.contact.form.subjectLabel}</label>
               <input
-                className="w-full px-4 py-3 rounded-lg bg-surface-bright dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-secondary-container focus:ring-1 focus:ring-secondary-container outline-none transition-all text-slate-900 dark:text-slate-50 font-body-md"
+                className="w-full px-4 py-3 rounded-lg bg-surface-bright dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-secondary-container focus:ring-1 focus:ring-secondary-container outline-none transition-all text-slate-800 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500 font-body-md"
                 id="subject"
                 placeholder={content.contact.form.subjectPlaceholder}
                 type="text"
@@ -132,9 +132,9 @@ export default function Contact() {
             </div>
 
             <div className="space-y-2">
-              <label className="block font-label-caps text-label-caps text-slate-700 dark:text-slate-300" htmlFor="message">{content.contact.form.messageLabel}</label>
+              <label className="block font-label-caps text-label-caps text-slate-600 dark:text-slate-400" htmlFor="message">{content.contact.form.messageLabel}</label>
               <textarea
-                className="w-full px-4 py-3 rounded-lg bg-surface-bright dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-secondary-container focus:ring-1 focus:ring-secondary-container outline-none transition-all text-slate-900 dark:text-slate-50 font-body-md min-h-[120px] resize-y"
+                className="w-full px-4 py-3 rounded-lg bg-surface-bright dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-secondary-container focus:ring-1 focus:ring-secondary-container outline-none transition-all text-slate-800 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500 font-body-md min-h-[120px] resize-y"
                 id="message"
                 placeholder={content.contact.form.messagePlaceholder}
                 value={message}
