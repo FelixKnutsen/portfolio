@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import contentData from './data/content.json';
 import { useLanguage } from './context/LanguageContext';
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const { language } = useLanguage();
@@ -29,6 +30,7 @@ function App() {
           <Contact />
         </main>
         <Footer />
+        <Analytics />
       </div>
     </ThemeProvider>
   );
