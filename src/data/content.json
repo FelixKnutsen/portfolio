@@ -1,0 +1,432 @@
+{
+  "en": {
+    "meta": {
+      "title": "Felix Fabricius Knutsen",
+      "description": "Portfolio of Felix Fabricius Knutsen, bridging technology and strategy."
+    },
+    "nav": {
+      "brand": "Felix Fabricius Knutsen",
+      "links": [
+        {
+          "label": "Education",
+          "href": "#education"
+        },
+        {
+          "label": "Experience",
+          "href": "#experience"
+        },
+        {
+          "label": "Certificates",
+          "href": "#certificates"
+        },
+        {
+          "label": "Contact",
+          "href": "#contact"
+        }
+      ]
+    },
+    "hero": {
+      "badge": "Master's Candidate in Information Systems",
+      "headline": "Driving Innovation Through Technology.",
+      "body": "Information Systems student at UiA with experience in IT internships, student politics, and organizational leadership. Passionate about leveraging technology to drive organizational efficiency and innovation.",
+      "ctaText": "View Experience",
+      "ctaLink": "#experience",
+      "image": {
+        "src": "/images/ProfilePicture.png",
+        "alt": "Black and white professional portrait of a young man looking confident in a studio setting with soft lighting"
+      }
+    },
+    "education": {
+      "heading": "Education",
+      "subtitle": "Academic foundation in Information Systems.",
+      "items": [
+        {
+          "degree": "Master's degree, Information Systems",
+          "institution": "Universitetet i Agder (UiA)",
+          "status": "August 2025 - June 2028",
+          "description": "",
+          "isActive": true
+        },
+        {
+          "degree": "Bachelor's degree, IT and Information Systems",
+          "institution": "Universitetet i Agder (UiA)",
+          "status": "August 2022 - June 2025",
+          "description": "",
+          "isActive": false
+        },
+        {
+          "degree": "One-year program, Preparatory course for engineering education",
+          "institution": "Universitetet i Agder (UiA)",
+          "status": "August 2021 - May 2022",
+          "description": "",
+          "isActive": false
+        }
+      ]
+    },
+    "experience": {
+      "heading": "Experience",
+      "subtitle": "Professional journey and organizational involvement.",
+      "items": [
+        {
+          "role": "Board member",
+          "organization": "NITO Studentene (Central Board)",
+          "period": "July 2026 - Present",
+          "description": "Board member of NITO Studentene central board.",
+          "markerColor": "bg-slate-400"
+        },
+        {
+          "role": "Innovasjonsjeger",
+          "organization": "Kristiansand kommune",
+          "period": "January 2026 - May 2026",
+          "description": "Internship at Kristiansand kommune in the planning and building department.",
+          "markerColor": "bg-secondary-container"
+        },
+        {
+          "role": "Elected representative in the Student Parliament",
+          "organization": "The Student Organization of Agder",
+          "period": "September 2025 - Present",
+          "description": "Elected representative for the Faculty of Social Sciences, representing my fellow students in the Student Parliament. I also had the opportunity to travel to NSO to represent all students at UiA.",
+          "markerColor": "bg-slate-400"
+        },
+        {
+          "role": "Bachelor Thesis",
+          "organization": "Phonero",
+          "period": "January 2025 - May 2025",
+          "description": "I completed my bachelor's thesis in collaboration with Phonero, where we redesigned and developed their equipment list to their self service portal, delivering a near ready solution for customer rollout.",
+          "markerColor": "bg-secondary-container"
+        },
+        {
+          "role": "Chair of board NITO Studentene Kristiansand",
+          "organization": "NITO Studentene Kristiansand",
+          "period": "January 2025 - June 2026",
+          "description": "Chair of NITO Studentene Kristiansand, leading the board, supporting member engagement, and creating opportunities for student politics, collaboration, and professional development",
+          "markerColor": "bg-slate-400"
+        },
+        {
+          "role": "Board member",
+          "organization": "NITO Studentene Kristiansand",
+          "period": "September 2024 - January 2025",
+          "description": "Board member in NITO Studentene Kristiansand, contributing to an engaging student community and gaining valuable experience through active involvement",
+          "markerColor": "bg-slate-400"
+        },
+        {
+          "role": "Intern",
+          "organization": "Phonero",
+          "period": "August 2024 - November 2024",
+          "description": "Intern at Phonero, contributing to software development, innovation research, and the resolution of bugs.",
+          "markerColor": "bg-secondary-container"
+        },
+        {
+          "role": "Closing and locking manager",
+          "organization": "KIWI minipris",
+          "period": "February 2023 - Present",
+          "description": "Responsible for ensuring store tasks are carried out as assigned, and for managing daily operations, goods receiving, orders, and staff issues in the absence of the assistant store manager and store manager at KIWI Lund.",
+          "markerColor": "bg-slate-400"
+        },
+        {
+          "role": "Closing and locking manager",
+          "organization": "KIWI minipris",
+          "period": "June 2022 - May 2023",
+          "description": "Responsible for ensuring store tasks are carried out as assigned, and for managing daily operations, goods receiving, orders, and staff issues in the absence of the assistant store manager and store manager at KIWI Stoa Øst",
+          "markerColor": "bg-slate-400"
+        },
+        {
+          "role": "Butikkmedarbeider",
+          "organization": "KIWI minipris",
+          "period": "March 2022 - June 2022",
+          "description": "Stoa Øst",
+          "markerColor": "bg-slate-400"
+        }
+      ]
+    },
+    "certificates": {
+      "heading": "Certificates",
+      "subtitle": "Continuous learning and professional development",
+      "items": [
+        {
+          "title": "Introduction to Project Management for Student Representatives",
+          "issuer": "Associated with NITO - Norges Ingeniør- og Teknologorganisasjon",
+          "icon": "workspace_premium",
+          "pdfLink": "/certificates/intro-prosjektledelse.pdf"
+        },
+        {
+          "title": "Leadership Development for Local Chapter Leaders",
+          "issuer": "Associated with NITO - Norges Ingeniør- og Teknologorganisasjon",
+          "icon": "workspace_premium",
+          "pdfLink": "/certificates/lederutvikling-lokallagsledere.pdf"
+        },
+        {
+          "title": "GDPR for Managers",
+          "issuer": "Associated with KIWI minipris",
+          "icon": "workspace_premium"
+        }
+      ]
+    },
+    "contact": {
+      "heading": "Get in Touch",
+      "body": "I'm currently open to new opportunities, collaborations, or just a chat about technology and strategy. Feel free to reach out!",
+      "links": [
+        {
+          "type": "E-mail",
+          "value": "felix.knutsen@gmail.com",
+          "href": "mailto:felix.knutsen@gmail.com",
+          "icon": "mail",
+          "external": false
+        },
+        {
+          "type": "LinkedIn",
+          "value": "linkedin.com/in/felix-knutsen",
+          "href": "https://www.linkedin.com/in/felix-knutsen/",
+          "icon": "link",
+          "external": true
+        },
+        {
+          "type": "GitHub",
+          "value": "github.com/FelixKnutsen",
+          "href": "https://github.com/FelixKnutsen",
+          "icon": "code",
+          "external": true
+        }
+      ],
+      "form": {
+        "nameLabel": "Name",
+        "namePlaceholder": "John Doe",
+        "emailLabel": "E-mail",
+        "emailPlaceholder": "john@gmail.com",
+        "subjectLabel": "Subject",
+        "subjectPlaceholder": "Job Opportunity",
+        "messageLabel": "Message",
+        "messagePlaceholder": "How can I help you?",
+        "buttonText": "Send Message"
+      }
+    },
+    "footer": {
+      "copyright": "© 2026 Felix Fabricius Knutsen. All rights reserved.",
+      "links": [
+        {
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com/in/felix-knutsen/"
+        },
+        {
+          "label": "GitHub",
+          "href": "https://github.com/FelixKnutsen"
+        }
+      ]
+    }
+  },
+  "no": {
+    "meta": {
+      "title": "Felix Fabricius Knutsen",
+      "description": "Portefølje for Felix Fabricius Knutsen, knytter sammen teknologi og strategi."
+    },
+    "nav": {
+      "brand": "Felix Fabricius Knutsen",
+      "links": [
+        {
+          "label": "Utdanning",
+          "href": "#education"
+        },
+        {
+          "label": "Erfaring",
+          "href": "#experience"
+        },
+        {
+          "label": "Sertifikater",
+          "href": "#certificates"
+        },
+        {
+          "label": "Kontakt",
+          "href": "#contact"
+        }
+      ]
+    },
+    "hero": {
+      "badge": "Masterstudent i informasjonssystemer",
+      "headline": "Driver innovasjon gjennom teknologi.",
+      "body": "Student i informasjonssystemer ved UiA med erfaring fra IT-internships, studentpolitikk og organisasjonsledelse. Lidenskapelig opptatt av å bruke teknologi for å drive frem organisatorisk effektivitet og innovasjon.",
+      "ctaText": "Se erfaring",
+      "ctaLink": "#experience",
+      "image": {
+        "src": "/images/ProfilePicture.png",
+        "alt": "Svart-hvitt profesjonelt portrett av en ung mann som ser selvsikker ut"
+      }
+    },
+    "education": {
+      "heading": "Utdanning",
+      "subtitle": "Akademisk grunnlag innen informasjonssystemer.",
+      "items": [
+        {
+          "degree": "Mastergrad, Informasjonssystemer",
+          "institution": "Universitetet i Agder (UiA)",
+          "status": "August 2025 - Juni 2028",
+          "description": "",
+          "isActive": true
+        },
+        {
+          "degree": "Bachelorgrad, IT og informasjonssystemer",
+          "institution": "Universitetet i Agder (UiA)",
+          "status": "August 2022 - Juni 2025",
+          "description": "",
+          "isActive": false
+        },
+        {
+          "degree": "Årsstudium, Forkurs for ingeniørutdanning",
+          "institution": "Universitetet i Agder (UiA)",
+          "status": "August 2021 - Mai 2022",
+          "description": "",
+          "isActive": false
+        }
+      ]
+    },
+    "experience": {
+      "heading": "Erfaring",
+      "subtitle": "Karriere og organisasjonsarbeid.",
+      "items": [
+        {
+          "role": "Styremedlem",
+          "organization": "NITO Studentene (Sentralstyret)",
+          "period": "Juli 2026 - Nå",
+          "description": "Styremedlem i NITO Studentene sentralstyret.",
+          "markerColor": "bg-slate-400"
+        },
+        {
+          "role": "Innovasjonsjeger",
+          "organization": "Kristiansand kommune",
+          "period": "Januar 2026 - Mai 2026",
+          "description": "Internship hos Kristiansand kommune i plan- og bygningsetaten.",
+          "markerColor": "bg-secondary-container"
+        },
+        {
+          "role": "Tillitsvalgt i Studentparlamentet",
+          "organization": "Studentorganisasjonen i Agder",
+          "period": "September 2025 - Nå",
+          "description": "Tillitsvalgt for Fakultet for samfunnsvitenskap, og representerer mine medstudenter i Studentparlamentet. Jeg hadde også muligheten til å reise til NSO for å representere alle studenter ved UiA gjennom dette vervet.",
+          "markerColor": "bg-slate-400"
+        },
+        {
+          "role": "Bacheloroppgave",
+          "organization": "Phonero",
+          "period": "Januar 2025 - Mai 2025",
+          "description": "Jeg fullførte min bacheloroppgave i samarbeid med Phonero, hvor vi redesignet og utviklet utstyrslisten til deres selvbetjeningsportal, og leverte en nesten ferdig løsning klar for kunder.",
+          "markerColor": "bg-secondary-container"
+        },
+        {
+          "role": "Styreleder NITO Studentene Kristiansand",
+          "organization": "NITO Studentene Kristiansand",
+          "period": "Januar 2025 - Juni 2026",
+          "description": "Styreleder for NITO Studentene Kristiansand. Leder styret, støtter medlemsengasjement og skaper muligheter for studentpolitikk, samarbeid og faglig utvikling.",
+          "markerColor": "bg-slate-400"
+        },
+        {
+          "role": "Styremedlem",
+          "organization": "NITO Studentene Kristiansand",
+          "period": "September 2024 - Januar 2025",
+          "description": "Styremedlem i NITO Studentene Kristiansand, bidro til et engasjerende studentmiljø og fikk verdifull erfaring gjennom aktiv deltakelse.",
+          "markerColor": "bg-slate-400"
+        },
+        {
+          "role": "Intern",
+          "organization": "Phonero",
+          "period": "August 2024 - November 2024",
+          "description": "Intern hos Phonero, bidro med programvareutvikling, innovasjonsforskning og bug fixes.",
+          "markerColor": "bg-secondary-container"
+        },
+        {
+          "role": "Låseansvarlig",
+          "organization": "KIWI minipris",
+          "period": "Februar 2023 - Nå",
+          "description": "Ansvarlig for at butikkens oppgaver utføres som tildelt, og for håndtering av daglig drift, varemottak, bestillinger og personalansvar i fravær av assisterende butikksjef og butikksjef ved KIWI Lund.",
+          "markerColor": "bg-slate-400"
+        },
+        {
+          "role": "Låseansvarlig",
+          "organization": "KIWI minipris",
+          "period": "Juni 2022 - Mai 2023",
+          "description": "Ansvarlig for at butikkens oppgaver utføres som tildelt, og for håndtering av daglig drift, varemottak, bestillinger og personalansvar i fravær av assisterende butikksjef og butikksjef ved KIWI Stoa Øst.",
+          "markerColor": "bg-slate-400"
+        },
+        {
+          "role": "Butikkmedarbeider",
+          "organization": "KIWI minipris",
+          "period": "Mars 2022 - Juni 2022",
+          "description": "Stoa Øst",
+          "markerColor": "bg-slate-400"
+        }
+      ]
+    },
+    "certificates": {
+      "heading": "Sertifikater",
+      "subtitle": "Kontinuerlig læring og faglig utvikling",
+      "items": [
+        {
+          "title": "Innføring i prosjektledelse for tillitsvalgte",
+          "issuer": "Knyttet til NITO - Norges Ingeniør- og Teknologorganisasjon",
+          "icon": "workspace_premium",
+          "pdfLink": "/certificates/intro-prosjektledelse.pdf"
+        },
+        {
+          "title": "Lederutvikling for Lokallagsledere",
+          "issuer": "Knyttet til NITO - Norges Ingeniør- og Teknologorganisasjon",
+          "icon": "workspace_premium",
+          "pdfLink": "/certificates/lederutvikling-lokallagsledere.pdf"
+        },
+        {
+          "title": "GDPR for Ledere",
+          "issuer": "Knyttet til KIWI minipris",
+          "icon": "workspace_premium"
+        }
+      ]
+    },
+    "contact": {
+      "heading": "Ta kontakt",
+      "body": "Jeg er for øyeblikket åpen for nye muligheter, samarbeid, eller bare en prat om teknologi og strategi. Ta gjerne kontakt!",
+      "links": [
+        {
+          "type": "E-post",
+          "value": "felix.knutsen@gmail.com",
+          "href": "mailto:felix.knutsen@gmail.com",
+          "icon": "mail",
+          "external": false
+        },
+        {
+          "type": "LinkedIn",
+          "value": "linkedin.com/in/felix-knutsen",
+          "href": "https://www.linkedin.com/in/felix-knutsen/",
+          "icon": "link",
+          "external": true
+        },
+        {
+          "type": "GitHub",
+          "value": "github.com/FelixKnutsen",
+          "href": "https://github.com/FelixKnutsen",
+          "icon": "code",
+          "external": true
+        }
+      ],
+      "form": {
+        "nameLabel": "Navn",
+        "namePlaceholder": "Ola Nordmann",
+        "emailLabel": "E-post",
+        "emailPlaceholder": "ola@gmail.no",
+        "subjectLabel": "Emne",
+        "subjectPlaceholder": "Jobbmulighet",
+        "messageLabel": "Melding",
+        "messagePlaceholder": "Hva kan jeg hjelpe deg med?",
+        "buttonText": "Send melding"
+      }
+    },
+    "footer": {
+      "copyright": "© 2026 Felix Fabricius Knutsen",
+      "links": [
+        {
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com/in/felix-knutsen/"
+        },
+        {
+          "label": "GitHub",
+          "href": "https://github.com/FelixKnutsen"
+        }
+      ]
+    }
+  }
+}

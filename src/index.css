@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-error-container: #ffdad6;
+  --color-on-tertiary-container: #75859d;
+  --color-tertiary-container: #0b1c30;
+  --color-primary-container: #1b1b1b;
+  --color-on-error: #ffffff;
+  --color-surface-container: #e6eeff;
+  --color-on-surface: #0b1c30;
+  --color-error: #ba1a1a;
+  --color-primary: #000000;
+  --color-surface-bright: #f8f9ff;
+  --color-on-surface-variant: #4c4546;
+  --color-secondary-fixed-dim: #efbf65;
+  --color-on-primary-container: #848484;
+  --color-on-primary-fixed: #1b1b1b;
+  --color-background: #f8f9ff;
+  --color-on-primary: #ffffff;
+  --color-on-tertiary: #ffffff;
+  --color-on-error-container: #93000a;
+  --color-surface-tint: #5e5e5e;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #eff4ff;
+  --color-surface-container-highest: #d3e3ff;
+  --color-on-tertiary-fixed-variant: #38485d;
+  --color-surface: #f8f9ff;
+  --color-tertiary-fixed: #d3e4fe;
+  --color-surface-variant: #d3e3ff;
+  --color-on-secondary-container: #785600;
+  --color-secondary-container: #fecd72;
+  --color-surface-dim: #cbdbf6;
+  --color-outline: #7e7576;
+  --color-on-background: #0b1c30;
+  --color-surface-container-high: #dde9ff;
+  --color-on-tertiary-fixed: #0b1c30;
+  --color-on-secondary-fixed: #271900;
+  --color-inverse-on-surface: #ebf1ff;
+  --color-secondary: #7b5800;
+  --color-secondary-fixed: #ffdea6;
+  --color-on-secondary-fixed-variant: #5d4200;
+  --color-tertiary: #000000;
+  --color-on-secondary: #ffffff;
+  --color-on-primary-fixed-variant: #474747;
+  --color-primary-fixed: #e2e2e2;
+  --color-inverse-primary: #c6c6c6;
+  --color-inverse-surface: #213146;
+  --color-primary-fixed-dim: #c6c6c6;
+  --color-outline-variant: #cfc4c5;
+  --color-tertiary-fixed-dim: #b7c8e1;
+
+  --radius-DEFAULT: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
+
+  --spacing-container-max: 1120px;
+  --spacing-unit: 8px;
+  --spacing-section-padding: 120px;
+  --spacing-gutter: 32px;
+
+  --font-headline-xl: Inter, sans-serif;
+  --font-headline-lg: Inter, sans-serif;
+  --font-body-md: Newsreader, serif;
+  --font-body-lg: Newsreader, serif;
+  --font-label-caps: Inter, sans-serif;
+  --font-headline-md: Inter, sans-serif;
+  --font-button: Inter, sans-serif;
+
+  /* Font sizes with line height, letter spacing, font weight */
+  /* We define these as custom classes below if we need complex text styles, 
+     or just text size variables for v4 */
+  --text-headline-xl: 48px;
+  --text-headline-xl--line-height: 1.1;
+  --text-headline-xl--letter-spacing: -0.02em;
+  --text-headline-xl--font-weight: 700;
+
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 1.2;
+  --text-headline-lg--letter-spacing: -0.01em;
+  --text-headline-lg--font-weight: 600;
+
+  --text-body-md: 17px;
+  --text-body-md--line-height: 1.6;
+  --text-body-md--font-weight: 400;
+
+  --text-body-lg: 20px;
+  --text-body-lg--line-height: 1.6;
+  --text-body-lg--font-weight: 400;
+
+  --text-label-caps: 12px;
+  --text-label-caps--line-height: 1.0;
+  --text-label-caps--letter-spacing: 0.1em;
+  --text-label-caps--font-weight: 700;
+
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 1.3;
+  --text-headline-md--font-weight: 600;
+
+  --text-button: 14px;
+  --text-button--line-height: 1.0;
+  --text-button--font-weight: 600;
+}
+
+@layer utilities {
+  .font-headline-xl {
+    font-family: var(--font-headline-xl);
+  }
+
+  .font-headline-lg {
+    font-family: var(--font-headline-lg);
+  }
+
+  .font-body-md {
+    font-family: var(--font-body-md);
+  }
+
+  .font-body-lg {
+    font-family: var(--font-body-lg);
+  }
+
+  .font-label-caps {
+    font-family: var(--font-label-caps);
+  }
+
+  .font-headline-md {
+    font-family: var(--font-headline-md);
+  }
+
+  .font-button {
+    font-family: var(--font-button);
+  }
+
+  .text-headline-xl {
+    font-size: var(--text-headline-xl);
+    line-height: var(--text-headline-xl--line-height);
+    letter-spacing: var(--text-headline-xl--letter-spacing);
+    font-weight: var(--text-headline-xl--font-weight);
+  }
+
+  .text-headline-lg {
+    font-size: var(--text-headline-lg);
+    line-height: var(--text-headline-lg--line-height);
+    letter-spacing: var(--text-headline-lg--letter-spacing);
+    font-weight: var(--text-headline-lg--font-weight);
+  }
+
+  .text-body-md {
+    font-size: var(--text-body-md);
+    line-height: var(--text-body-md--line-height);
+    font-weight: var(--text-body-md--font-weight);
+  }
+
+  .text-body-lg {
+    font-size: var(--text-body-lg);
+    line-height: var(--text-body-lg--line-height);
+    font-weight: var(--text-body-lg--font-weight);
+  }
+
+  .text-label-caps {
+    font-size: var(--text-label-caps);
+    line-height: var(--text-label-caps--line-height);
+    letter-spacing: var(--text-label-caps--letter-spacing);
+    font-weight: var(--text-label-caps--font-weight);
+  }
+
+  .text-headline-md {
+    font-size: var(--text-headline-md);
+    line-height: var(--text-headline-md--line-height);
+    font-weight: var(--text-headline-md--font-weight);
+  }
+
+  .text-button {
+    font-size: var(--text-button);
+    line-height: var(--text-button--line-height);
+    font-weight: var(--text-button--font-weight);
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.is-visible {
+  animation-play-state: running;
+}
+
+html {
+  scroll-behavior: smooth;
+}
