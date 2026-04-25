@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 interface TextAnimationProps {
   text: string;
 }
 
-const TextAnimation: React.FC<TextAnimationProps> = ({ text }) => {
+const TextAnimation = ({ text }: TextAnimationProps) => {
   const containerRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
