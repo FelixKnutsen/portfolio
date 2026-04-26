@@ -1,9 +1,26 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
 
-export function useScrollReveal<T extends HTMLElement>(options = { threshold: 0.1 }) {
+interface ScrollRevealOptions {
+  threshold?: number;
+}
+
+/**
+ * Observe an element and add the `is-visible` class once it scrolls into view.
+ * Unobserves after the first intersection so the animation fires only once.
+ */
+export function useScrollReveal<T extends HTMLElement>(
+  options: ScrollRevealOptions = {},
+) {
+  const { threshold = 0.1 } = options;
   const ref = useRef<T>(null);
 
+  // Stable reference so the effect doesn't re-run on every render
+  const observerOptions = useMemo(() => ({ threshold }), [threshold]);
+
   useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -11,18 +28,14 @@ export function useScrollReveal<T extends HTMLElement>(options = { threshold: 0.
           observer.unobserve(entry.target);
         }
       });
-    }, options);
+    }, observerOptions);
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(element);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+      observer.unobserve(element);
     };
-  }, [options.threshold]);
+  }, [observerOptions]);
 
   return ref;
 }

@@ -1,0 +1,27 @@
+{
+  "short_name": "FelixKnutsen",
+  "name": "Felix Fabricius Knutsen Portfolio",
+  "icons": [
+    {
+      "src": "/images/favicon.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/favicon.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/favicon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#fdfbf7",
+  "background_color": "#fdfbf7"
+}
