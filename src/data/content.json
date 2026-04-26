@@ -49,7 +49,7 @@
           "degree": "Master's degree, Information Systems",
           "institution": "Universitetet i Agder (UiA)",
           "status": "August 2025 - June 2028",
-          "description": "Currently pursuing a Master's degree in Information Systems, focusing on digital transformation, AI, and advanced system management.",
+          "description": "Currently pursuing a Master's degree in Information Systems at UiA, focusing on digital transformation, artificial intelligence, and advanced system management to drive future organizational innovation.",
           "isActive": true,
           "courses": [
             { "code": "IS-403", "name": "Digital transformasjon og prosessledelse", "description": "Digital transformation and process management.", "semester": "Autumn 2025", "topics": ["Process Modeling", "Digital Strategy", "Architecture"], "link": "https://www.uia.no/studier/emner/2025/host/is-403.html" },
@@ -65,7 +65,7 @@
           "degree": "Bachelor's degree, IT and Information Systems",
           "institution": "Universitetet i Agder (UiA)",
           "status": "August 2022 - June 2025",
-          "description": "Completed a Bachelor's degree in IT and Information Systems, gaining a comprehensive understanding of software engineering, database management, and the strategic implementation of information systems in organizations.",
+          "description": "Completed a Bachelor's degree in IT and Information Systems, gaining a comprehensive understanding of software engineering, database management, and the strategic implementation of IT within organizations.",
           "isActive": false,
           "courses": [
             { "code": "IS-100", "name": "Role of Digitalization in Future Societies", "description": "Societal impact of technology and digital transformation.", "semester": "Autumn 2022", "topics": ["Digital Society", "Ethics", "Sustainability"], "link": "https://www.uia.no/studier/emner/2022/host/is-100.html" },
@@ -94,7 +94,7 @@
           "degree": "Preparatory course for engineering education",
           "institution": "Universitetet i Agder (UiA)",
           "status": "August 2021 - June 2022",
-          "description": "Completed an intensive preparatory program at UiA, focusing on mathematics and physics to build the analytical and technical foundation required for engineering and technology studies.",
+          "description": "Completed an intensive preparatory program at UiA, focusing on advanced mathematics and physics to build the analytical and technical foundation required for engineering and complex technology studies.",
           "isActive": false,
           "courses": [
             { "code": "FYS008", "name": "Fysikk forkurs", "description": "Completion: Spring 2022", "semester": "Spring 2022", "topics": ["Foundation", "Physics", "Mathematics"], "link": "#" },
@@ -306,7 +306,7 @@
           "degree": "Mastergrad, Informasjonssystemer",
           "institution": "Universitetet i Agder (UiA)",
           "status": "August 2025 - Juni 2028",
-          "description": "Nåværende student ved masterprogrammet i informasjonssystemer, med fokus på digital transformasjon, AI og avansert systemstyring.",
+          "description": "Nåværende student ved masterprogrammet i informasjonssystemer ved UiA. Jeg fordyper meg i digital transformasjon, kunstig intelligens og avansert systemstyring for å drive fremtidig innovasjon.",
           "isActive": true,
           "courses": [
             { "code": "IS-403", "name": "Digital transformasjon og prosessledelse", "description": "Digital transformasjon og prosessledelse.", "semester": "Høst 2025", "topics": ["Prosessmodellering", "Digital strategi", "Arkitektur"], "link": "https://www.uia.no/studier/emner/2025/host/is-403.html" },
@@ -322,7 +322,7 @@
           "degree": "Bachelorgrad, IT og informasjonssystemer",
           "institution": "Universitetet i Agder (UiA)",
           "status": "August 2022 - Juni 2025",
-          "description": "Fullførte en bachelorgrad i IT og informasjonssystemer, med fokus på programvareutvikling, databasestyring og strategisk implementering av informasjonssystemer i organisasjoner.",
+          "description": "Fullførte en bachelorgrad i IT og informasjonssystemer, med et solid fokus på programvareutvikling, databasestyring og strategisk implementering av informasjonssystemer for moderne organisasjoner.",
           "isActive": false,
           "courses": [
             { "code": "IS-100", "name": "Role of Digitalization in Future Societies", "description": "Samfunnsmessig påvirkning av teknologi og digital transformasjon.", "semester": "Høst 2022", "topics": ["Digitalt samfunn", "Etikk", "Bærekraft"], "link": "https://www.uia.no/studier/emner/2022/host/is-100.html" },
@@ -351,7 +351,7 @@
           "degree": "Forkurs for ingeniørutdanning",
           "institution": "Universitetet i Agder (UiA)",
           "status": "August 2021 - Juni 2022",
-          "description": "Fullførte et intensivt forkurs ved UiA med fokus på matematikk og fysikk, for å bygge det analytiske og tekniske grunnlaget som kreves for videre ingeniør- og teknologistudier.",
+          "description": "Fullførte et intensivt forkurs ved UiA med tungt fokus på matematikk og fysikk. Dette bygget det nødvendige analytiske og tekniske grunnlaget som kreves for videre ingeniør- og teknologistudier.",
           "isActive": false,
           "courses": [
             { "code": "FYS008", "name": "Fysikk forkurs", "description": "Fullført: Vår 2022", "semester": "Vår 2022", "topics": ["Grunnlag", "Fysikk", "Matematikk"], "link": "#" },
