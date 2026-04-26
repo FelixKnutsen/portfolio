@@ -28,8 +28,12 @@ export default function Contact() {
   }, []);
 
   const sanitizeInput = (text: string) => {
-    // Basic sanitization: remove HTML tags to prevent XSS
-    return text.replace(/<[^>]*>?/gm, '').trim();
+    // Robust sanitization: remove HTML tags and potential script/event attributes
+    return text
+      .replace(/<[^>]*>?/gm, '') // Remove tags
+      .replace(/on\w+="[^"]*"/gm, '') // Remove event handlers like onclick="..."
+      .replace(/javascript:[^"]*/gim, '') // Remove javascript: links
+      .trim();
   };
 
   const handleSubmit = useCallback(
