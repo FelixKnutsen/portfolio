@@ -12,11 +12,10 @@ interface EducationCardProps {
   item: EducationItemType;
   index: number;
   isExpanded: boolean;
-  forceFullHeight: boolean;
   onToggle: () => void;
 }
 
-export default function EducationCard({ id, item, index, isExpanded, forceFullHeight, onToggle }: EducationCardProps) {
+export default function EducationCard({ id, item, index, isExpanded, onToggle }: EducationCardProps) {
   const { language } = useLanguage();
   const labels = typedContent[language].education;
   const itemRef = useScrollReveal<HTMLDivElement>();
@@ -93,9 +92,7 @@ export default function EducationCard({ id, item, index, isExpanded, forceFullHe
       ref={itemRef}
       id={id}
       data-card-id={id}
-      className={`bg-white dark:bg-slate-950 p-6 md:p-10 rounded-xl shadow-sm border transition-all duration-300 relative overflow-hidden group animate-on-scroll flex flex-col ${
-        forceFullHeight ? 'h-full' : ''
-      } ${
+      className={`bg-white dark:bg-slate-950 p-6 md:p-10 rounded-xl shadow-sm border transition-all duration-300 relative overflow-hidden group animate-on-scroll flex flex-col min-h-[260px] md:min-h-[280px] ${
         hasCourses ? 'cursor-pointer hover:border-secondary-container/50' : 'border-slate-200 dark:border-slate-800'
       } ${isExpanded ? 'ring-2 ring-secondary-container/30 border-secondary-container shadow-md' : 'border-slate-200 dark:border-slate-800 hover:-translate-y-1 hover:shadow-md'}`}
       style={{ animationDelay: `${index * 0.1}s` }}
@@ -149,15 +146,17 @@ export default function EducationCard({ id, item, index, isExpanded, forceFullHe
       </div>
 
       {item.description && (
-        <p className={`font-body-md text-sm md:text-body-md text-slate-500 dark:text-slate-400 leading-relaxed ${forceFullHeight ? 'flex-grow' : ''}`}>
+        <p className="font-body-md text-sm md:text-body-md text-slate-500 dark:text-slate-400 leading-relaxed flex-grow">
           {item.description}
         </p>
       )}
 
-      {hasCourses && !isExpanded && (
-        <p className="mt-4 font-label-caps text-[10px] text-secondary flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-          {labels.showCourses}
-        </p>
+      {hasCourses && (
+        <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'h-0 opacity-0' : 'h-6 mt-4 opacity-100'}`}>
+          <p className="font-label-caps text-[10px] text-secondary flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+            {labels.showCourses}
+          </p>
+        </div>
       )}
 
       {/* Course List - Always rendered but height animated via GSAP */}
