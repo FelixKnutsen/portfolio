@@ -40,7 +40,7 @@ export default function Education() {
     }
   };
 
-  const isAnyExpanded = selectedId !== null;
+
 
   return (
     <section
