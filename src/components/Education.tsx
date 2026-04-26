@@ -17,21 +17,27 @@ export default function Education() {
     const isClosing = selectedId === id;
     setSelectedId(isClosing ? null : id);
 
-    // Always scroll to section header when state changes to keep user oriented,
-    // especially when closing or switching cards.
-    setTimeout(() => {
-      const section = document.getElementById('education');
-      if (section) {
-        const headerOffset = 100; // Account for fixed navbar
-        const elementPosition = section.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    }, 100);
+    // Only scroll when closing a box, and ONLY if the user has scrolled down
+    // past the top of the specific card they are closing.
+    if (isClosing) {
+      setTimeout(() => {
+        const card = document.getElementById(id);
+        if (card) {
+          const headerOffset = 120; // Account for fixed navbar and some breathing room
+          const rect = card.getBoundingClientRect();
+          
+          // If the top of the card is hidden above the viewport, scroll to it.
+          // This prevents dragging the user if they are already looking at the card.
+          if (rect.top < headerOffset) {
+            const offsetPosition = rect.top + window.scrollY - headerOffset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
+      }, 50);
+    }
   };
 
   const isAnyExpanded = selectedId !== null;
@@ -52,8 +58,7 @@ export default function Education() {
           </p>
         </div>
 
-        {/* Use items-stretch when nothing is expanded to keep boxes same size, switch to items-start when one opens */}
-        <div className={`grid md:grid-cols-2 gap-8 ${isAnyExpanded ? 'items-start' : 'items-stretch'}`}>
+        <div className="grid md:grid-cols-2 gap-8 items-start">
           {content.education.items.map((item, index) => {
             // Generate a unique ID based on degree and index
             const cardId = `edu-card-${index}`;
@@ -64,7 +69,6 @@ export default function Education() {
                 item={item} 
                 index={index} 
                 isExpanded={selectedId === cardId}
-                forceFullHeight={!isAnyExpanded}
                 onToggle={() => handleToggle(cardId)}
               />
             );
