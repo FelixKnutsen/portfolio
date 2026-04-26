@@ -32,6 +32,16 @@ export interface HeroContent {
   image: HeroImage;
 }
 
+/** A single course within a degree. */
+export interface Course {
+  code: string;
+  name: string;
+  description: string;
+  semester: string;
+  topics: string[];
+  link?: string;
+}
+
 /** A single education entry. */
 export interface EducationItem {
   degree: string;
@@ -39,12 +49,18 @@ export interface EducationItem {
   status: string;
   description: string;
   isActive: boolean;
+  courses?: Course[];
 }
 
 /** Education section content. */
 export interface EducationContent {
   heading: string;
   subtitle: string;
+  showCourses: string;
+  hideCourses: string;
+  semesterLabel: string;
+  topicsLabel: string;
+  addLabelsLabel: string;
   items: EducationItem[];
 }
 
