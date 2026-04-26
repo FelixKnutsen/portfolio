@@ -36,7 +36,7 @@ const TextAnimation = memo(function TextAnimation({ text }: TextAnimationProps) 
       ref={containerRef}
       className="font-body-lg text-body-lg text-slate-600 dark:text-slate-400 max-w-2xl flex flex-wrap gap-x-1.5"
     >
-      {text.split(' ').map((word, index) => (
+      {text.split(/\s+/).filter(Boolean).map((word, index) => (
         <span key={`${word}-${index}`} className="inline-block opacity-0">
           {word}
         </span>

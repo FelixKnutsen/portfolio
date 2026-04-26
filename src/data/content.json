@@ -39,27 +39,69 @@
     "education": {
       "heading": "Education",
       "subtitle": "Academic foundation in Information Systems.",
+      "showCourses": "Show courses",
+      "hideCourses": "Hide courses",
+      "semesterLabel": "Semester",
+      "topicsLabel": "Key Topics",
+      "addLabelsLabel": "Add labels...",
       "items": [
         {
           "degree": "Master's degree, Information Systems",
           "institution": "Universitetet i Agder (UiA)",
           "status": "August 2025 - June 2028",
-          "description": "",
-          "isActive": true
+          "description": "Currently pursuing a Master's degree in Information Systems, focusing on digital transformation, AI, and advanced system management.",
+          "isActive": true,
+          "courses": [
+            { "code": "IS-403", "name": "Digital transformasjon og prosessledelse", "description": "Digital transformation and process management.", "semester": "Autumn 2025", "topics": ["Process Modeling", "Digital Strategy", "Architecture"], "link": "https://www.uia.no/studier/emner/2025/host/is-403.html" },
+            { "code": "IS-406", "name": "Digitale teknologier & forretningssystemer", "description": "Digital technologies and business systems.", "semester": "Autumn 2025", "topics": ["ERP/Cloud", "SCM/CRM", "Enterprise Systems"], "link": "https://www.uia.no/studier/emner/2025/host/is-406.html" },
+            { "code": "IS-427", "name": "Data Science Applications II", "description": "Advanced data science and analytics applications.", "semester": "Autumn 2025", "topics": ["Big Data", "Machine Learning", "Analytics"], "link": "https://www.uia.no/english/studies/courses/2025/autumn/is-427.html" },
+            { "code": "IS-407", "name": "Management of IS Projects", "description": "Project management specifically for information systems.", "semester": "Spring 2026", "topics": ["Project Governance", "Lifecycle", "Leadership"], "link": "https://www.uia.no/english/studies/courses/2026/spring/is-407.html" },
+            { "code": "IS-508", "name": "Human-Centered Artificial Intelligence", "description": "Ethics and human-centered design in AI development.", "semester": "Spring 2026", "topics": ["AI Ethics", "Human Control", "Responsible AI"], "link": "https://www.uia.no/english/studies/courses/2026/spring/is-508.html" },
+            { "code": "ORG411", "name": "Organizational Changes and Change Mgmt", "description": "Managing change within complex organizational structures.", "semester": "Spring 2026", "topics": ["Change Strategy", "Leadership", "Org. Psychology"], "link": "https://www.uia.no/english/studies/courses/2026/spring/org411.html" },
+            { "code": "IS-408", "name": "Internship at Kristiansand kommune", "description": "Professional practice and project work in a public sector environment.", "semester": "Spring 2026", "topics": ["Internship", "Practical Experience", "Public Sector"], "link": "#" }
+          ]
         },
         {
           "degree": "Bachelor's degree, IT and Information Systems",
           "institution": "Universitetet i Agder (UiA)",
           "status": "August 2022 - June 2025",
-          "description": "",
-          "isActive": false
+          "description": "Completed a Bachelor's degree in IT and Information Systems, gaining a comprehensive understanding of software engineering, database management, and the strategic implementation of information systems in organizations.",
+          "isActive": false,
+          "courses": [
+            { "code": "IS-100", "name": "Role of Digitalization in Future Societies", "description": "Societal impact of technology and digital transformation.", "semester": "Autumn 2022", "topics": ["Digital Society", "Ethics", "Sustainability"], "link": "https://www.uia.no/studier/emner/2022/host/is-100.html" },
+            { "code": "IS-104", "name": "Digital Interaction Design", "description": "Principles of UI/UX design and human-computer interaction.", "semester": "Autumn 2022", "topics": ["Interaction Design", "UX/UI", "Prototyping"], "link": "https://www.uia.no/studier/emner/2022/host/is-104.html" },
+            { "code": "IS-114", "name": "Samskaping - komm. og prosjektarbeid", "description": "Collaborative project methodologies and communication.", "semester": "Autumn 2022", "topics": ["Co-creation", "Communication", "UI"], "link": "https://www.uia.no/studier/emner/2022/host/is-114.html" },
+            { "code": "BE-107", "name": "Bedriftsøkonomi for IT-studenter", "description": "Financial management and accounting basics.", "semester": "Spring 2023", "topics": ["Economics", "Budgeting", "Decision Analysis"], "link": "https://www.uia.no/studier/emner/2023/var/be-107.html" },
+            { "code": "IS-105", "name": "Datakommunikasjon og operativsystem", "description": "Computer networks and operating system principles.", "semester": "Spring 2023", "topics": ["Networking", "Operating Systems", "Protocols"], "link": "https://www.uia.no/studier/emner/2023/var/is-105.html" },
+            { "code": "IS-110", "name": "Objektorientert programmering", "description": "Fundamentals of OOP using Java.", "semester": "Spring 2023", "topics": ["OOP", "Software Patterns", "Testing"], "link": "https://www.uia.no/studier/emner/2023/var/is-110.html" },
+            { "code": "ORG110", "name": "Organizational Theory for IT Students", "description": "Foundations of organizational management and theory.", "semester": "Spring 2023", "topics": ["Org. Structure", "Culture", "Digital Impact"], "link": "https://www.uia.no/english/studies/courses/2023/spring/org110.html" },
+            { "code": "IS-200", "name": "Systemanalyse og systemutvikling", "description": "Methodologies for system design and requirements engineering.", "semester": "Autumn 2023", "topics": ["System Analysis", "Documentation", "Design"], "link": "https://www.uia.no/studier/emner/2023/host/is-200.html" },
+            { "code": "IS-201", "name": "Datamodellering og databasesystemer", "description": "Relational database design and SQL implementation.", "semester": "Autumn 2023", "topics": ["Relational DBs", "SQL", "Data Modeling"], "link": "https://www.uia.no/studier/emner/2023/host/is-201.html" },
+            { "code": "IS-202", "name": "Programmeringsprosjekt", "description": "Team-based full-stack application development.", "semester": "Autumn 2023", "topics": ["Group Dev", "Git/Version Control", "Agile"], "link": "https://www.uia.no/studier/emner/2023/host/is-202.html" },
+            { "code": "IS-112", "name": "Tjenestedesign og forretningsmodeller", "description": "Service design principles and business value creation.", "semester": "Spring 2024", "topics": ["Design Thinking", "Innovation", "Service Design"], "link": "https://www.uia.no/studier/emner/2024/var/is-112.html" },
+            { "code": "IS-211", "name": "Algorithms and Data Structures", "description": "Efficiency and organization of data and algorithms.", "semester": "Spring 2024", "topics": ["Algorithms", "Data Structures", "Complexity"], "link": "https://www.uia.no/studier/emner/2024/var/is-211.html" },
+            { "code": "IS-214", "name": "Information Systems Security", "description": "Cybersecurity principles and threat modeling.", "semester": "Spring 2024", "topics": ["Cyber Security", "Risk Mgmt", "Security Culture"], "link": "https://www.uia.no/studier/emner/2024/var/is-214.html" },
+            { "code": "IS-309", "name": "Videregående databasesystemer", "description": "Advanced SQL, NoSQL, and database performance.", "semester": "Spring 2024", "topics": ["Advanced Databases", "NoSQL", "Performance"], "link": "https://www.uia.no/studier/emner/2024/var/is-309.html" },
+            { "code": "IS-216", "name": "Data Science Applications", "description": "Machine learning and data analysis applications.", "semester": "Autumn 2024", "topics": ["Data Science Basics", "Big Data", "Strategy"], "link": "https://www.uia.no/english/studies/courses/2024/autumn/is-216.html" },
+            { "code": "IS-115", "name": "Webprogrammering i PHP", "description": "Dynamic backend web development using PHP.", "semester": "Autumn 2024", "topics": ["Web Dev", "PHP", "MySQL", "Backend"], "link": "https://www.uia.no/studier/emner/2024/host/is-115.html" },
+            { "code": "IS-302", "name": "Praksisprosjekt", "description": "Professional practice in an IT organization.", "semester": "Autumn 2024", "topics": ["Internship", "Practical Experience"], "link": "https://www.uia.no/studier/emner/2024/host/is-302.html" },
+            { "code": "IS-310", "name": "Prosjektgjennomføring", "description": "Execution and delivery of complex IT projects.", "semester": "Autumn 2024", "topics": ["Project Execution", "Agile", "Management"], "link": "https://www.uia.no/studier/emner/2024/host/is-310.html" },
+            { "code": "IS-304", "name": "Bacheloroppgave i informasjonssystemer", "description": "Final capstone project and research paper.", "semester": "Spring 2025", "topics": ["Bachelor Thesis", "Research", "Development"], "link": "https://www.uia.no/studier/emner/2025/var/is-304.html" },
+            { "code": "IS-305", "name": "Aktuelle IT-relaterte tema, bærekraft og digitalisering", "description": "Current trends and sustainability in IT.", "semester": "Spring 2025", "topics": ["Sustainability", "Digitalization", "Current Trends"], "link": "https://www.uia.no/studier/emner/2025/var/is-305.html" }
+          ]
         },
         {
-          "degree": "One-year program, Preparatory course for engineering education",
+          "degree": "Preparatory course for engineering education",
           "institution": "Universitetet i Agder (UiA)",
-          "status": "August 2021 - May 2022",
-          "description": "",
-          "isActive": false
+          "status": "August 2021 - June 2022",
+          "description": "Completed an intensive preparatory program at UiA, focusing on mathematics and physics to build the analytical and technical foundation required for engineering and technology studies.",
+          "isActive": false,
+          "courses": [
+            { "code": "FYS008", "name": "Fysikk forkurs", "description": "Completion: Spring 2022", "semester": "Spring 2022", "topics": ["Foundation", "Physics", "Mathematics"], "link": "#" },
+            { "code": "MA-015", "name": "Matematikk forkurs", "description": "Completion: Spring 2022", "semester": "Spring 2022", "topics": ["Foundation", "Mathematics", "Problem Solving"], "link": "#" },
+            { "code": "NO-008", "name": "Kommunikasjon og norsk", "description": "Completion: Spring 2022", "semester": "Spring 2022", "topics": ["Communication", "Writing", "Presentation"], "link": "#" },
+            { "code": "TFL011", "name": "Teknologi og samfunn", "description": "Completion: Spring 2022", "semester": "Spring 2022", "topics": ["Technology", "Society", "Ethics"], "link": "#" }
+          ]
         }
       ]
     },
@@ -75,8 +117,8 @@
           "markerColor": "bg-slate-400"
         },
         {
-          "role": "Innovasjonsjeger",
-          "organization": "Kristiansand kommune",
+          "role": "Innovation Scout",
+          "organization": "Kristiansand kommune (Municipality)",
           "period": "January 2026 - May 2026",
           "description": "Internship at Kristiansand kommune in the planning and building department.",
           "markerColor": "bg-secondary-container"
@@ -254,27 +296,69 @@
     "education": {
       "heading": "Utdanning",
       "subtitle": "Akademisk grunnlag innen informasjonssystemer.",
+      "showCourses": "Se fag",
+      "hideCourses": "Skjul fag",
+      "semesterLabel": "Semester",
+      "topicsLabel": "Nøkkelområder",
+      "addLabelsLabel": "Legg til emner...",
       "items": [
         {
           "degree": "Mastergrad, Informasjonssystemer",
           "institution": "Universitetet i Agder (UiA)",
           "status": "August 2025 - Juni 2028",
-          "description": "",
-          "isActive": true
+          "description": "Nåværende student ved masterprogrammet i informasjonssystemer, med fokus på digital transformasjon, AI og avansert systemstyring.",
+          "isActive": true,
+          "courses": [
+            { "code": "IS-403", "name": "Digital transformasjon og prosessledelse", "description": "Digital transformasjon og prosessledelse.", "semester": "Høst 2025", "topics": ["Prosessmodellering", "Digital strategi", "Arkitektur"], "link": "https://www.uia.no/studier/emner/2025/host/is-403.html" },
+            { "code": "IS-406", "name": "Digitale teknologier & forretningssystemer", "description": "Digitale teknologier og forretningssystemer.", "semester": "Høst 2025", "topics": ["ERP/Sky", "SCM/CRM", "Virksomhetssystemer"], "link": "https://www.uia.no/studier/emner/2025/host/is-406.html" },
+            { "code": "IS-427", "name": "Data Science Applications II", "description": "Avanserte applikasjoner innen data science og analyse.", "semester": "Høst 2025", "topics": ["Big Data", "Maskinlæring", "Analyse"], "link": "https://www.uia.no/english/studies/courses/2025/autumn/is-427.html" },
+            { "code": "IS-407", "name": "Management of IS Projects", "description": "Prosjektledelse spesielt rettet mot informasjonssystemer.", "semester": "Vår 2026", "topics": ["Prosjektstyring", "Livssyklus", "Ledelse"], "link": "https://www.uia.no/english/studies/courses/2026/spring/is-407.html" },
+            { "code": "IS-508", "name": "Human-Centered Artificial Intelligence", "description": "Etikk og menneskesentrert design i AI-utvikling.", "semester": "Vår 2026", "topics": ["AI-etikk", "Menneskelig kontroll", "Ansvarlig AI"], "link": "https://www.uia.no/english/studies/courses/2026/spring/is-508.html" },
+            { "code": "ORG411", "name": "Organizational Changes and Change Mgmt", "description": "Håndtering av endring i komplekse organisasjonsstrukturer.", "semester": "Vår 2026", "topics": ["Endringsstrategi", "Ledelse", "Organisasjonspsykologi"], "link": "https://www.uia.no/english/studies/courses/2026/spring/org411.html" },
+            { "code": "IS-408", "name": "Internship at Kristiansand kommune", "description": "Profesjonell praksis og prosjektarbeid i offentlig sektor.", "semester": "Vår 2026", "topics": ["Praksis", "Praktisk erfaring", "Offentlig sektor"], "link": "#" }
+          ]
         },
         {
           "degree": "Bachelorgrad, IT og informasjonssystemer",
           "institution": "Universitetet i Agder (UiA)",
           "status": "August 2022 - Juni 2025",
-          "description": "",
-          "isActive": false
+          "description": "Fullførte en bachelorgrad i IT og informasjonssystemer, med fokus på programvareutvikling, databasestyring og strategisk implementering av informasjonssystemer i organisasjoner.",
+          "isActive": false,
+          "courses": [
+            { "code": "IS-100", "name": "Role of Digitalization in Future Societies", "description": "Samfunnsmessig påvirkning av teknologi og digital transformasjon.", "semester": "Høst 2022", "topics": ["Digitalt samfunn", "Etikk", "Bærekraft"], "link": "https://www.uia.no/studier/emner/2022/host/is-100.html" },
+            { "code": "IS-104", "name": "Digital Interaction Design", "description": "Prinsipper for UI/UX-design og menneske-maskin-interaksjon.", "semester": "Høst 2022", "topics": ["Interaksjonsdesign", "UX/UI", "Prototyping"], "link": "https://www.uia.no/studier/emner/2022/host/is-104.html" },
+            { "code": "IS-114", "name": "Samskaping - komm. og prosjektarbeid", "description": "Metoder for samarbeidsprosjekter og kommunikasjon.", "semester": "Høst 2022", "topics": ["Samskaping", "Kommunikasjon", "UI"], "link": "https://www.uia.no/studier/emner/2022/host/is-114.html" },
+            { "code": "BE-107", "name": "Bedriftsøkonomi for IT-studenter", "description": "Grunnleggende bedriftsøkonomi og regnskap.", "semester": "Vår 2023", "topics": ["Økonomi", "Budsjett", "Beslutningsanalyse"], "link": "https://www.uia.no/studier/emner/2023/var/be-107.html" },
+            { "code": "IS-105", "name": "Datakommunikasjon og operativsystem", "description": "Nettverk og operativsystemprinsipper.", "semester": "Vår 2023", "topics": ["Nettverk", "Operativsystemer", "Protokoller"], "link": "https://www.uia.no/studier/emner/2023/var/is-105.html" },
+            { "code": "IS-110", "name": "Objektorientert programmering", "description": "Grunnleggende OOP med Java.", "semester": "Vår 2023", "topics": ["OOP", "Programvaremønstre", "Testing"], "link": "https://www.uia.no/studier/emner/2023/var/is-110.html" },
+            { "code": "ORG110", "name": "Organizational Theory for IT Students", "description": "Grunnleggende organisasjonsteori og ledelse.", "semester": "Vår 2023", "topics": ["Organisasjonsstruktur", "Kultur", "Digital påvirkning"], "link": "https://www.uia.no/english/studies/courses/2023/spring/org110.html" },
+            { "code": "IS-200", "name": "Systemanalyse og systemutvikling", "description": "Metoder for systemdesign og kravspesifikasjon.", "semester": "Høst 2023", "topics": ["Systemanalyse", "Dokumentasjon", "Design"], "link": "https://www.uia.no/studier/emner/2023/host/is-200.html" },
+            { "code": "IS-201", "name": "Datamodellering og databasesystemer", "description": "Relasjonell databasedesign og SQL.", "semester": "Høst 2023", "topics": ["Relasjonelle databaser", "SQL", "Datamodellering"], "link": "https://www.uia.no/studier/emner/2023/host/is-201.html" },
+            { "code": "IS-202", "name": "Programmeringsprosjekt", "description": "Teambasert utvikling av full-stack applikasjoner.", "semester": "Høst 2023", "topics": ["Gruppeutvikling", "Git/Versjonskontroll", "Smidig"], "link": "https://www.uia.no/studier/emner/2023/host/is-202.html" },
+            { "code": "IS-112", "name": "Tjenestedesign og forretningsmodeller", "description": "Tjenestedesign-prinsipper og forretningsmodeller.", "semester": "Vår 2024", "topics": ["Designtenkning", "Innovasjon", "Tjenestedesign"], "link": "https://www.uia.no/studier/emner/2024/var/is-112.html" },
+            { "code": "IS-211", "name": "Algorithms and Data Structures", "description": "Effektivitet og organisering av data og algoritmer.", "semester": "Vår 2024", "topics": ["Algoritmer", "Datastrukturer", "Kompleksitet"], "link": "https://www.uia.no/studier/emner/2024/var/is-211.html" },
+            { "code": "IS-214", "name": "Information Systems Security", "description": "Prinsipper for cybersikkerhet og trusselmodellering.", "semester": "Vår 2024", "topics": ["IT-sikkerhet", "Risikostyring", "Sikkerhetskultur"], "link": "https://www.uia.no/studier/emner/2024/var/is-214.html" },
+            { "code": "IS-309", "name": "Videregående databasesystemer", "description": "Avansert SQL, NoSQL og ytelse.", "semester": "Vår 2024", "topics": ["Avancerte Databaser", "NoSQL", "Ytelse"], "link": "https://www.uia.no/studier/emner/2024/var/is-309.html" },
+            { "code": "IS-216", "name": "Data Science Applications", "description": "Maskinlæring og dataanalyse-applikasjoner.", "semester": "Høst 2024", "topics": ["Data Science Basics", "Big Data", "Strategi"], "link": "https://www.uia.no/english/studies/courses/2024/autumn/is-216.html" },
+            { "code": "IS-115", "name": "Webprogrammering i PHP", "description": "Backend-utvikling med PHP.", "semester": "Høst 2024", "topics": ["Webutvikling", "PHP", "MySQL", "Backend"], "link": "https://www.uia.no/studier/emner/2024/host/is-115.html" },
+            { "code": "IS-302", "name": "Praksisprosjekt", "description": "Profesjonell praksis i en IT-organisasjon.", "semester": "Høst 2024", "topics": ["Praksis", "Praktisk erfaring"], "link": "https://www.uia.no/studier/emner/2024/host/is-302.html" },
+            { "code": "IS-310", "name": "Prosjektgjennomføring", "description": "Gjennomføring og leveranse av komplekse IT-prosjekter.", "semester": "Høst 2024", "topics": ["Prosjektgjennomføring", "Smidig", "Ledelse"], "link": "https://www.uia.no/studier/emner/2024/host/is-310.html" },
+            { "code": "IS-304", "name": "Bacheloroppgave i informasjonssystemer", "description": "Avsluttende bacheloroppgave og forskningsprosjekt.", "semester": "Vår 2025", "topics": ["Bacheloroppgave", "Forskning", "Utvikling"], "link": "https://www.uia.no/studier/emner/2025/var/is-304.html" },
+            { "code": "IS-305", "name": "Aktuelle IT-relaterte tema, bærekraft og digitalisering", "description": "Moderne trender og bærekraft i IT.", "semester": "Vår 2025", "topics": ["Bærekraft", "Digitalisering", "Aktuelle trender"], "link": "https://www.uia.no/studier/emner/2025/var/is-305.html" }
+          ]
         },
         {
-          "degree": "Årsstudium, Forkurs for ingeniørutdanning",
+          "degree": "Forkurs for ingeniørutdanning",
           "institution": "Universitetet i Agder (UiA)",
-          "status": "August 2021 - Mai 2022",
-          "description": "",
-          "isActive": false
+          "status": "August 2021 - Juni 2022",
+          "description": "Fullførte et intensivt forkurs ved UiA med fokus på matematikk og fysikk, for å bygge det analytiske og tekniske grunnlaget som kreves for videre ingeniør- og teknologistudier.",
+          "isActive": false,
+          "courses": [
+            { "code": "FYS008", "name": "Fysikk forkurs", "description": "Fullført: Vår 2022", "semester": "Vår 2022", "topics": ["Grunnlag", "Fysikk", "Matematikk"], "link": "#" },
+            { "code": "MA-015", "name": "Matematikk forkurs", "description": "Fullført: Vår 2022", "semester": "Vår 2022", "topics": ["Grunnlag", "Matematikk", "Problemløsning"], "link": "#" },
+            { "code": "NO-008", "name": "Kommunikasjon og norsk", "description": "Fullført: Vår 2022", "semester": "Vår 2022", "topics": ["Kommunikasjon", "Skriving", "Presentasjon"], "link": "#" },
+            { "code": "TFL011", "name": "Teknologi og samfunn", "description": "Fullført: Vår 2022", "semester": "Vår 2022", "topics": ["Teknologi", "Samfunn", "Etikk"], "link": "#" }
+          ]
         }
       ]
     },
