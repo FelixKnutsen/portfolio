@@ -17,9 +17,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       if (savedLanguage === 'en' || savedLanguage === 'no') {
         return savedLanguage;
       }
-      return 'en'; // Default to English
+      return 'no'; // Default to Norwegian
     }
-    return 'en';
+    return 'no';
   });
 
   useEffect(() => {
