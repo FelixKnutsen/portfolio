@@ -28,7 +28,7 @@ export default function CertificateCard({ item, index }: CertificateCardProps) {
   );
 
   const baseClassName =
-    'bg-white dark:bg-slate-950 p-8 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-start gap-4 hover:-translate-y-1 hover:shadow-md transition-all duration-300 animate-on-scroll h-full';
+    'bg-surface-container-lowest dark:bg-slate-950 p-8 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col items-start gap-4 hover:-translate-y-1 hover:shadow-md transition-all duration-300 animate-on-scroll h-full';
 
   if (item.pdfLink) {
     return (

@@ -96,7 +96,7 @@ export default function Contact() {
   );
 
   const inputClassName =
-    'w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-secondary-container focus:ring-1 focus:ring-secondary-container outline-none transition-all text-slate-900 dark:text-slate-50 font-body-md';
+    'w-full px-4 py-3 rounded-lg bg-surface-container-lowest dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-secondary-container focus:ring-1 focus:ring-secondary-container outline-none transition-all text-slate-900 dark:text-slate-50 font-body-md';
 
   return (
     <section
@@ -145,7 +145,7 @@ export default function Contact() {
         {/* Contact form */}
         <div
           ref={formRef}
-          className="bg-white dark:bg-slate-900/50 p-6 md:p-8 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm animate-on-scroll"
+          className="bg-surface-container-lowest dark:bg-slate-900/50 p-6 md:p-8 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm animate-on-scroll"
           style={{ animationDelay: '0.2s' }}
         >
           <form className="space-y-6" onSubmit={handleSubmit} noValidate>

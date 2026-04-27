@@ -92,7 +92,7 @@ export default function EducationCard({ id, item, index, isExpanded, onToggle }:
       ref={itemRef}
       id={id}
       data-card-id={id}
-      className={`bg-white dark:bg-slate-950 p-6 md:p-10 rounded-xl shadow-sm border transition-all duration-300 relative overflow-hidden group animate-on-scroll flex flex-col min-h-[260px] md:min-h-[280px] ${
+      className={`bg-surface-container-lowest dark:bg-slate-950 p-6 md:p-10 rounded-xl shadow-sm border transition-all duration-300 relative overflow-hidden group animate-on-scroll flex flex-col min-h-[260px] md:min-h-[280px] ${
         hasCourses ? 'cursor-pointer hover:border-secondary-container/50' : 'border-slate-200 dark:border-slate-800'
       } ${isExpanded ? 'ring-2 ring-secondary-container/30 border-secondary-container shadow-md' : 'border-slate-200 dark:border-slate-800 hover:-translate-y-1 hover:shadow-md'}`}
       style={{ animationDelay: `${index * 0.1}s` }}
@@ -211,7 +211,7 @@ export default function EducationCard({ id, item, index, isExpanded, onToggle }:
                         course.topics.map((topic) => (
                           <span 
                             key={topic} 
-                            className="text-[9px] font-label-caps px-2 py-0.5 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-secondary/30 transition-colors"
+                            className="text-[9px] font-label-caps px-2 py-0.5 rounded-full bg-surface-container-lowest dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-secondary/30 transition-colors"
                           >
                             {topic}
                           </span>

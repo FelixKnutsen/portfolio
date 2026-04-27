@@ -59,7 +59,7 @@ export default function ExperienceTimelineItem({ item, index }: ExperienceTimeli
           className={`p-6 rounded-xl border ${
             isHighlighted
               ? 'bg-secondary-container/10 border-secondary-container/40 dark:bg-secondary-container/20 dark:border-secondary-container/50 shadow-sm'
-              : 'bg-white dark:bg-slate-900/50 border-slate-200 dark:border-slate-800'
+              : 'bg-surface-container-lowest dark:bg-slate-900/50 border-slate-200 dark:border-slate-800'
           }`}
         >
           <p className="font-body-md text-body-md text-slate-600 dark:text-slate-400">
