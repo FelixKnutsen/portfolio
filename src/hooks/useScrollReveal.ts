@@ -8,7 +8,7 @@ interface ScrollRevealOptions {
  * Observe an element and add the `is-visible` class once it scrolls into view.
  * Unobserves after the first intersection so the animation fires only once.
  */
-export function useScrollReveal<T extends HTMLElement>(
+export function useScrollReveal<T extends Element>(
   options: ScrollRevealOptions = {},
 ) {
   const { threshold = 0.1 } = options;
