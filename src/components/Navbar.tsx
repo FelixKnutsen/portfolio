@@ -90,7 +90,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className="bg-white/95 dark:bg-slate-950/95 backdrop-blur-sm text-slate-900 dark:text-slate-50 font-['Inter'] font-semibold text-sm tracking-tight fixed top-0 w-full z-50 border-b border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none"
+      className="bg-surface-container-lowest/95 dark:bg-slate-950/95 backdrop-blur-sm text-slate-900 dark:text-slate-50 font-['Inter'] font-semibold text-sm tracking-tight fixed top-0 w-full z-50 border-b border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none"
       aria-label="Main navigation"
     >
       <div className="flex justify-between items-center max-w-[1120px] mx-auto px-5 md:px-8 h-16">
@@ -140,7 +140,7 @@ export default function Navbar() {
 
             {langDropdownOpen && (
               <div
-                className="absolute right-0 mt-2 w-24 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg shadow-lg overflow-hidden z-50 py-1"
+                className="absolute right-0 mt-2 w-24 bg-surface-container-lowest dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg shadow-lg overflow-hidden z-50 py-1"
                 role="menu"
                 aria-label="Language options"
               >
@@ -219,7 +219,7 @@ export default function Navbar() {
           {/* Drawer */}
           <div
             ref={mobileMenuRef}
-            className="fixed top-16 left-0 right-0 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shadow-xl z-50 md:hidden animate-in slide-in-from-top duration-300"
+            className="fixed top-16 left-0 right-0 bg-surface-container-lowest dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shadow-xl z-50 md:hidden animate-in slide-in-from-top duration-300"
             role="menu"
             aria-label="Mobile navigation"
           >

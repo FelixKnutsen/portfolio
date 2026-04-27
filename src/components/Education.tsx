@@ -40,16 +40,14 @@ export default function Education() {
     }
   };
 
-
-
   return (
     <section
       className="bg-surface-bright dark:bg-slate-900/50 py-section-padding relative overflow-hidden"
       id="education"
       aria-label={content.education.heading}
     >
-      <div className="max-w-[1120px] mx-auto px-5 md:px-8 relative z-10">
-        <div ref={headerRef} className="mb-12 md:mb-16 pt-32 md:pt-20 text-center md:text-left animate-on-scroll">
+      <div className="max-w-[1120px] mx-auto px-5 md:px-8 relative z-10 pt-24 md:pt-10">
+        <div ref={headerRef} className="mb-12 md:mb-16 text-center md:text-left animate-on-scroll">
           <h2 className="font-headline-lg text-headline-lg text-slate-900 dark:text-slate-50">
             {content.education.heading}
           </h2>

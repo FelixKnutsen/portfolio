@@ -17,7 +17,7 @@ export default function Experience() {
       id="experience"
       aria-label={content.experience.heading}
     >
-      <div ref={headerRef} className="mb-12 md:mb-16 pt-32 md:pt-20 text-center md:text-left animate-on-scroll">
+      <div ref={headerRef} className="mb-12 md:mb-16 text-left animate-on-scroll">
         <h2 className="font-headline-lg text-headline-lg text-slate-900 dark:text-slate-50">
           {content.experience.heading}
         </h2>
