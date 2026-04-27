@@ -6,6 +6,7 @@ import Experience from './components/Experience';
 import Certificates from './components/Certificates';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Arc from './components/Arc';
 import contentData from './data/content.json';
 import { useLanguage } from './context/LanguageContext';
 import { Analytics } from '@vercel/analytics/react';
@@ -35,8 +36,10 @@ function App() {
       <main className="pt-16">
         <Hero />
         <Education />
+        <Arc fillClassName="text-background dark:text-slate-950" />
         <Experience />
         <Certificates />
+        <Arc fillClassName="text-background dark:text-slate-950" />
         <Contact />
       </main>
       <Footer />
