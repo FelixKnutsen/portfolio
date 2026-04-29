@@ -1,18 +1,25 @@
 import { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Education from './components/Education';
-import Experience from './components/Experience';
-import Certificates from './components/Certificates';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Arc from './components/Arc';
+import Home from './pages/Home';
+import About from './pages/About';
+import ProjectCaseStudy from './pages/ProjectCaseStudy';
 import contentData from './data/content.json';
 import { useLanguage } from './context/LanguageContext';
 import { Analytics } from '@vercel/analytics/react';
 import type { ContentData } from './types';
 
 const typedContent = contentData as unknown as ContentData;
+
+/** Resets scroll position on route change. */
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
 function App() {
   const { language } = useLanguage();
@@ -32,15 +39,14 @@ function App() {
       className="bg-background dark:bg-slate-950 text-on-background dark:text-slate-50 font-body-md text-body-md antialiased selection:bg-secondary-container selection:text-on-secondary-container"
       id="top"
     >
+      <ScrollToTop />
       <Navbar />
       <main className="pt-16">
-        <Hero />
-        <Education />
-        <Arc fillClassName="text-background dark:text-slate-950" />
-        <Experience />
-        <Certificates />
-        <Arc fillClassName="text-background dark:text-slate-950" />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects/:slug" element={<ProjectCaseStudy />} />
+        </Routes>
       </main>
       <Footer />
       <Analytics />

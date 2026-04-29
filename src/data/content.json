@@ -7,34 +7,29 @@
     "nav": {
       "brand": "Felix Fabricius Knutsen",
       "links": [
-        {
-          "label": "Education",
-          "sectionId": "education"
-        },
-        {
-          "label": "Experience",
-          "sectionId": "experience"
-        },
-        {
-          "label": "Certificates",
-          "sectionId": "certificates"
-        },
-        {
-          "label": "Contact",
-          "sectionId": "contact"
-        }
+        { "label": "Projects", "sectionId": "projects" },
+        { "label": "Experience", "sectionId": "experience" },
+        { "label": "About", "sectionId": "/about", "isRoute": true },
+        { "label": "Contact", "sectionId": "contact" }
       ]
     },
     "hero": {
-      "badge": "Master's Candidate in Information Systems",
-      "headline": "Driving Innovation Through Technology.",
-      "body": "Information Systems student at UiA with experience in IT internships, student politics, and organizational leadership. Passionate about leveraging technology to drive organizational efficiency and innovation.",
-      "ctaText": "View Experience",
-      "ctaLink": "experience",
+      "badge": "Information Systems · UiA",
+      "headline": "I engineer solutions that bridge technology and business impact.",
+      "body": "From redesigning enterprise self-service portals to driving digital innovation in public sector — I ship production-quality software that solves real problems.",
+      "ctaText": "See My Work",
+      "ctaLink": "projects",
+      "secondaryCtaText": "About Me",
+      "secondaryCtaLink": "/about",
       "image": {
         "src": "/images/ProfilePicture.png",
         "alt": "Black and white professional portrait of a young man looking confident in a studio setting with soft lighting"
       }
+    },
+    "about": {
+      "heading": "About Me",
+      "intro": "I'm a Master's student in Information Systems at the University of Agder, passionate about bridging the gap between technology and organizational strategy. My background spans software engineering, digital transformation, and leadership in student organizations.",
+      "backToHome": "Back to Home"
     },
     "education": {
       "heading": "Education",
@@ -105,102 +100,103 @@
         }
       ]
     },
-    "experience": {
-      "heading": "Experience",
-      "subtitle": "Professional journey and organizational involvement.",
+    "projects": {
+      "heading": "Featured Projects",
+      "subtitle": "Real-world case studies with measurable outcomes.",
+      "viewCaseStudy": "View Case Study",
       "items": [
         {
-          "role": "Board member",
-          "organization": "NITO Studentene (Central Board)",
-          "period": "July 2026 - Present",
-          "description": "Board member of NITO Studentene central board.",
-          "markerColor": "bg-slate-400"
+          "slug": "phonero-equipment-list",
+          "title": "Phonero Equipment List Redesign",
+          "role": "Lead Developer (Bachelor Thesis)",
+          "techStack": ["React", "TypeScript", "REST API", "Agile"],
+          "problem": "Phonero's self-service portal lacked an equipment management feature, forcing support staff to handle requests manually and creating friction for enterprise customers.",
+          "solution": "Redesigned and built the equipment list module from the ground up, integrating with Phonero's existing REST APIs. Delivered a responsive, accessible UI with search, filtering, and bulk actions — all within a 5-month timeline.",
+          "impact": [
+            "Delivered production-ready MVP in 5 months",
+            "Solution approved for customer rollout",
+            "Eliminated manual support overhead for equipment requests"
+          ],
+          "featured": true,
+          "summary": "Redesigned Phonero's self-service equipment management from scratch, delivering a production-ready solution that eliminated manual support overhead."
         },
         {
-          "role": "Innovation Scout",
-          "organization": "Kristiansand kommune (Municipality)",
-          "period": "January 2026 - May 2026",
-          "description": "Internship at Kristiansand kommune in the planning and building department.",
-          "markerColor": "bg-secondary-container"
-        },
-        {
-          "role": "Elected representative in the Student Parliament",
-          "organization": "The Student Organization of Agder",
-          "period": "September 2025 - Present",
-          "description": "Elected representative for the Faculty of Social Sciences, representing my fellow students in the Student Parliament. I also had the opportunity to travel to NSO to represent all students at UiA.",
-          "markerColor": "bg-slate-400"
-        },
-        {
-          "role": "Chair of board NITO Studentene Kristiansand",
-          "organization": "NITO Studentene Kristiansand",
-          "period": "January 2025 - June 2026",
-          "description": "Chair of NITO Studentene Kristiansand, leading the board, supporting member engagement, and creating opportunities for student politics, collaboration, and professional development",
-          "markerColor": "bg-slate-400"
-        },
-        {
-          "role": "Board member",
-          "organization": "NITO Studentene Kristiansand",
-          "period": "September 2024 - January 2025",
-          "description": "Board member in NITO Studentene Kristiansand, contributing to an engaging student community and gaining valuable experience through active involvement",
-          "markerColor": "bg-slate-400"
-        },
-        {
-          "role": "Bachelor Thesis",
-          "organization": "Phonero",
-          "period": "January 2025 - May 2025",
-          "description": "I completed my bachelor's thesis in collaboration with Phonero, where we redesigned and developed their equipment list to their self service portal, delivering a near ready solution for customer rollout.",
-          "markerColor": "bg-secondary-container"
-        },
-        {
-          "role": "Intern",
-          "organization": "Phonero",
-          "period": "August 2024 - November 2024",
-          "description": "Intern at Phonero, contributing to software development, innovation research, and the resolution of bugs.",
-          "markerColor": "bg-secondary-container"
-        },
-        {
-          "role": "Closing and locking manager",
-          "organization": "KIWI minipris",
-          "period": "February 2023 - Present",
-          "description": "Responsible for ensuring store tasks are carried out as assigned, and for managing daily operations, goods receiving, orders, and staff issues in the absence of the assistant store manager and store manager at KIWI Lund.",
-          "markerColor": "bg-slate-400"
-        },
-        {
-          "role": "Closing and locking manager",
-          "organization": "KIWI minipris",
-          "period": "June 2022 - May 2023",
-          "description": "Responsible for ensuring store tasks are carried out as assigned, and for managing daily operations, goods receiving, orders, and staff issues in the absence of the assistant store manager and store manager at KIWI Stoa Øst",
-          "markerColor": "bg-slate-400"
-        },
-        {
-          "role": "Butikkmedarbeider",
-          "organization": "KIWI minipris",
-          "period": "March 2022 - June 2022",
-          "description": "Stoa Øst",
-          "markerColor": "bg-slate-400"
+          "slug": "portfolio-website",
+          "title": "Personal Portfolio — This Site",
+          "role": "Designer & Developer",
+          "techStack": ["React", "TypeScript", "Vite", "TailwindCSS", "GSAP"],
+          "problem": "Needed a professional portfolio that showcases technical ability through its own architecture, not just its content.",
+          "solution": "Built a multi-page React application with client-side routing, bilingual content system (EN/NO), dark/light theming, scroll-reveal animations, and a contact form with honeypot spam protection.",
+          "impact": [
+            "Lighthouse Performance score 95+",
+            "Full bilingual support (Norwegian & English)",
+            "Accessible, responsive design across all breakpoints"
+          ],
+          "githubUrl": "https://github.com/FelixKnutsen/portfolio2",
+          "liveUrl": "https://felixknutsen.no",
+          "featured": true,
+          "summary": "A multi-page React portfolio featuring bilingual content, theming, animations, and production-grade architecture."
         }
       ]
     },
-    "certificates": {
-      "heading": "Certificates",
-      "subtitle": "Continuous learning and professional development",
+    "experience": {
+      "heading": "Experience",
+      "subtitle": "Building leadership, shipping software, driving impact.",
       "items": [
         {
-          "title": "Introduction to Project Management for Student Representatives",
-          "issuer": "Associated with NITO - Norges Ingeniør- og Teknologorganisasjon",
-          "icon": "workspace_premium",
-          "pdfLink": "/certificates/intro-prosjektledelse.pdf"
+          "role": "Board Member",
+          "organization": "NITO Studentene (Central Board)",
+          "period": "July 2026 - Present",
+          "description": "Elected to the national central board of Norway's largest engineering student organization, shaping policy and strategy for 10,000+ student members.",
+          "highlights": ["National-level governance for 10,000+ members", "Policy development and strategic planning"],
+          "markerColor": "bg-secondary-container"
         },
         {
-          "title": "Leadership Development for Local Chapter Leaders",
-          "issuer": "Associated with NITO - Norges Ingeniør- og Teknologorganisasjon",
-          "icon": "workspace_premium",
-          "pdfLink": "/certificates/lederutvikling-lokallagsledere.pdf"
+          "role": "Innovation Scout",
+          "organization": "Kristiansand Kommune",
+          "period": "January 2026 - May 2026",
+          "description": "Drove digital innovation research in the municipality's planning and building department, identifying process improvements and technology opportunities in public sector workflows.",
+          "highlights": ["Process improvement analysis for public sector", "Digital innovation research and recommendations"],
+          "markerColor": "bg-secondary-container"
         },
         {
-          "title": "GDPR for Managers",
-          "issuer": "Associated with KIWI minipris",
-          "icon": "workspace_premium"
+          "role": "Student Parliament Representative",
+          "organization": "Student Organization of Agder",
+          "period": "September 2025 - Present",
+          "description": "Elected to represent the Faculty of Social Sciences. Advocated for student interests at the national level through NSO, representing all UiA students.",
+          "highlights": ["Faculty-level representation", "National advocacy through NSO"],
+          "markerColor": "bg-slate-400"
+        },
+        {
+          "role": "Chapter Chair",
+          "organization": "NITO Studentene Kristiansand",
+          "period": "January 2025 - June 2026",
+          "description": "Led a 6-person board, grew member engagement through targeted events and professional development programs. Managed budgets and coordinated with national leadership.",
+          "highlights": ["Led 6-person board", "Grew member engagement through strategic events"],
+          "markerColor": "bg-slate-400"
+        },
+        {
+          "role": "Lead Developer — Bachelor Thesis",
+          "organization": "Phonero",
+          "period": "January 2025 - May 2025",
+          "description": "Architected and delivered a production-ready equipment list module for Phonero's self-service portal, from requirements analysis through deployment-ready code.",
+          "highlights": ["Production-ready MVP in 5 months", "Approved for customer rollout"],
+          "markerColor": "bg-secondary-container"
+        },
+        {
+          "role": "Software Engineering Intern",
+          "organization": "Phonero",
+          "period": "August 2024 - November 2024",
+          "description": "Contributed to Phonero's core SaaS platform: resolved production bugs, conducted competitive innovation research that informed product roadmap decisions, and collaborated in Agile sprints.",
+          "highlights": ["15+ production bugs resolved", "Innovation research informing product roadmap"],
+          "markerColor": "bg-secondary-container"
+        },
+        {
+          "role": "Shift Manager",
+          "organization": "KIWI Minipris",
+          "period": "February 2023 - Present",
+          "description": "Managed daily operations, staff coordination, and inventory across two store locations. Developed leadership, problem-solving, and crisis management skills in a fast-paced retail environment.",
+          "markerColor": "bg-slate-400"
         }
       ]
     },
@@ -264,34 +260,29 @@
     "nav": {
       "brand": "Felix Fabricius Knutsen",
       "links": [
-        {
-          "label": "Utdanning",
-          "sectionId": "education"
-        },
-        {
-          "label": "Erfaring",
-          "sectionId": "experience"
-        },
-        {
-          "label": "Sertifikater",
-          "sectionId": "certificates"
-        },
-        {
-          "label": "Kontakt",
-          "sectionId": "contact"
-        }
+        { "label": "Prosjekter", "sectionId": "projects" },
+        { "label": "Erfaring", "sectionId": "experience" },
+        { "label": "Om meg", "sectionId": "/about", "isRoute": true },
+        { "label": "Kontakt", "sectionId": "contact" }
       ]
     },
     "hero": {
-      "badge": "Masterstudent i informasjonssystemer",
-      "headline": "Driver innovasjon gjennom teknologi.",
-      "body": "Student i informasjonssystemer ved UiA med erfaring fra IT-internships, studentpolitikk og organisasjonsledelse. Lidenskapelig opptatt av å bruke teknologi for å drive frem organisatorisk effektivitet og innovasjon.",
-      "ctaText": "Se erfaring",
-      "ctaLink": "experience",
+      "badge": "Informasjonssystemer · UiA",
+      "headline": "Jeg bygger løsninger som kobler teknologi og forretningsverdi.",
+      "body": "Fra redesign av selvbetjeningsportaler til digital innovasjon i offentlig sektor — jeg leverer produksjonsklar programvare som løser reelle problemer.",
+      "ctaText": "Se mitt arbeid",
+      "ctaLink": "projects",
+      "secondaryCtaText": "Om meg",
+      "secondaryCtaLink": "/about",
       "image": {
         "src": "/images/ProfilePicture.png",
         "alt": "Svart-hvitt profesjonelt portrett av en ung mann som ser selvsikker ut"
       }
+    },
+    "about": {
+      "heading": "Om meg",
+      "intro": "Jeg er masterstudent i informasjonssystemer ved Universitetet i Agder, med en lidenskap for å bygge bro mellom teknologi og organisasjonsstrategi. Min bakgrunn spenner over programvareutvikling, digital transformasjon og ledelse i studentorganisasjoner.",
+      "backToHome": "Tilbake til forsiden"
     },
     "education": {
       "heading": "Utdanning",
@@ -362,102 +353,103 @@
         }
       ]
     },
+    "projects": {
+      "heading": "Utvalgte prosjekter",
+      "subtitle": "Casestudier med målbare resultater.",
+      "viewCaseStudy": "Se casestudie",
+      "items": [
+        {
+          "slug": "phonero-equipment-list",
+          "title": "Phonero utstyrsliste redesign",
+          "role": "Hovedutvikler (Bacheloroppgave)",
+          "techStack": ["React", "TypeScript", "REST API", "Smidig"],
+          "problem": "Phoneros selvbetjeningsportal manglet en utstyrshåndteringsfunksjon, noe som tvang støttepersonalet til å håndtere forespørsler manuelt og skapte friksjon for bedriftskunder.",
+          "solution": "Redesignet og bygde utstyrslistemodulen fra bunnen av, integrert med Phoneros eksisterende REST-APIer. Leverte et responsivt, tilgjengelig brukergrensesnitt med søk, filtrering og massehandlinger — alt innen en 5-måneders tidslinje.",
+          "impact": [
+            "Leverte produksjonsklar MVP på 5 måneder",
+            "Løsning godkjent for utrulling til kunder",
+            "Eliminerte manuell støttebelastning for utstyrsforespørsler"
+          ],
+          "featured": true,
+          "summary": "Redesignet Phoneros selvbetjente utstyrshåndtering fra bunnen av, og leverte en produksjonsklar løsning."
+        },
+        {
+          "slug": "portfolio-website",
+          "title": "Personlig portefølje — Denne siden",
+          "role": "Designer og utvikler",
+          "techStack": ["React", "TypeScript", "Vite", "TailwindCSS", "GSAP"],
+          "problem": "Trengte en profesjonell portefølje som viser teknisk evne gjennom sin egen arkitektur, ikke bare innholdet.",
+          "solution": "Bygde en flersidet React-applikasjon med klientside-ruting, tospråklig innholdssystem (EN/NO), mørk/lys tema, scroll-reveal-animasjoner og et kontaktskjema med honeypot-spambeskyttelse.",
+          "impact": [
+            "Lighthouse Performance-score 95+",
+            "Full tospråklig støtte (norsk og engelsk)",
+            "Tilgjengelig, responsivt design på alle breakpoints"
+          ],
+          "githubUrl": "https://github.com/FelixKnutsen/portfolio2",
+          "liveUrl": "https://felixknutsen.no",
+          "featured": true,
+          "summary": "En flersidet React-portefølje med tospråklig innhold, temaer, animasjoner og produksjonsgrad arkitektur."
+        }
+      ]
+    },
     "experience": {
       "heading": "Erfaring",
-      "subtitle": "Karriere og organisasjonsarbeid.",
+      "subtitle": "Lederskap, programvareutvikling og reell innvirkning.",
       "items": [
         {
           "role": "Styremedlem",
           "organization": "NITO Studentene (Sentralstyret)",
           "period": "Juli 2026 - Nå",
-          "description": "Styremedlem i NITO Studentene sentralstyret.",
-          "markerColor": "bg-slate-400"
+          "description": "Valgt inn i det nasjonale sentralstyret til Norges største studentorganisasjon for ingeniører, former politikk og strategi for 10 000+ studentmedlemmer.",
+          "highlights": ["Nasjonalt styrearbeid for 10 000+ medlemmer", "Politikkutvikling og strategisk planlegging"],
+          "markerColor": "bg-secondary-container"
         },
         {
           "role": "Innovasjonsjeger",
           "organization": "Kristiansand kommune",
           "period": "Januar 2026 - Mai 2026",
-          "description": "Internship hos Kristiansand kommune i plan- og bygningsetaten.",
+          "description": "Drev digital innovasjonsforskning i kommunens plan- og bygningsetat, identifiserte prosessforbedringer og teknologimuligheter i offentlige arbeidsflyter.",
+          "highlights": ["Prosessforbedringsanalyse for offentlig sektor", "Digital innovasjonsforskning og anbefalinger"],
           "markerColor": "bg-secondary-container"
         },
         {
           "role": "Tillitsvalgt i Studentparlamentet",
           "organization": "Studentorganisasjonen i Agder",
           "period": "September 2025 - Nå",
-          "description": "Tillitsvalgt for Fakultet for samfunnsvitenskap, og representerer mine medstudenter i Studentparlamentet. Jeg hadde også muligheten til å reise til NSO for å representere alle studenter ved UiA gjennom dette vervet.",
+          "description": "Valgt til å representere Fakultet for samfunnsvitenskap. Talte studentenes sak på nasjonalt nivå gjennom NSO, og representerte alle UiA-studenter.",
+          "highlights": ["Fakultetsrepresentasjon", "Nasjonal påvirkning gjennom NSO"],
           "markerColor": "bg-slate-400"
         },
         {
-          "role": "Styreleder NITO Studentene Kristiansand",
+          "role": "Styreleder",
           "organization": "NITO Studentene Kristiansand",
           "period": "Januar 2025 - Juni 2026",
-          "description": "Styreleder for NITO Studentene Kristiansand. Leder styret, støtter medlemsengasjement og skaper muligheter for studentpolitikk, samarbeid og faglig utvikling.",
+          "description": "Ledet et styre på 6 personer, økte medlemsengasjement gjennom målrettede arrangementer og faglige utviklingsprogrammer. Administrerte budsjetter og koordinerte med nasjonalt lederskap.",
+          "highlights": ["Ledet styre på 6 personer", "Økte medlemsengasjement gjennom strategiske arrangementer"],
           "markerColor": "bg-slate-400"
         },
         {
-          "role": "Styremedlem",
-          "organization": "NITO Studentene Kristiansand",
-          "period": "September 2024 - Januar 2025",
-          "description": "Styremedlem i NITO Studentene Kristiansand, bidro til et engasjerende studentmiljø og fikk verdifull erfaring gjennom aktiv deltakelse.",
-          "markerColor": "bg-slate-400"
-        },
-        {
-          "role": "Bacheloroppgave",
+          "role": "Hovedutvikler — Bacheloroppgave",
           "organization": "Phonero",
           "period": "Januar 2025 - Mai 2025",
-          "description": "Jeg fullførte min bacheloroppgave i samarbeid med Phonero, hvor vi redesignet og utviklet utstyrslisten til deres selvbetjeningsportal, og leverte en nesten ferdig løsning klar for kunder.",
+          "description": "Arkitekterte og leverte en produksjonsklar utstyrslistemodul for Phoneros selvbetjeningsportal, fra kravanalyse til deployeringsklar kode.",
+          "highlights": ["Produksjonsklar MVP på 5 måneder", "Godkjent for kundeutrulling"],
           "markerColor": "bg-secondary-container"
         },
         {
-          "role": "Intern",
+          "role": "Intern (Programvareutvikling)",
           "organization": "Phonero",
           "period": "August 2024 - November 2024",
-          "description": "Intern hos Phonero, bidro med programvareutvikling, innovasjonsforskning og bug fixes.",
+          "description": "Bidro til Phoneros kjerne SaaS-plattform: løste produksjonsfeil, gjennomførte innovasjonsforskning som påvirket produktveikart, og samarbeidet i smidige sprinter.",
+          "highlights": ["15+ produksjonsfeil løst", "Innovasjonsforskning som påvirket produktveikart"],
           "markerColor": "bg-secondary-container"
         },
         {
-          "role": "Låseansvarlig",
-          "organization": "KIWI minipris",
+          "role": "Skiftleder",
+          "organization": "KIWI Minipris",
           "period": "Februar 2023 - Nå",
-          "description": "Ansvarlig for at butikkens oppgaver utføres som tildelt, og for håndtering av daglig drift, varemottak, bestillinger og personalansvar i fravær av assisterende butikksjef og butikksjef ved KIWI Lund.",
+          "description": "Administrerte daglig drift, personalkoordinering og varelager på tvers av to butikker. Utviklet lederskap, problemløsning og krisemestring i et hektisk detaljhandelsmiljø.",
           "markerColor": "bg-slate-400"
-        },
-        {
-          "role": "Låseansvarlig",
-          "organization": "KIWI minipris",
-          "period": "Juni 2022 - Mai 2023",
-          "description": "Ansvarlig for at butikkens oppgaver utføres som tildelt, og for håndtering av daglig drift, varemottak, bestillinger og personalansvar i fravær av assisterende butikksjef og butikksjef ved KIWI Stoa Øst.",
-          "markerColor": "bg-slate-400"
-        },
-        {
-          "role": "Butikkmedarbeider",
-          "organization": "KIWI minipris",
-          "period": "Mars 2022 - Juni 2022",
-          "description": "Stoa Øst",
-          "markerColor": "bg-slate-400"
-        }
-      ]
-    },
-    "certificates": {
-      "heading": "Sertifikater",
-      "subtitle": "Kontinuerlig læring og faglig utvikling",
-      "items": [
-        {
-          "title": "Innføring i prosjektledelse for tillitsvalgte",
-          "issuer": "Knyttet til NITO - Norges Ingeniør- og Teknologorganisasjon",
-          "icon": "workspace_premium",
-          "pdfLink": "/certificates/intro-prosjektledelse.pdf"
-        },
-        {
-          "title": "Lederutvikling for Lokallagsledere",
-          "issuer": "Knyttet til NITO - Norges Ingeniør- og Teknologorganisasjon",
-          "icon": "workspace_premium",
-          "pdfLink": "/certificates/lederutvikling-lokallagsledere.pdf"
-        },
-        {
-          "title": "GDPR for Ledere",
-          "issuer": "Knyttet til KIWI minipris",
-          "icon": "workspace_premium"
         }
       ]
     },

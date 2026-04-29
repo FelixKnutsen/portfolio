@@ -65,6 +65,26 @@ export default function ExperienceTimelineItem({ item, index }: ExperienceTimeli
           <p className="font-body-md text-body-md text-slate-600 dark:text-slate-400">
             {item.description}
           </p>
+
+          {/* Impact highlights */}
+          {item.highlights && item.highlights.length > 0 && (
+            <ul className="mt-4 space-y-2">
+              {item.highlights.map((highlight, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300"
+                >
+                  <span
+                    className="material-symbols-outlined text-secondary text-sm mt-0.5 shrink-0"
+                    aria-hidden="true"
+                  >
+                    arrow_right
+                  </span>
+                  <span className="font-semibold font-label-caps">{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>

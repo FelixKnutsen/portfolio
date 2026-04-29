@@ -7,7 +7,10 @@ import type { Language } from './context/LanguageContext';
 /** Internal navigation link (scrolls to a section on the page). */
 export interface NavLink {
   label: string;
+  /** Section ID for in-page scroll, or a route path like "/about" */
   sectionId: string;
+  /** If true, this link navigates to a route instead of scrolling */
+  isRoute?: boolean;
 }
 
 /** Navigation bar content. */
@@ -29,6 +32,8 @@ export interface HeroContent {
   body: string;
   ctaText: string;
   ctaLink: string;
+  secondaryCtaText: string;
+  secondaryCtaLink: string;
   image: HeroImage;
 }
 
@@ -70,6 +75,7 @@ export interface ExperienceItem {
   organization: string;
   period: string;
   description: string;
+  highlights?: string[];
   markerColor: string;
 }
 
@@ -80,19 +86,42 @@ export interface ExperienceContent {
   items: ExperienceItem[];
 }
 
-/** A single certificate entry. */
-export interface CertificateItem {
+/** A single project / case study entry. */
+export interface ProjectItem {
+  /** URL-safe slug for routing, e.g. "phonero-equipment-list" */
+  slug: string;
+  /** Project title */
   title: string;
-  issuer: string;
-  icon: string;
-  pdfLink?: string;
+  /** Your role on the project */
+  role: string;
+  /** Technologies used */
+  techStack: string[];
+  /** The problem the project solved */
+  problem: string;
+  /** Your architectural/technical solution */
+  solution: string;
+  /** Measurable business impact / results */
+  impact: string[];
+  /** Link to GitHub repository */
+  githubUrl?: string;
+  /** Link to live deployment */
+  liveUrl?: string;
+  /** Path to hero image for the case study */
+  image?: string;
+  /** Alt text for hero image */
+  imageAlt?: string;
+  /** Whether to feature on the home page grid */
+  featured: boolean;
+  /** Short summary for project cards (1-2 sentences) */
+  summary: string;
 }
 
-/** Certificates section content. */
-export interface CertificatesContent {
+/** Projects section content. */
+export interface ProjectsContent {
   heading: string;
   subtitle: string;
-  items: CertificateItem[];
+  viewCaseStudy: string;
+  items: ProjectItem[];
 }
 
 /** A single contact link (email, social, etc.). */
@@ -143,14 +172,22 @@ export interface MetaContent {
   description: string;
 }
 
+/** About page content. */
+export interface AboutContent {
+  heading: string;
+  intro: string;
+  backToHome: string;
+}
+
 /** All content for a single language. */
 export interface LocaleContent {
   meta: MetaContent;
   nav: NavContent;
   hero: HeroContent;
+  about: AboutContent;
+  projects: ProjectsContent;
   education: EducationContent;
   experience: ExperienceContent;
-  certificates: CertificatesContent;
   contact: ContactContent;
   footer: FooterContent;
 }

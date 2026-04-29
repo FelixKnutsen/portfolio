@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import contentData from '../data/content.json';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useScrollTo } from '../hooks/useScrollTo';
@@ -36,15 +37,15 @@ export default function Hero() {
         <div
           ref={bodyRef}
           className="max-w-2xl animate-on-scroll w-full"
-          style={{ animationDelay: '0.1s' }}
+          style={{ animationDelay: '0.05s' }}
         >
           <TextAnimation text={content.hero.body} />
         </div>
 
         <div
           ref={ctaRef}
-          className="flex gap-4 pt-4 animate-on-scroll"
-          style={{ animationDelay: '0.2s' }}
+          className="flex flex-wrap gap-4 pt-4 animate-on-scroll"
+          style={{ animationDelay: '0.1s' }}
         >
           <button
             className="bg-primary text-on-primary dark:bg-slate-50 dark:text-slate-900 px-6 py-3 rounded-DEFAULT font-button text-button hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors inline-flex items-center gap-2 border-none cursor-pointer"
@@ -56,13 +57,23 @@ export default function Hero() {
               arrow_downward
             </span>
           </button>
+
+          <Link
+            to={content.hero.secondaryCtaLink}
+            className="px-6 py-3 rounded-DEFAULT font-button text-button border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors inline-flex items-center gap-2 no-underline"
+          >
+            {content.hero.secondaryCtaText}
+            <span className="material-symbols-outlined text-sm" aria-hidden="true">
+              arrow_forward
+            </span>
+          </Link>
         </div>
       </div>
 
       <div
         ref={imageRef}
         className="md:col-span-5 relative animate-on-scroll order-1 md:order-2"
-        style={{ animationDelay: '0.3s' }}
+        style={{ animationDelay: '0.15s' }}
       >
         <div
           className="aspect-[4/5] rounded-xl relative z-10"

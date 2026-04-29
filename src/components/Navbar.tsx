@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
-import { useScrollTo } from '../hooks/useScrollTo';
 import contentData from '../data/content.json';
 import type { ContentData, NavLink } from '../types';
 
@@ -10,13 +10,16 @@ const typedContent = contentData as unknown as ContentData;
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const { language, setLanguage } = useLanguage();
-  const { scrollToSection, scrollToTop } = useScrollTo();
+  const location = useLocation();
+  const navigate = useNavigate();
   const content = typedContent[language];
 
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const langDropdownRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  const isHome = location.pathname === '/';
 
   // Close language dropdown on outside click
   useEffect(() => {
@@ -76,17 +79,53 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const handleNavClick = useCallback(
-    (sectionId: string) => {
-      scrollToSection(sectionId);
+    (link: NavLink) => {
       setMobileMenuOpen(false);
+
+      // Route-based links (e.g. /about)
+      if (link.isRoute) {
+        navigate(link.sectionId);
+        return;
+      }
+
+      // Section scroll — if on home page, scroll directly
+      if (isHome) {
+        const element = document.getElementById(link.sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        // Navigate to home, then scroll after navigation
+        navigate('/', { state: { scrollTo: link.sectionId } });
+      }
     },
-    [scrollToSection],
+    [isHome, navigate],
   );
 
+  // Handle scrollTo after navigation from another page
+  useEffect(() => {
+    const state = location.state as { scrollTo?: string } | null;
+    if (state?.scrollTo) {
+      // Small delay to let the page render
+      setTimeout(() => {
+        const element = document.getElementById(state.scrollTo!);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+      // Clear the state
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
+
   const handleBrandClick = useCallback(() => {
-    scrollToTop();
     setMobileMenuOpen(false);
-  }, [scrollToTop]);
+    if (isHome) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate('/');
+    }
+  }, [isHome, navigate]);
 
   return (
     <nav
@@ -105,17 +144,35 @@ export default function Navbar() {
 
         {/* Desktop nav links */}
         <div className="hidden md:flex gap-8" role="menubar">
-          {content.nav.links.map((link: NavLink) => (
-            <button
-              key={link.sectionId}
-              className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition-colors bg-transparent border-none cursor-pointer font-semibold text-sm"
-              onClick={() => handleNavClick(link.sectionId)}
-              type="button"
-              role="menuitem"
-            >
-              {link.label}
-            </button>
-          ))}
+          {content.nav.links.map((link: NavLink) => {
+            // For route links, check if current path matches
+            const isActive = link.isRoute && location.pathname === link.sectionId;
+
+            return link.isRoute ? (
+              <Link
+                key={link.sectionId}
+                to={link.sectionId}
+                className={`transition-colors font-semibold text-sm no-underline ${
+                  isActive
+                    ? 'text-secondary'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                }`}
+                role="menuitem"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <button
+                key={link.sectionId}
+                className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition-colors bg-transparent border-none cursor-pointer font-semibold text-sm"
+                onClick={() => handleNavClick(link)}
+                type="button"
+                role="menuitem"
+              >
+                {link.label}
+              </button>
+            );
+          })}
         </div>
 
         <div className="flex items-center gap-2 md:gap-4">
@@ -228,7 +285,7 @@ export default function Navbar() {
                 <button
                   key={link.sectionId}
                   className="text-left text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-50 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all py-4 px-5 rounded-xl font-semibold text-lg bg-transparent border-none cursor-pointer"
-                  onClick={() => handleNavClick(link.sectionId)}
+                  onClick={() => handleNavClick(link)}
                   role="menuitem"
                   type="button"
                 >
