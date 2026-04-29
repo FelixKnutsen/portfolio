@@ -3,6 +3,7 @@ import contentData from '../data/content.json';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useLanguage } from '../context/LanguageContext';
 import type { ContentData, FormStatus } from '../types';
+import DOMPurify from 'dompurify';
 
 const typedContent = contentData as unknown as ContentData;
 
@@ -28,12 +29,14 @@ export default function Contact() {
   }, []);
 
   const sanitizeInput = (text: string) => {
-    // Robust sanitization: remove HTML tags and potential script/event attributes
-    return text
-      .replace(/<[^>]*>?/gm, '') // Remove tags
-      .replace(/on\w+="[^"]*"/gm, '') // Remove event handlers like onclick="..."
-      .replace(/javascript:[^"]*/gim, '') // Remove javascript: links
-      .trim();
+    // Secure DOM-based sanitization using DOMPurify
+    // We strip ALL HTML tags and attributes since this is plain text input
+    return DOMPurify.sanitize(text, { 
+      ALLOWED_TAGS: [], // No tags allowed
+      ALLOWED_ATTR: [], // No attributes allowed
+      RETURN_DOM: false,
+      RETURN_DOM_FRAGMENT: false
+    }).trim();
   };
 
   const handleSubmit = useCallback(
