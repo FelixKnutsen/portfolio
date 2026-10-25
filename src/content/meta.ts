@@ -1,4 +1,4 @@
-import { HTML_LANG, LOCALES, OG_LOCALE, SITE_URL, type L, type Locale } from '../i18n/locale';
+import { HTML_LANG, LOCALES, OG_LOCALE, SITE_URL, type L, type Locale } from '../i18n/locale.ts';
 
 // Used both at runtime (to update the document head when the language
 // changes) and at build time (to write a static page per language).

@@ -2,9 +2,9 @@ import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
-import { HTML_LANG, LOCALES, DEFAULT_LOCALE, type Locale } from './src/i18n/locale';
-import { renderHead } from './src/content/meta';
-import { CV_PUBLIC_PATH } from './src/content/cvFile';
+import { HTML_LANG, LOCALES, DEFAULT_LOCALE, type Locale } from './src/i18n/locale.ts';
+import { renderHead } from './src/content/meta.ts';
+import { CV_PUBLIC_PATH } from './src/content/cvFile.ts';
 
 const SEO_START = '<!--seo:start-->';
 const SEO_END = '<!--seo:end-->';
@@ -43,6 +43,6 @@ function localizedPages(): Plugin {
 export default defineConfig({
   plugins: [react(), localizedPages()],
   define: {
-    __CV_AVAILABLE__: JSON.stringify(existsSync(resolve(__dirname, 'public', CV_PUBLIC_PATH.slice(1)))),
+    __CV_AVAILABLE__: JSON.stringify(existsSync(resolve(import.meta.dirname, 'public', CV_PUBLIC_PATH.slice(1)))),
   },
 });
