@@ -1,0 +1,388 @@
+.map {
+  --lane-height: 4.5rem;
+  --label-column: 8.5rem;
+  --lane-width: 1.75rem;
+  --step-height: 4.25rem;
+  position: relative;
+  margin: 0;
+}
+
+.track,
+.draw,
+.vDraw {
+  fill: none;
+  stroke-linejoin: round;
+}
+
+.track {
+  stroke: var(--rule);
+  stroke-width: var(--line-strong);
+}
+
+.draw,
+.vDraw {
+  stroke: var(--signal);
+  stroke-width: var(--connector);
+}
+
+.dot,
+.vDot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: var(--radius-node);
+  background: var(--paper);
+  border: var(--connector) solid var(--signal);
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+
+/* ── Wide screens: lanes as rows, steps left to right ───────────── */
+
+.diagram {
+  position: relative;
+  display: none;
+  grid-template-columns: var(--label-column) 1fr;
+  grid-template-rows: repeat(3, var(--lane-height));
+  border-bottom: var(--line) solid var(--rule-strong);
+}
+
+.lane {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  border-top: var(--line) solid var(--rule-strong);
+}
+
+.lane:nth-child(2) {
+  background: color-mix(in srgb, var(--paper-sunk) 55%, transparent);
+}
+
+.laneLabel {
+  width: var(--label-column);
+  padding-right: var(--space-3);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--ink-soft);
+  border-right: var(--line) solid var(--rule);
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+.connector {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.nodes {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(var(--steps), 1fr);
+  grid-template-rows: repeat(3, var(--lane-height));
+  list-style: none;
+}
+
+.node {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.nodeLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.nodeLabel {
+  position: absolute;
+  top: calc(50% + 0.85rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  white-space: nowrap;
+  padding: 0 var(--space-1);
+  /* A halo in the lane's own colour: if a connector ever meets a label, it passes behind the text. */
+  background: var(--label-bg, var(--paper));
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--ink);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+/*
+  Labels sit on the side of the dot that no connector reaches (see labelSides),
+  one line each so a lane divider never runs through them, with a halo in the
+  lane's colour as a last resort. The last label hugs the map's right edge.
+*/
+.node[data-label='above'] .nodeLabel {
+  top: auto;
+  bottom: calc(50% + 0.85rem);
+}
+
+.node[data-lens='process'] {
+  --label-bg: color-mix(in srgb, var(--paper-sunk) 55%, var(--paper));
+}
+
+.node:last-child .nodeLabel {
+  left: auto;
+  right: 0;
+  transform: none;
+  text-align: right;
+}
+
+.node[data-active='true'] .dot {
+  transform: scale(1.45);
+  background: var(--signal);
+}
+
+.node[data-active='true'] .nodeLabel {
+  color: var(--signal);
+}
+
+.node[data-dimmed='true'] .nodeLabel {
+  color: var(--ink-soft);
+}
+
+.nodeLink:focus-visible {
+  box-shadow: none;
+}
+
+.nodeLink:focus-visible .dot {
+  box-shadow: var(--focus-ring);
+}
+
+/* ── Narrow screens: lanes as columns, steps top to bottom, every label visible ── */
+
+.vertical {
+  display: grid;
+  border-top: var(--line) solid var(--rule-strong);
+  border-bottom: var(--line) solid var(--rule-strong);
+}
+
+/* Lane names written up the narrow columns, like the spine labels of a swimlane chart. */
+.vLanes {
+  display: grid;
+  grid-template-columns: repeat(3, var(--lane-width));
+  list-style: none;
+  padding-top: var(--space-2);
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.vLanes li {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  justify-self: center;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.vBody {
+  position: relative;
+}
+
+/* Lane stripe behind the connector, matching the shaded middle lane on wide screens. */
+.vBody::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--lane-width);
+  width: var(--lane-width);
+  background: color-mix(in srgb, var(--paper-sunk) 55%, transparent);
+}
+
+.vConnector {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(3 * var(--lane-width));
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.vSteps {
+  position: relative;
+  display: grid;
+  /* Equal rows, so the connector (drawn in a 0–100 space) meets every dot exactly. */
+  grid-auto-rows: var(--step-height);
+  list-style: none;
+}
+
+.vLink {
+  position: relative;
+  display: grid;
+  align-content: center;
+  height: 100%;
+  overflow: hidden;
+  padding-left: calc(3 * var(--lane-width) + var(--space-4));
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.vDot {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--lane) * var(--lane-width) + var(--lane-width) / 2 - 0.5rem);
+  transform: translateY(-50%);
+}
+
+.vLabel {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.vMeta {
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+}
+
+.vLens {
+  font-weight: 600;
+  color: var(--signal);
+}
+
+.vLink:hover .vLabel {
+  color: var(--signal);
+}
+
+.vLink:focus-visible {
+  box-shadow: none;
+}
+
+.vLink:focus-visible .vLabel {
+  outline: var(--line-strong) solid var(--signal);
+  outline-offset: 2px;
+}
+
+/* ── Readout and caption ───────────────────────────────────────── */
+
+.readout {
+  display: grid;
+  margin-top: var(--space-3);
+  min-height: 2.75rem;
+  font-size: var(--fs-small);
+  line-height: var(--lh-snug);
+}
+
+.readoutLine,
+.caption {
+  grid-area: 1 / 1;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.readoutLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-3);
+  color: var(--ink-soft);
+  opacity: 0;
+}
+
+.readoutLine[data-visible='true'] {
+  opacity: 1;
+}
+
+.caption {
+  max-width: var(--measure);
+  color: var(--ink-soft);
+}
+
+.caption[data-hidden='true'] {
+  opacity: 0;
+}
+
+@media (min-width: 56rem) {
+  .diagram {
+    display: grid;
+  }
+
+  .vertical {
+    display: none;
+  }
+}
+
+/* One orchestrated moment: when the map comes into view the connector draws through the lanes and each step lights up as it is reached. */
+@media (prefers-reduced-motion: no-preference) {
+  .map[data-drawn='false'] .draw {
+    clip-path: inset(-10% 100% -10% 0);
+  }
+
+  .map[data-drawn='false'] .vDraw {
+    clip-path: inset(0 -10% 100% -10%);
+  }
+
+  .map[data-drawn='false'] :is(.dot, .vDot) {
+    scale: 0;
+  }
+
+  .map[data-drawn='false'] .nodeLabel {
+    opacity: 0;
+  }
+
+  .map[data-drawn='true'] .draw {
+    animation: draw var(--dur-draw) linear 150ms both;
+  }
+
+  .map[data-drawn='true'] .vDraw {
+    animation: draw-down var(--dur-draw) linear 150ms both;
+  }
+
+  .map[data-drawn='true'] :is(.dot, .vDot) {
+    animation: node-in var(--dur-base) var(--ease-out) both;
+    animation-delay: calc(150ms + var(--order) * (var(--dur-draw) / var(--steps)) + 120ms);
+  }
+
+  .map[data-drawn='true'] .nodeLabel {
+    animation: label-in var(--dur-slow) var(--ease-out) both;
+    animation-delay: calc(150ms + var(--order) * (var(--dur-draw) / var(--steps)) + 200ms);
+  }
+}
+
+/* A wipe rather than a dash offset: dashes and non-scaling strokes do not mix reliably across browsers. */
+@keyframes draw {
+  from {
+    clip-path: inset(-10% 100% -10% 0);
+  }
+  to {
+    clip-path: inset(-10% 0 -10% 0);
+  }
+}
+
+@keyframes draw-down {
+  from {
+    clip-path: inset(0 -10% 100% -10%);
+  }
+  to {
+    clip-path: inset(0 -10% 0 -10%);
+  }
+}
+
+/* `scale` rather than `transform`, so it never fights the centring transform on the vertical dots. */
+@keyframes node-in {
+  from {
+    scale: 0;
+  }
+}
+
+@keyframes label-in {
+  from {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,70 @@
+.head {
+  display: grid;
+  gap: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: var(--line-strong) solid var(--ink);
+  margin-bottom: clamp(var(--space-6), 5vw, var(--space-8));
+}
+
+.title {
+  font-size: var(--fs-display);
+  font-weight: 800;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-display);
+  text-wrap: balance;
+}
+
+.intro {
+  max-width: var(--measure);
+  font-family: var(--font-serif);
+  font-size: var(--fs-lede);
+  line-height: 1.4;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+@media (min-width: 56rem) {
+  .head {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--space-5);
+    align-items: end;
+  }
+
+  .title {
+    grid-column: 1 / span 7;
+  }
+
+  .intro {
+    grid-column: 8 / -1;
+  }
+}
+
+/* Compact: a thin rule, smaller title, intro underneath. */
+.head[data-variant='compact'] {
+  border-top-width: var(--line);
+  gap: var(--space-3);
+  margin-bottom: clamp(var(--space-5), 4vw, var(--space-7));
+}
+
+.head[data-variant='compact'] .title {
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+}
+
+.head[data-variant='compact'] .intro {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+@media (min-width: 56rem) {
+  .head[data-variant='compact'] {
+    align-items: baseline;
+  }
+
+  .head[data-variant='compact'] .title {
+    grid-column: 1 / span 4;
+  }
+
+  .head[data-variant='compact'] .intro {
+    grid-column: 5 / span 7;
+  }
+}

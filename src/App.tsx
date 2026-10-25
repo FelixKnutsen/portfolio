@@ -1,51 +1,37 @@
+import { Analytics } from '@vercel/analytics/react';
 import { useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
+import About from './components/About';
+import Contact from './components/Contact';
 import Education from './components/Education';
 import Experience from './components/Experience';
-import Certificates from './components/Certificates';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import Arc from './components/Arc';
-import contentData from './data/content.json';
-import { useLanguage } from './context/LanguageContext';
-import { Analytics } from '@vercel/analytics/react';
-import type { ContentData } from './types';
+import Hero from './components/Hero';
+import Leadership from './components/Leadership';
+import SelectedWork from './components/SelectedWork';
+import SiteFooter from './components/SiteFooter';
+import SiteHeader from './components/SiteHeader';
 
-const typedContent = contentData as unknown as ContentData;
-
-function App() {
-  const { language } = useLanguage();
-
+export default function App() {
+  // The browser tries to jump to the URL's #section before React has rendered it, so do it once the page exists.
   useEffect(() => {
-    const content = typedContent[language];
-    document.title = content.meta.title;
-
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', content.meta.description);
-    }
-  }, [language]);
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (id) document.getElementById(id)?.scrollIntoView({ behavior: 'instant', block: 'start' });
+  }, []);
 
   return (
-    <div
-      className="bg-background dark:bg-slate-950 text-on-background dark:text-slate-50 font-body-md text-body-md antialiased selection:bg-secondary-container selection:text-on-secondary-container"
-      id="top"
-    >
-      <Navbar />
-      <main className="pt-16">
+    <>
+      <div id="top" />
+      <SiteHeader />
+      <main id="main" tabIndex={-1}>
         <Hero />
-        <Education />
-        <Arc fillClassName="text-background dark:text-slate-950" />
+        <About />
+        <SelectedWork />
+        <Leadership />
         <Experience />
-        <Certificates />
-        <Arc fillClassName="text-background dark:text-slate-950" />
+        <Education />
         <Contact />
       </main>
-      <Footer />
+      <SiteFooter />
       <Analytics />
-    </div>
+    </>
   );
 }
-
-export default App;
