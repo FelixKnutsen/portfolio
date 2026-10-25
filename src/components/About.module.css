@@ -1,0 +1,116 @@
+.about {
+  display: grid;
+  gap: var(--space-6);
+  padding-block: var(--section-gap) 0;
+}
+
+.heading {
+  font-size: var(--fs-display);
+  font-weight: 800;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-display);
+  text-wrap: balance;
+}
+
+.body {
+  display: grid;
+  gap: var(--space-4);
+  max-width: var(--measure);
+  font-family: var(--font-serif);
+  font-size: var(--fs-lede);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.lenses {
+  margin-top: var(--space-6);
+  border-bottom: var(--line) solid var(--rule-strong);
+}
+
+.lens {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-5) 0;
+  border-top: var(--line) solid var(--rule-strong);
+}
+
+.lens[data-lens='process'] {
+  background: color-mix(in srgb, var(--paper-sunk) 55%, transparent);
+}
+
+.lens dt {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-h4);
+  font-weight: 700;
+}
+
+.lensDot {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: var(--radius-node);
+  border: var(--connector) solid var(--signal);
+  background: var(--paper);
+}
+
+.lens dd {
+  max-width: var(--measure-wide);
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+.interests {
+  max-width: var(--measure-wide);
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.interests span {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+@media (min-width: 56rem) {
+  .about {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--space-5);
+    row-gap: var(--space-7);
+  }
+
+  .heading {
+    grid-column: 1 / span 5;
+  }
+
+  .body {
+    grid-column: 7 / -1;
+    align-self: end;
+  }
+
+  .lenses,
+  .interests {
+    grid-column: 1 / -1;
+  }
+
+  /* Three lenses as three columns, echoing the three lanes of the map. */
+  .lenses {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--space-6);
+    border-bottom: 0;
+  }
+
+  .lens {
+    align-content: start;
+    padding: var(--space-4) var(--space-4) var(--space-5) 0;
+  }
+
+  .lens[data-lens='process'] {
+    padding-left: var(--space-4);
+  }
+
+  .interests {
+    grid-column: 1 / span 8;
+  }
+}

@@ -1,84 +1,134 @@
 import { useState } from 'react';
-import contentData from '../data/content.json';
-import { useScrollReveal } from '../hooks/useScrollReveal';
-import { useLanguage } from '../context/LanguageContext';
-import EducationCard from './EducationCard';
-import type { ContentData } from '../types';
+import { copy } from '../content/copy';
+import { certificates, degrees } from '../content/education';
+import type { Course, Degree } from '../content/types';
+import { useLocale } from '../i18n/LocaleContext';
+import { formatPeriod } from '../lib/dates';
+import ExternalLink from './ExternalLink';
+import SectionHead from './SectionHead';
+import styles from './Education.module.css';
 
-const typedContent = contentData as unknown as ContentData;
+function groupByTerm(courses: Course[]) {
+  const groups = new Map<string, Course[]>();
+  for (const course of courses) {
+    const key = `${course.year}-${course.term}`;
+    groups.set(key, [...(groups.get(key) ?? []), course]);
+  }
+  return Array.from(groups.values());
+}
 
-export default function Education() {
-  const { language } = useLanguage();
-  const content = typedContent[language];
-  const headerRef = useScrollReveal<HTMLDivElement>();
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-
-  const handleToggle = (id: string) => {
-    const isClosing = selectedId === id;
-    setSelectedId(isClosing ? null : id);
-
-    // Only scroll when closing a box, and ONLY if the user has scrolled down
-    // past the top of the specific card they are closing.
-    if (isClosing) {
-      setTimeout(() => {
-        const card = document.getElementById(id);
-        if (card) {
-          const headerOffset = 120; // Account for fixed navbar and some breathing room
-          const rect = card.getBoundingClientRect();
-          
-          // If the top of the card is hidden above the viewport, scroll to it.
-          // This prevents dragging the user if they are already looking at the card.
-          if (rect.top < headerOffset) {
-            const offsetPosition = rect.top + window.scrollY - headerOffset;
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
-          }
-        }
-      }, 50);
-    }
-  };
+function DegreeRow({ degree }: { degree: Degree }) {
+  const { locale, t } = useLocale();
+  const [open, setOpen] = useState(false);
+  const coursesId = `edu-${degree.id}-courses`;
+  const start = degree.period.start.slice(0, 4);
+  const end = degree.period.end?.slice(0, 4);
 
   return (
-    <section
-      className="bg-surface-bright dark:bg-slate-900/50 py-section-padding relative overflow-hidden"
-      id="education"
-      aria-label={content.education.heading}
-    >
-      <div className="max-w-[1120px] mx-auto px-5 md:px-8 relative z-10 pt-24 md:pt-10">
-        <div ref={headerRef} className="mb-12 md:mb-16 text-center md:text-left animate-on-scroll">
-          <h2 className="font-headline-lg text-headline-lg text-slate-900 dark:text-slate-50">
-            {content.education.heading}
-          </h2>
-          <p className="font-body-md text-body-md text-slate-500 dark:text-slate-400 mt-2">
-            {content.education.subtitle}
-          </p>
-        </div>
+    <li id={`edu-${degree.id}`} className={styles.degree}>
+      <p className={styles.years} aria-hidden="true">
+        <span>{start}</span>
+        <span className={styles.yearsRule} />
+        <span>{end ?? '…'}</span>
+      </p>
 
-        <div className="grid md:grid-cols-2 gap-8 items-start">
-          {content.education.items.map((item, index) => {
-            // Generate a unique ID based on degree and index
-            const cardId = `edu-card-${index}`;
-            return (
-              <EducationCard 
-                key={cardId}
-                id={cardId}
-                item={item} 
-                index={index} 
-                isExpanded={selectedId === cardId}
-                onToggle={() => handleToggle(cardId)}
-              />
-            );
-          })}
-        </div>
+      <div className={styles.degreeBody}>
+        <h3 className={styles.degreeTitle}>{t(degree.title)}</h3>
+        <p className={styles.institution}>
+          {degree.institution}, <time dateTime={degree.period.start}>{formatPeriod(degree.period, locale)}</time>
+        </p>
+        <p className={styles.description}>{t(degree.description)}</p>
+
+        {degree.journey ? (
+          <div className={styles.journey}>
+            <h4 className={styles.journeyLabel}>{t(copy.education.journeyLabel)}</h4>
+            <ol className={styles.journeySteps}>
+              {t(degree.journey).map((step, index) => (
+                <li key={step} data-away={index === 1}>
+                  <span className={styles.journeyNode} aria-hidden="true" />
+                  {step}
+                </li>
+              ))}
+            </ol>
+          </div>
+        ) : null}
+
+        {degree.courses.length > 0 ? (
+          <>
+            <button
+              type="button"
+              className={styles.toggle}
+              aria-expanded={open}
+              aria-controls={coursesId}
+              onClick={() => setOpen((value) => !value)}
+            >
+              <span className={styles.toggleIcon} aria-hidden="true" />
+              {t(open ? copy.education.hideCourses : copy.education.showCourses)}
+              <span className={styles.count}>
+                {degree.courses.length} {t(copy.education.courseCount)}
+              </span>
+            </button>
+
+            <div id={coursesId} className={styles.courses} hidden={!open}>
+              {groupByTerm(degree.courses).map((group) => {
+                const { term, year } = group[0];
+                return (
+                  <div key={`${year}-${term}`} className={styles.term}>
+                    <h4 className={styles.termTitle}>
+                      {t(copy.education.terms[term])} {year}
+                    </h4>
+                    <ul>
+                      {group.map((course) => (
+                        <li key={course.code}>
+                          <span className={styles.code}>{course.code}</span>
+                          {course.href ? (
+                            <ExternalLink href={course.href}>{course.name}</ExternalLink>
+                          ) : (
+                            <span>{course.name}</span>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        ) : null}
       </div>
+    </li>
+  );
+}
 
-      {/* Decorative Arc */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[200%] h-32 bg-background dark:bg-slate-950 rounded-b-[100%] z-0 shadow-sm"
-        aria-hidden="true"
-      />
+export default function Education() {
+  const { t } = useLocale();
+
+  return (
+    <section id="education" data-anchor className={`frame ${styles.section}`} aria-labelledby="education-heading">
+      <SectionHead id="education-heading" title={t(copy.education.heading)} variant="compact">
+        <p>{t(copy.education.intro)}</p>
+      </SectionHead>
+
+      <ol className={styles.degrees}>
+        {degrees.map((degree) => (
+          <DegreeRow key={degree.id} degree={degree} />
+        ))}
+      </ol>
+
+      <div className={styles.certificates}>
+        <h3 className={styles.certificatesTitle}>{t(copy.education.certificatesHeading)}</h3>
+        <ul>
+          {certificates.map((certificate) => (
+            <li key={certificate.issuer + certificate.title.no}>
+              <span className={styles.certificateName}>{t(certificate.title)}</span>
+              <span className={styles.issuer}>{certificate.issuer}</span>
+              {certificate.href ? (
+                <ExternalLink href={certificate.href}>{t(copy.education.openCertificate)}</ExternalLink>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }

@@ -1,0 +1,256 @@
+/* The one inverted section: the page ends on ink, like the final node on the map. */
+.contact {
+  --signal: var(--signal-on-ink);
+  --focus-ring: 0 0 0 3px var(--ink), 0 0 0 5px var(--signal-on-ink);
+  margin-top: var(--section-gap);
+  padding-block: clamp(var(--space-8), 9vw, var(--space-10));
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.inner {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.heading {
+  font-size: var(--fs-display);
+  font-weight: 800;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-display);
+}
+
+.body {
+  max-width: var(--measure);
+  margin-top: var(--space-5);
+  font-family: var(--font-serif);
+  font-size: var(--fs-lede);
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--paper) 82%, var(--ink));
+}
+
+.emailBlock {
+  margin-top: var(--space-7);
+}
+
+.emailLabel {
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  color: color-mix(in srgb, var(--paper) 75%, var(--ink));
+}
+
+.email {
+  display: inline-block;
+  margin-top: var(--space-2);
+  font-size: clamp(1.5rem, 4.2vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--connector);
+  text-decoration-color: var(--signal);
+  text-underline-offset: 0.18em;
+}
+
+.email:hover {
+  color: var(--signal);
+}
+
+.copy {
+  display: block;
+  min-height: 2.75rem;
+  margin-top: var(--space-2);
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: color-mix(in srgb, var(--paper) 80%, var(--ink));
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.copy:hover,
+.copy[data-copied='true'] {
+  color: var(--signal);
+}
+
+.cvBlock {
+  margin-top: var(--space-6);
+}
+
+.profiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  list-style: none;
+}
+
+.profile {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 var(--space-5);
+  border: var(--line) solid color-mix(in srgb, var(--paper) 55%, var(--ink));
+  border-radius: var(--radius-node);
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.profile:hover {
+  border-color: var(--signal);
+  color: var(--signal);
+}
+
+/* ── Form ──────────────────────────────────────────────────────── */
+
+.form {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+}
+
+.formHeading {
+  font-size: var(--fs-h4);
+  font-weight: 700;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+}
+
+.row {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.label {
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+
+.optional {
+  font-weight: 400;
+  color: color-mix(in srgb, var(--paper) 72%, var(--ink));
+}
+
+.input {
+  width: 100%;
+  min-height: 3rem;
+  padding: var(--space-3) var(--space-4);
+  border: var(--line) solid color-mix(in srgb, var(--paper) 55%, var(--ink));
+  border-radius: var(--radius-field);
+  background: color-mix(in srgb, var(--paper) 6%, var(--ink));
+  color: var(--paper);
+  font-size: var(--fs-ui);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+textarea.input {
+  resize: vertical;
+  min-height: 8rem;
+  line-height: 1.5;
+}
+
+.input:hover {
+  border-color: var(--paper);
+}
+
+.input:focus-visible {
+  border-color: var(--signal);
+  border-radius: var(--radius-field);
+}
+
+.field[data-invalid='true'] .input {
+  border-color: var(--danger-on-ink);
+  border-width: var(--line-strong);
+}
+
+.error {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--danger-on-ink);
+}
+
+.submitRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.submit {
+  min-height: 3rem;
+  padding: 0 var(--space-6);
+  border: 0;
+  border-radius: var(--radius-node);
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 700;
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+.submit:hover {
+  background: var(--signal);
+}
+
+.submit:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.status {
+  flex: 1 1 14rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+
+.status:focus {
+  outline: none;
+}
+
+.status[data-status='sent'] {
+  color: var(--success-on-ink);
+}
+
+.status[data-status='failed'] {
+  color: var(--danger-on-ink);
+}
+
+.privacy {
+  font-size: var(--fs-meta);
+  color: color-mix(in srgb, var(--paper) 72%, var(--ink));
+}
+
+@media (min-width: 40rem) {
+  .row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 56rem) {
+  .inner {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--space-5);
+  }
+
+  .intro {
+    grid-column: 1 / span 6;
+  }
+
+  .form {
+    grid-column: 8 / -1;
+    padding-top: var(--space-3);
+  }
+}
