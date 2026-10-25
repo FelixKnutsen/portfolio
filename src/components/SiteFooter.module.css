@@ -1,0 +1,16 @@
+.footer {
+  --signal: var(--signal-on-ink);
+  --focus-ring: 0 0 0 3px var(--ink), 0 0 0 5px var(--signal-on-ink);
+  background: var(--ink);
+  color: color-mix(in srgb, var(--paper) 78%, var(--ink));
+  font-size: var(--fs-small);
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-6);
+  padding-block: var(--space-5) var(--space-6);
+  border-top: var(--line) solid color-mix(in srgb, var(--paper) 25%, var(--ink));
+}
