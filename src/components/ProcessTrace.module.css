@@ -1,0 +1,144 @@
+.trace {
+  margin-top: var(--space-6);
+}
+
+.label {
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: var(--space-4);
+}
+
+.steps {
+  --node: 2rem;
+  position: relative;
+  display: grid;
+  gap: var(--space-5);
+  list-style: none;
+}
+
+/* Small screens: steps stacked, each joined to the next by its own segment of the connector. */
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--node) minmax(0, 1fr);
+  column-gap: var(--space-3);
+  align-items: start;
+}
+
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: calc(var(--node) / 2 - var(--connector) / 2);
+  top: var(--node);
+  bottom: calc(-1 * var(--space-5));
+  width: var(--connector);
+  background: var(--signal);
+  transform-origin: top;
+}
+
+.number {
+  position: relative;
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: var(--node);
+  height: var(--node);
+  border-radius: var(--radius-node);
+  border: var(--connector) solid var(--signal);
+  background: var(--paper);
+  font-size: var(--fs-meta);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--signal);
+}
+
+.name {
+  padding-top: 0.3rem;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.text {
+  margin-top: var(--space-1);
+  font-family: var(--font-serif);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* Wider screens: steps side by side on one horizontal connector. */
+@media (min-width: 40rem) {
+  .steps {
+    grid-template-columns: repeat(var(--count), minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--node) / 2);
+    right: calc(100% / var(--count));
+    top: calc(var(--node) / 2 - var(--connector) / 2);
+    height: var(--connector);
+    background: var(--signal);
+    transform-origin: left;
+  }
+
+  /* align-content: start keeps every step's title on one line across, whatever the length of its text. */
+  .step {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    row-gap: var(--space-3);
+  }
+
+  .step:not(:last-child)::after {
+    content: none;
+  }
+
+  .number {
+    grid-row: auto;
+  }
+
+  .name {
+    padding-top: 0;
+  }
+
+  .text {
+    margin-top: calc(-1 * var(--space-1));
+    padding-right: var(--space-2);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .steps::before,
+  .step::after {
+    transition: transform var(--dur-draw) var(--ease-in-out);
+  }
+
+  .step::after {
+    transition-duration: calc(var(--dur-draw) / var(--count));
+    transition-delay: calc(var(--i) * (var(--dur-draw) / var(--count)));
+  }
+
+  .steps[data-drawn='false'] .step::after {
+    transform: scaleY(0);
+  }
+
+  .steps[data-drawn='false']::before {
+    transform: scaleX(0);
+  }
+
+  .number {
+    transition:
+      background-color var(--dur-base) var(--ease-out),
+      color var(--dur-base) var(--ease-out);
+    transition-delay: calc(var(--i) * (var(--dur-draw) / var(--count)));
+  }
+
+  .steps[data-drawn='true'] .number {
+    background: var(--signal);
+    color: var(--paper-raised);
+  }
+}

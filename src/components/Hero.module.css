@@ -1,0 +1,227 @@
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  grid-template-areas:
+    'name name'
+    'intro intro'
+    'now portrait'
+    'map map';
+  padding-top: clamp(var(--space-6), 6vw, var(--space-8));
+}
+
+.name {
+  grid-area: name;
+  font-size: var(--fs-name);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-name);
+  margin-left: -0.04em;
+}
+
+.name span {
+  display: block;
+}
+
+.intro {
+  grid-area: intro;
+  margin-top: var(--space-6);
+  max-width: 34rem;
+}
+
+.role {
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.statement {
+  margin-top: var(--space-3);
+  font-size: clamp(1.375rem, 2.3vw, 2rem);
+  font-weight: 500;
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+
+/* What Felix is looking for: the practical answer a recruiter needs first. */
+.seeking {
+  position: relative;
+  margin-top: var(--space-4);
+  padding-left: var(--space-5);
+  font-size: var(--fs-small);
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.seeking::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: var(--radius-node);
+  border: var(--connector) solid var(--signal);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+  margin-top: var(--space-5);
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 3rem;
+  padding: 0 var(--space-5);
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-node);
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+/* The button carries the connector: a node that moves along when hovered. */
+.primary::after {
+  content: '';
+  width: 1.75rem;
+  height: 0.5rem;
+  background:
+    linear-gradient(var(--paper), var(--paper)) left center / calc(100% - 0.4rem) var(--line-strong) no-repeat,
+    radial-gradient(circle at calc(100% - 0.25rem) 50%, var(--signal-on-ink) 0.25rem, transparent 0.27rem);
+  transition: width var(--dur-base) var(--ease-out);
+}
+
+.primary:hover {
+  background: var(--signal-deep);
+}
+
+.primary:hover::after {
+  width: 2.25rem;
+}
+
+.secondary {
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--line-strong);
+  text-decoration-color: var(--signal);
+  text-underline-offset: 0.3em;
+}
+
+.secondary:hover {
+  color: var(--signal);
+}
+
+.now {
+  grid-area: now;
+  align-self: end;
+  display: flex;
+  gap: var(--space-3);
+  margin: var(--space-6) var(--space-7) var(--space-5) 0;
+  font-size: var(--fs-meta);
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.nowMarker {
+  flex: none;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-top: 0.2rem;
+  border-radius: var(--radius-node);
+  background: var(--now);
+  box-shadow: 0 0 0 var(--line) var(--ink);
+}
+
+/* The portrait is a duotone print in the site's own ink and paper, standing on the process map. */
+.portrait {
+  grid-area: portrait;
+  position: relative;
+  align-self: end;
+  justify-self: end;
+  width: 100%;
+  max-width: 13.5rem;
+  margin: var(--space-6) 0 0;
+}
+
+.portrait img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--paper-sunk);
+}
+
+.credit {
+  position: absolute;
+  bottom: 0;
+  left: calc(-1 * var(--space-5));
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.map {
+  grid-area: map;
+}
+
+@media (min-width: 56rem) {
+  .hero {
+    --name-size: clamp(4rem, min(8.8vw, 15vh), 9.5rem);
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-areas: none;
+    column-gap: var(--space-5);
+    padding-top: clamp(var(--space-5), 4vh, var(--space-8));
+  }
+
+  /* Two lines across the full width, sized against the viewport height so the map stays in the first screen. */
+  .name {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    font-size: var(--name-size);
+  }
+
+  .name span:nth-child(-n + 2) {
+    display: inline;
+  }
+
+  .intro {
+    grid-column: 1 / span 6;
+    grid-row: 2;
+    margin-top: clamp(var(--space-5), 4vh, var(--space-7));
+    margin-bottom: clamp(var(--space-5), 4vh, var(--space-7));
+  }
+
+  .now {
+    grid-column: 7 / span 3;
+    grid-row: 2;
+    margin: 0 var(--space-5) clamp(var(--space-5), 4vh, var(--space-7)) 0;
+  }
+
+  /*
+    The portrait rises beside the second line of the name ("Knutsen" is short),
+    starting one name-line down so it never meets "Felix Fabricius", and stands
+    on the top edge of the process map.
+  */
+  .portrait {
+    grid-column: 10 / -1;
+    grid-row: 1 / 3;
+    max-width: 20rem;
+    margin: calc(var(--name-size) * 0.92) 0 0;
+  }
+
+  .map {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+}
