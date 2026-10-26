@@ -47,6 +47,8 @@ export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react(), localizedPages()],
   define: {
     __CV_AVAILABLE__: JSON.stringify(existsSync(resolve(import.meta.dirname, 'public', CV_PUBLIC_PATH.slice(1)))),
+    // Day precision: the client and server builds run seconds apart and must agree on the date.
+    __BUILD_DATE__: JSON.stringify(new Date().toISOString().slice(0, 10)),
   },
   // The server build (used only to prerender HTML) needs no copy of public/.
   build: { copyPublicDir: !isSsrBuild },

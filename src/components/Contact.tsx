@@ -16,6 +16,7 @@ import styles from './Contact.module.css';
 type Status = 'idle' | 'sending' | 'sent' | 'failed';
 
 const EMPTY: ContactValues = { name: '', email: '', subject: '', message: '' };
+const [emailUser, emailDomain] = contactDetails.email.split('@');
 
 function CopyEmailButton() {
   const { t } = useLocale();
@@ -180,7 +181,8 @@ export default function Contact() {
               href={`mailto:${contactDetails.email}`}
               onClick={() => trackEvent({ name: 'Email click' })}
             >
-              {contactDetails.email}
+              {emailUser}
+              <wbr />@{emailDomain}
             </a>
             <CopyEmailButton />
           </div>

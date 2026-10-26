@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type CSSProperties } from 'react';
 import { copy } from '../content/copy';
 import { degrees } from '../content/education';
 import { roles } from '../content/roles';
@@ -42,6 +42,17 @@ function useWidth<T extends HTMLElement>() {
   return { ref, width };
 }
 
+const subscribeToNothing = () => () => {};
+const buildDay = () => currentYearFraction(new Date(`${__BUILD_DATE__}T12:00:00`));
+
+/**
+ * Today as a fractional year. The prerendered chart is drawn as of the build day; React hydrates
+ * with that same value and then re-renders with the visitor's today, so the two never disagree.
+ */
+function useToday() {
+  return useSyncExternalStore(subscribeToNothing, () => currentYearFraction(), buildDay);
+}
+
 /** Re-measures once the web font has loaded, so label widths match what is drawn. */
 function useFontsReady() {
   const [ready, setReady] = useState(false);
@@ -77,7 +88,7 @@ interface TimelineChartProps {
  */
 export default function TimelineChart({ onSelect }: TimelineChartProps) {
   const { t } = useLocale();
-  const now = useMemo(() => currentYearFraction(), []);
+  const now = useToday();
   const range: TimelineRange = useMemo(() => ({ from: FIRST_YEAR, to: Math.floor(now) + 1.35 }), [now]);
   const years = Array.from({ length: Math.floor(range.to) - range.from + 1 }, (_, index) => range.from + index);
   const { ref: plotRef, width: plotWidth } = useWidth<HTMLDivElement>();

@@ -19,6 +19,8 @@ function storeLocale(locale: Locale) {
   } catch {
     // Storage can be unavailable (private mode, blocked cookies). The URL still carries the language.
   }
+  // The same choice as a cookie, so the redirect for `/` in vercel.json can respect it before any JavaScript runs.
+  document.cookie = `${STORAGE_KEY}=${locale}; path=/; max-age=31536000; SameSite=Lax; Secure`;
 }
 
 /** Resolves the initial locale and makes sure the URL always contains it. */

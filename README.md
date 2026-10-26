@@ -26,8 +26,9 @@ Content is edited in `src/content/*.ts`. Dates are written as `YYYY-MM` (or `YYY
 
 ## Languages
 
-- Norwegian lives at `/no/` and English at `/en/`. Visiting `/` picks the stored choice, then the browser language, then Norwegian.
-- Switching language keeps the reader on the same section and is remembered in `localStorage`.
+- Norwegian lives at `/no/` and English at `/en/`. Visiting `/` redirects on Vercel to the stored choice (a `locale` cookie), then English if the browser asks for it first, then Norwegian. Without the redirect (the dev server), the app makes the same choice in the browser.
+- Switching language keeps the reader on the same section and is remembered in `localStorage` and the `locale` cookie.
+- The prerendered `/no/` and `/en/` pages are hydrated, not rendered again, so anything that depends on the browser (the URL hash, today's date, scroll position) is applied in an effect after hydration.
 - At build time, `vite.config.ts` writes `dist/no/index.html` and `dist/en/index.html` with the right `lang`, title, description, canonical, `hreflang` and Open Graph tags.
 
 ## Scripts
@@ -43,4 +44,7 @@ npm run preview    # serve the production build
 
 ## Deployment
 
-The site is deployed on Vercel. `vercel.json` sets security headers, long-lived caching for hashed assets and fonts, and trailing slashes so `/no` resolves to `/no/`.
+GitHub Actions (`.github/workflows/ci.yml`) runs lint, tests and the full build on every push and pull request.
+
+
+The site is deployed on Vercel. `vercel.json` sets security headers, long-lived caching for hashed assets and fonts, a week's caching for images, the language redirect for `/`, and trailing slashes so `/no` resolves to `/no/`.

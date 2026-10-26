@@ -31,6 +31,8 @@
 
 .emailBlock {
   margin-top: var(--space-7);
+  /* The address is sized to the column, not the viewport, so it stays on one line in the two-column layout. */
+  container-type: inline-size;
 }
 
 .emailLabel {
@@ -42,10 +44,11 @@
 .email {
   display: inline-block;
   margin-top: var(--space-2);
-  font-size: clamp(1.5rem, 4.2vw, 2.75rem);
+  font-size: clamp(1.25rem, 7.2cqi, 2.75rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.1;
+  /* If it ever has to wrap, the <wbr> before the @ is the preferred break. */
   overflow-wrap: anywhere;
   text-decoration-line: underline;
   text-decoration-thickness: var(--connector);
