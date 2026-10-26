@@ -1,0 +1,742 @@
+/*
+  B, "Instrument". Dark olive like a field instrument's housing, chalk for
+  text and linework, and amber reserved for what is active: the project
+  thread, a pin, a hovered block. IBM Plex Sans for reading, Plex Mono for
+  anything that is data.
+*/
+
+@font-face {
+  font-family: 'Plex Sans';
+  src: url('../fonts/plex-sans.woff2') format('woff2-variations');
+  font-weight: 100 700;
+  font-stretch: 85% 100%;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plex Mono';
+  src: url('../fonts/plex-mono-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plex Mono';
+  src: url('../fonts/plex-mono-500.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+:root {
+  --field: #22261d;
+  --field-raised: #2a2f24;
+  --chalk: #e8e4d6;
+  --dim: #a9ab96;
+  --line: rgb(232 228 214 / 0.16);
+  --amber: #f0b445;
+  --margin: clamp(18px, 4vw, 56px);
+  --mono: 'Plex Mono', ui-monospace, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--field);
+  color: var(--chalk);
+  font-family: 'Plex Sans', system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+p,
+ol,
+ul,
+dl,
+dd,
+figure,
+table {
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: rgb(240 180 69 / 0.6);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--amber);
+}
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+/* ── Bar ──────────────────────────────────────────── */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 20px;
+  padding: 14px var(--margin);
+  border-bottom: 1px solid var(--line);
+  background: rgb(34 38 29 / 0.88);
+  backdrop-filter: blur(10px);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
+
+.bar a {
+  text-decoration: none;
+}
+
+.bar nav {
+  display: flex;
+  gap: 20px;
+}
+
+/* ── Stage: reading on the left, the model held still on the right ── */
+
+.stage {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  gap: clamp(24px, 4vw, 64px);
+  padding: 0 var(--margin);
+}
+
+.model-col {
+  position: relative;
+}
+
+.model-wrap {
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+}
+
+.model {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.model:active {
+  cursor: grabbing;
+}
+
+.model-hint {
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+  color: var(--dim);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+.model .plate {
+  fill: rgb(42 47 36 / 0.82);
+  stroke: rgb(232 228 214 / 0.55);
+  stroke-width: 1;
+}
+
+.model .grid {
+  stroke: rgb(232 228 214 / 0.1);
+  stroke-width: 1;
+}
+
+.model .layer-label {
+  fill: var(--chalk);
+  font: 500 13px 'Plex Sans', sans-serif;
+}
+
+.model .thread {
+  fill: none;
+  stroke: rgb(232 228 214 / 0.25);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.model .thread.is-on {
+  stroke: var(--amber);
+  stroke-width: 2;
+  stroke-dasharray: none;
+}
+
+.model .node circle {
+  fill: var(--chalk);
+}
+
+.model .node text {
+  fill: var(--dim);
+  font: 12px var(--mono);
+}
+
+.model .node.is-on circle {
+  fill: var(--amber);
+}
+
+.model .node.is-on text {
+  fill: var(--amber);
+}
+
+.model .node.is-off {
+  opacity: 0.35;
+}
+
+/* ── Hero ─────────────────────────────────────────── */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 56px);
+  padding: 48px 0;
+}
+
+.id {
+  margin-bottom: 36px;
+  color: var(--dim);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 4.6vw, 5.4rem);
+  font-weight: 250;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+.hero h1 span {
+  display: block;
+  color: var(--amber);
+}
+
+.standfirst {
+  max-width: 34rem;
+  margin-top: 32px;
+  color: var(--dim);
+  font-size: 1.125rem;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.legend button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border: 0;
+  background: none;
+  color: var(--chalk);
+  font: 0.875rem var(--mono);
+  cursor: pointer;
+}
+
+.legend i {
+  width: 22px;
+  height: 0;
+  border-top: 1px dashed rgb(232 228 214 / 0.5);
+}
+
+.legend button:hover,
+.legend button:focus-visible {
+  color: var(--amber);
+}
+
+.legend button:hover i,
+.legend button:focus-visible i {
+  border-top: 2px solid var(--amber);
+}
+
+/* ── Projects ─────────────────────────────────────── */
+
+.project {
+  padding: 96px 0;
+  border-top: 1px solid var(--line);
+}
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin-bottom: 20px;
+  color: var(--dim);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
+
+.project-meta span:first-child {
+  color: var(--amber);
+}
+
+.project h2 {
+  max-width: 18ch;
+  font-size: clamp(2rem, 3.4vw, 3.4rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.summary {
+  max-width: 36rem;
+  margin-top: 22px;
+  font-size: 1.2rem;
+  line-height: 1.45;
+}
+
+.readout {
+  display: grid;
+  margin-top: 28px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
+
+.readout div {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.readout dt {
+  color: var(--dim);
+}
+
+.panel {
+  margin-top: 36px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  background: var(--field-raised);
+}
+
+.panel figcaption {
+  margin-top: 12px;
+  color: var(--dim);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+.annotated {
+  position: relative;
+}
+
+.annotated img {
+  width: 100%;
+}
+
+/* A pin on the screenshot with its label hanging off it, like a callout on a drawing. */
+.pin {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 0 4px rgb(240 180 69 / 0.3);
+}
+
+.pin b {
+  position: absolute;
+  top: 18px;
+  right: -6px;
+  padding: 3px 7px;
+  background: var(--field);
+  border: 1px solid var(--amber);
+  color: var(--chalk);
+  font: 500 0.6875rem/1.3 var(--mono);
+  white-space: nowrap;
+}
+
+.pin[data-side='left'] b {
+  top: -6px;
+  right: 22px;
+}
+
+.twin {
+  position: relative;
+  aspect-ratio: 5 / 4;
+}
+
+.twin canvas {
+  position: absolute;
+  inset: 0;
+  cursor: crosshair;
+}
+
+.twin-readout {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--amber);
+  font: 0.75rem var(--mono);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  margin-top: 20px;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
+
+.log {
+  margin-top: 28px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
+
+.log summary {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.log summary::-webkit-details-marker {
+  display: none;
+}
+
+.log summary::before {
+  content: '+';
+  width: 1.2rem;
+  color: var(--amber);
+}
+
+.log[open] summary::before {
+  content: '−';
+}
+
+.log summary span {
+  margin-left: auto;
+  color: var(--dim);
+}
+
+.log ol {
+  display: grid;
+  gap: 10px;
+  padding-bottom: 12px;
+}
+
+.log li {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  gap: 12px;
+  color: var(--chalk);
+  font-family: 'Plex Sans', sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.log li span {
+  color: var(--amber);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
+
+/* Equipment list, set as a data table. */
+.eq-toggle {
+  display: inline-flex;
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+}
+
+.eq-option {
+  padding: 7px 12px;
+  border: 0;
+  background: none;
+  color: var(--dim);
+  font: 0.8125rem var(--mono);
+  cursor: pointer;
+}
+
+.eq-option[aria-pressed='true'] {
+  background: var(--amber);
+  color: var(--field);
+}
+
+.eq-explain {
+  min-height: 2.8em;
+  margin-bottom: 12px;
+  color: var(--dim);
+  font-size: 0.875rem;
+}
+
+.eq-row,
+.eq-person {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.7fr) minmax(0, 1fr);
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--field-raised);
+  font: 0.8125rem var(--mono);
+}
+
+.eq[data-view='person'] .eq-row {
+  padding-left: 1.4rem;
+}
+
+.eq[data-view='person'] .eq-holder {
+  visibility: hidden;
+}
+
+.eq-person {
+  margin-top: 10px;
+  color: var(--amber);
+  border-bottom-color: rgb(240 180 69 / 0.5);
+}
+
+.eq-team,
+.eq-sim,
+.eq-count {
+  color: var(--dim);
+}
+
+.eq-flag {
+  color: var(--amber);
+}
+
+/* ── After the model: profile, tables, contact ─────── */
+
+.profile,
+.tables,
+.contact {
+  padding: 96px var(--margin);
+  border-top: 1px solid var(--line);
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 6fr) minmax(0, 3fr);
+  gap: 24px 48px;
+}
+
+.profile h2,
+.tables h2,
+.contact h2 {
+  color: var(--dim);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+.lead {
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.readout--wide {
+  grid-column: 2 / -1;
+  margin-top: 0;
+}
+
+.principles {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.principles li {
+  color: var(--dim);
+  font-size: 0.9375rem;
+}
+
+.principles strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--chalk);
+  font-weight: 500;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.tables {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+}
+
+.award {
+  margin: 16px 0 20px;
+  padding-left: 14px;
+  border-left: 2px solid var(--amber);
+  font-size: 0.9375rem;
+}
+
+.award strong {
+  font-weight: 500;
+  color: var(--amber);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+td {
+  padding: 10px 12px 10px 0;
+  border-top: 1px solid var(--line);
+  vertical-align: top;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+}
+
+td:first-child {
+  width: 11rem;
+  color: var(--dim);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+td span {
+  display: block;
+  color: var(--dim);
+  font-size: 0.8125rem;
+}
+
+tr.now td:first-child {
+  color: var(--amber);
+}
+
+.email {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: clamp(1.6rem, 4.6vw, 4.6rem);
+  font-weight: 250;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.foot {
+  padding: 18px var(--margin) 90px;
+  border-top: 1px solid var(--line);
+  color: var(--dim);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ── Narrow screens: the model leads, then the projects follow ── */
+
+@media (max-width: 56rem) {
+  .stage {
+    grid-template-columns: 1fr;
+  }
+
+  .model-col {
+    grid-row: 1;
+  }
+
+  .model-wrap {
+    position: relative;
+    top: 0;
+    height: min(78vw, 420px);
+  }
+
+  .hero {
+    min-height: 0;
+    padding-top: 8px;
+  }
+
+  .project {
+    padding: 64px 0;
+  }
+
+  .profile,
+  .tables {
+    grid-template-columns: 1fr;
+  }
+
+  .readout--wide,
+  .principles {
+    grid-column: 1;
+  }
+
+  .principles {
+    grid-template-columns: 1fr;
+  }
+
+  .log li {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  td:first-child {
+    width: 7.5rem;
+    white-space: normal;
+  }
+
+  .pin b {
+    display: none;
+  }
+}
+
+/* On a phone the model is small: only the active thread keeps its labels. */
+@media (max-width: 40rem) {
+  .model .node text {
+    display: none;
+  }
+
+  .model .node.is-on text {
+    display: block;
+  }
+
+  .model .layer-label {
+    font-size: 11px;
+  }
+}

@@ -3,7 +3,7 @@ import type { Lens, Track } from './types';
 
 // Every piece of interface text lives here so both languages stay in step.
 
-export const SECTION_IDS = ['work', 'leadership', 'experience', 'education', 'contact'] as const;
+export const SECTION_IDS = ['work', 'approach', 'leadership', 'background', 'contact'] as const;
 export type SectionId = (typeof SECTION_IDS)[number];
 
 export const contactDetails = {
@@ -22,9 +22,9 @@ export const copy = {
     close: { no: 'Lukk', en: 'Close' },
     sections: {
       work: { no: 'Arbeid', en: 'Work' },
+      approach: { no: 'Arbeidsmåte', en: 'Approach' },
       leadership: { no: 'Ledelse', en: 'Leadership' },
-      experience: { no: 'Erfaring', en: 'Experience' },
-      education: { no: 'Utdanning', en: 'Education' },
+      background: { no: 'Bakgrunn', en: 'Background' },
       contact: { no: 'Kontakt', en: 'Contact' },
     } satisfies Record<SectionId, L>,
   },
@@ -39,30 +39,19 @@ export const copy = {
       no: 'Masterstudent i informasjonssystemer ved Universitetet i Agder, ferdig i juni 2027',
       en: 'Master’s student in Information Systems at the University of Agder, finishing in June 2027',
     },
-    statement: {
-      no: 'Jeg studerer informasjonssystemer og er opptatt av hvordan teknologi, digitalisering og brukerorientert design kan møte reelle behov i organisasjoner.',
-      en: 'I study information systems and care about how technology, digital transformation and user-centred design can meet real needs in organisations.',
-    },
-    now: {
-      no: 'Nå: læringsmiljøpolitisk ansvarlig i Studentorganisasjonen i Agder (50 %) ved siden av masteren, og styremedlem i NITO Studentene.',
-      en: 'Now: Officer of the learning environment at Studentorganisasjonen i Agder (50%) alongside my master’s, and board member of NITO Studentene.',
-    },
-    seeking: {
-      no: 'Ser etter en fulltidsstilling der organisasjon, informasjonssystemer og digital transformasjon møtes. Fleksibel oppstart. Agder, men åpen for å flytte.',
-      en: 'Looking for a full-time role where organisations, information systems and digital transformation meet. Flexible start date. Based in Agder, open to relocating.',
-    },
-    primaryCta: { no: 'Se utvalgt arbeid', en: 'See selected work' },
+    /** Set as four lines; each item is one line of the headline. */
+    headline: {
+      no: ['Fra hvordan', 'folk jobber', 'til systemer', 'som virker.'],
+      en: ['From how', 'people work', 'to systems', 'that work.'],
+    } satisfies L<string[]>,
+    primaryCta: { no: 'Se arbeidet', en: 'See the work' },
     secondaryCta: { no: 'Ta kontakt', en: 'Get in touch' },
-    portraitAlt: {
-      no: 'Portrett av Felix Fabricius Knutsen, smilende, i tweedjakke og hvit skjorte',
-      en: 'Portrait of Felix Fabricius Knutsen smiling, in a tweed jacket and white shirt',
+    boardHeading: { no: 'Arbeidet mitt, sortert', en: 'My work, sorted' },
+    boardIntro: {
+      no: 'Ting jeg har gjort, sortert etter om de handlet om mennesker, prosess eller teknologi. Hver lenke går til prosjektet.',
+      en: 'Things I have done, sorted by whether they were about people, process or technology. Each link goes to the project.',
     },
-    portraitCredit: { no: 'Foto: Bjarne Krogstad / NITO', en: 'Photo: Bjarne Krogstad / NITO' },
-    mapTitle: { no: 'Erfaringen min som prosesskart', en: 'My experience as a process map' },
-    mapCaption: {
-      no: 'Seks steg fra praksis, bacheloroppgave og verv, plassert etter om de handlet om mennesker, prosess eller teknologi. Velg et steg for å lese mer.',
-      en: 'Six steps from internships, my thesis and elected roles, placed by whether they were about people, process or technology. Choose a step to read more.',
-    },
+    scrollHint: { no: 'Bla for å sortere', en: 'Scroll to sort' },
   },
 
   lenses: {
@@ -71,52 +60,148 @@ export const copy = {
     technology: { no: 'Teknologi', en: 'Technology' },
   } satisfies Record<Lens, L>,
 
-  about: {
-    heading: { no: 'Mellom systemet og menneskene', en: 'Between the system and the people' },
+  intro: {
+    heading: { no: 'Om meg', en: 'About me' },
+    statement: {
+      no: 'Jeg jobber mellom menneskene som gjør jobben og koden som støtter dem, og jeg kan gjøre begge deler.',
+      en: 'I work between the people doing the job and the code that supports it, and I can do both halves.',
+    },
     body: {
       no: [
-        'Jeg har en bachelor i IT og informasjonssystemer og tar nå master i informasjonssystemer ved UiA. Interessen startet med koding og UI/UX-design på videregående.',
-        'Praksis hos Phonero og i Kristiansand kommune har gitt meg erfaring med brukerintervjuer, produksjonskode og kartlegging av arbeidsprosesser. Det har gjort meg mer interessert i det som skjer rundt teknologien: hvordan arbeidet faktisk gjøres, hva brukerne trenger, og hva som skal til for at en ny løsning blir tatt i bruk. Det er det jeg vil jobbe videre med.',
+        'Jeg har gjennomført brukerintervjuer og kravarbeid, kartlagt arbeidsprosesser i en kommune og skrevet React- og TypeScript-kode i produksjon.',
+        'Praksis hos Phonero og i Kristiansand kommune har gjort meg mer interessert i det som skjer rundt teknologien: hvordan arbeidet faktisk gjøres, hva brukerne trenger, og hva som skal til for at en ny løsning blir tatt i bruk. Det er det jeg vil jobbe videre med.',
       ],
       en: [
-        'I hold a bachelor’s degree in IT and Information Systems and am now studying for a master’s in Information Systems at UiA. The interest started with coding and UI/UX design at upper secondary school.',
-        'Internships at Phonero and Kristiansand kommune have given me experience with user interviews, production code and mapping work processes. They have made me more interested in what happens around the technology: how the work is really done, what users need, and what it takes for a new solution to be adopted. That is what I want to keep working on.',
+        'I have run user interviews and requirements work, mapped work processes in a municipality, and written React and TypeScript in production code.',
+        'Internships at Phonero and Kristiansand kommune have made me more interested in what happens around the technology: how the work is really done, what users need, and what it takes for a new solution to be adopted. That is what I want to keep working on.',
       ],
     } satisfies L<string[]>,
-    lenses: {
-      people: {
-        no: 'Brukerintervjuer i bacheloroppgaven, og tillitsverv der jeg representerer studenter.',
-        en: 'User interviews in my bachelor’s thesis, and elected roles representing students.',
+    facts: {
+      seekingLabel: { no: 'Ser etter', en: 'Looking for' },
+      seeking: {
+        no: 'En fulltidsstilling der organisasjon, informasjonssystemer og digital transformasjon møtes. Fleksibel oppstart.',
+        en: 'A full-time role where organisations, information systems and digital transformation meet. Flexible start date.',
       },
-      process: {
-        no: 'Kravkartlegging i bacheloroppgaven og kartlegging av arbeidsprosesser i praksisen i Kristiansand kommune.',
-        en: 'Requirements work in my bachelor’s thesis, and mapping work processes during my internship at Kristiansand kommune.',
+      nowLabel: { no: 'Nå', en: 'Now' },
+      now: {
+        no: 'Masterstudent, læringsmiljøpolitisk ansvarlig i Studentorganisasjonen i Agder (50 %) og styremedlem i NITO Studentene.',
+        en: 'Master’s student, Officer of the learning environment at Studentorganisasjonen i Agder (50%) and board member of NITO Studentene.',
       },
-      technology: {
-        no: 'React, TypeScript og GraphQL hos Phonero, i praksis og bacheloroppgave. React og TypeScript også i egne prosjekter, som STA-prototypen og denne nettsiden. C# og .NET fra studier og prosjektarbeid, SQL og PostgreSQL fra databaseemnene.',
-        en: 'React, TypeScript and GraphQL at Phonero, in my internship and thesis. React and TypeScript also in my own projects, such as the STA prototype and this website. C# and .NET from my studies and project work, SQL and PostgreSQL from the database courses.',
+      placeLabel: { no: 'Bor', en: 'Based in' },
+      place: { no: 'Kristiansand, åpen for å flytte', en: 'Kristiansand, Norway, open to relocating' },
+      interestsLabel: { no: 'Interesser', en: 'Interests' },
+      interests: {
+        no: 'Digital transformasjon, prosessforbedring, brukerorientert design, innovasjon og kunstig intelligens.',
+        en: 'Digital transformation, process improvement, user-centred design, innovation and artificial intelligence.',
       },
-    } satisfies Record<Lens, L>,
-    interestsLabel: { no: 'Faglige interesser', en: 'Professional interests' },
-    interests: {
-      no: 'Digital transformasjon, informasjonssystemer, brukerorientert design, prosessforbedring, innovasjon og kunstig intelligens.',
-      en: 'Digital transformation, information systems, user-centred design, process improvement, innovation and artificial intelligence.',
     },
+    portraitAlt: {
+      no: 'Portrett av Felix Fabricius Knutsen, smilende, i tweedjakke og hvit skjorte',
+      en: 'Portrait of Felix Fabricius Knutsen smiling, in a tweed jacket and white shirt',
+    },
+    portraitCredit: { no: 'Foto: Bjarne Krogstad / NITO', en: 'Photo: Bjarne Krogstad / NITO' },
   },
 
   work: {
     heading: { no: 'Utvalgt arbeid', en: 'Selected work' },
     intro: {
-      no: 'Tre prosjekter: hva oppgaven var, hvordan vi jobbet, og hva jeg selv gjorde.',
-      en: 'Three projects: what the task was, how we worked, and what I did myself.',
+      no: 'Tre prosjekter: hva problemet var, hvordan vi jobbet, og hva jeg selv gjorde.',
+      en: 'Three projects: what the problem was, how we worked, and what I did myself.',
     },
+    indexLabel: { no: 'Prosjektene', en: 'The projects' },
+    problemLabel: { no: 'Problemet', en: 'The problem' },
     stepsLabel: { no: 'Hva jeg gjorde, steg for steg', en: 'What I did, step by step' },
     groupStepsLabel: { no: 'Hva vi gjorde, steg for steg', en: 'What we did, step by step' },
     roleLabel: { no: 'Min rolle', en: 'My role' },
-    decisionLabel: { no: 'Et valg vi tok', en: 'A decision we made' },
-    outcomeLabel: { no: 'Resultat', en: 'Outcome' },
+    outcomeLabel: { no: 'Status', en: 'Status' },
     learningLabel: { no: 'Hva jeg tok med meg', en: 'What I took away' },
     stackLabel: { no: 'Teknologi', en: 'Technology' },
+    linksLabel: { no: 'Se selv', en: 'See for yourself' },
+  },
+
+  equipment: {
+    title: { no: 'Utstyrslisten, sortert to måter', en: 'The equipment list, sorted two ways' },
+    byDevice: { no: 'Etter enhet', en: 'By device' },
+    byPerson: { no: 'Etter person', en: 'By person' },
+    viewLabel: { no: 'Vis listen', en: 'Show the list' },
+    device: { no: 'Enhet', en: 'Device' },
+    sim: { no: 'SIM', en: 'SIM' },
+    holder: { no: 'Bruker', en: 'Holder' },
+    unregistered: { no: 'Ikke registrert', en: 'Not registered' },
+    viaSim: { no: 'Lagt til via SIM', en: 'Added via SIM' },
+    devices: { no: 'enheter', en: 'devices' },
+    device1: { no: 'enhet', en: 'device' },
+    before: {
+      no: 'Før: en lang liste over enheter. Den som har utstyret må registreres for hånd, og feil blir liggende.',
+      en: 'Before: a long list of devices. Whoever holds each one has to be registered by hand, and mistakes stay put.',
+    },
+    after: {
+      no: 'Etter: utstyret samlet under personen som har det. En ny enhet havner riktig via SIM-kortet.',
+      en: 'After: equipment grouped under the person who holds it. A new device lands in the right place through its SIM card.',
+    },
+    caption: {
+      no: 'Illustrasjon med oppdiktede navn og enheter. Ikke Phoneros grensesnitt.',
+      en: 'Illustration with made-up names and devices. Not Phonero’s interface.',
+    },
+  },
+
+  website: {
+    tabsLabel: { no: 'Visning', en: 'View' },
+    siteTab: { no: 'Nettsiden', en: 'The website' },
+    guideTab: { no: 'For redaktører', en: 'For editors' },
+    guideTitle: { no: 'Brukerveiledning for stastudent.no', en: 'User guide for stastudent.no' },
+    guideIntro: {
+      no: 'Skrevet for deg som skal holde nettsiden oppdatert, også om du aldri har brukt WordPress før og ikke kan koding.',
+      en: 'Written for whoever keeps the website up to date, even if they have never used WordPress and cannot code.',
+    },
+    wantTo: { no: 'Jeg vil …', en: 'I want to…' },
+    goTo: { no: 'Gå hit', en: 'Go here' },
+    guideRows: [
+      { want: { no: 'Skrive en nyhet', en: 'Write a news story' }, go: { no: 'Nytt innlegg', en: 'New post' } },
+      {
+        want: { no: 'Endre tekst eller bilder på en side', en: 'Change text or images on a page' },
+        go: { no: 'Rediger med Elementor', en: 'Edit with Elementor' },
+      },
+      {
+        want: { no: 'Oversette til nynorsk', en: 'Translate into Nynorsk' },
+        go: { no: 'Nynorsk-tekst', en: 'Nynorsk text' },
+      },
+      {
+        want: { no: 'Gi en ny person tilgang', en: 'Give a new person access' },
+        go: { no: 'Legg til bruker', en: 'Add user' },
+      },
+      { want: { no: 'Ta sikkerhetskopi', en: 'Make a backup' }, go: { no: 'Backup & Migration', en: 'Backup & Migration' } },
+    ],
+    guideCaption: {
+      no: 'Utdrag fra brukerveiledningen i stastudentphp-repoet.',
+      en: 'An excerpt from the user guide in the stastudentphp repository, translated from Norwegian.',
+    },
+    url: { no: 'stastudent.vercel.app/dokumenter', en: 'stastudent.vercel.app/dokumenter' },
+  },
+
+  twin: {
+    caption: {
+      no: 'Illustrasjon: kvartaler i et rutenett, som Kvadraturen i Kristiansand. En digital tvilling er en digital modell av slike omgivelser, som kan kobles til data om dem. Pek på et kvartal.',
+      en: 'Illustration: city blocks on a grid, like Kvadraturen in Kristiansand. A digital twin is a digital model of surroundings like these, which can be linked to data about them. Point at a block.',
+    },
+    block: { no: 'Kvartal', en: 'Block' },
+    storeys: { no: 'etasjer', en: 'storeys' },
+  },
+
+  approach: {
+    heading: { no: 'Slik jobber jeg', en: 'How I work' },
+    intro: {
+      no: 'Fem ting jeg gjør, og hvor du kan se dem.',
+      en: 'Five things I do, and where you can see them.',
+    },
+    seeIn: { no: 'Se', en: 'See' },
+    skillsHeading: { no: 'Metoder og verktøy, og hvor jeg har brukt dem', en: 'Methods and tools, and where I used them' },
+    skillColumn: { no: 'Metode eller verktøy', en: 'Method or tool' },
+    whereColumn: { no: 'Brukt i', en: 'Used in' },
+    coursework: {
+      no: 'Fra studiene også: C#, .NET, SQL og PostgreSQL.',
+      en: 'Also from my studies: C#, .NET, SQL and PostgreSQL.',
+    },
   },
 
   leadership: {
@@ -144,56 +229,44 @@ export const copy = {
         'The digital campus',
       ],
     } satisfies L<string[]>,
-    nitoStory: {
-      no: 'Som styreleder i NITO Studentene Kristiansand satte vi tidlig mål om at medlemskapet skulle være nyttig, lærerikt og gøy. I februar 2026 ble styret kåret til Årets Lokallag, som det beste av 25 lokallagsstyrer, blant annet for helhetlig drift, kreative arrangementer og god gjennomføring.',
-      en: 'As chair of NITO Studentene Kristiansand, our board set out early to make membership useful, educational and fun. In February 2026 it was named Local Chapter of the Year, the best of 25 local boards, recognised among other things for how it was run, for creative events and for following through.',
+    awardLabel: { no: 'Årets Lokallag 2026', en: 'Local Chapter of the Year 2026' },
+    awardFigure: {
+      no: '25 lokallagsstyrer i NITO Studentene. Ett ble kåret.',
+      en: '25 local boards in NITO Studentene. One was chosen.',
     },
-    awardLabel: { no: 'Årets Lokallag', en: 'Local Chapter of the Year' },
+    awardFigureLabel: {
+      no: '25 prikker for de 25 lokallagsstyrene. Én er markert: Kristiansand, Årets Lokallag 2026.',
+      en: '25 dots for the 25 local boards. One is marked: Kristiansand, Local Chapter of the Year 2026.',
+    },
+    nitoHeading: { no: 'Styreleder, NITO Studentene Kristiansand', en: 'Chair, NITO Studentene Kristiansand' },
+    nitoStory: {
+      no: 'Som styreleder satte vi tidlig mål om at medlemskapet skulle være nyttig, lærerikt og gøy. I februar 2026 ble styret kåret til Årets Lokallag, som det beste av 25 lokallagsstyrer, blant annet for helhetlig drift, kreative arrangementer og god gjennomføring.',
+      en: 'As chair, our board set out early to make membership useful, educational and fun. In February 2026 it was named Local Chapter of the Year, the best of 25 local boards, recognised among other things for how it was run, for creative events and for following through.',
+    },
     awardDiploma: { no: 'Se diplomet (PDF)', en: 'View the diploma (PDF)' },
-    parliamentLabel: { no: 'Tidligere', en: 'Earlier' },
+    nationalHeading: { no: 'Styremedlem, sentralstyret i NITO Studentene', en: 'Board member, NITO Studentene national board' },
+    earlier: { no: 'Tidligere', en: 'Earlier' },
   },
 
-  experience: {
-    heading: { no: 'Erfaring', en: 'Experience' },
+  background: {
+    heading: { no: 'Bakgrunn', en: 'Background' },
     intro: {
-      no: 'Arbeid, verv og utdanning har gått parallelt. Tidslinjen gir oversikten. Arbeid og prosjekter står under, vervene under Ledelse og utdanningen i neste del.',
-      en: 'Work, elected roles and education have run in parallel. The timeline gives the overview. Work and projects follow below, elected roles are under Leadership, and education comes next.',
+      no: 'Arbeid, verv og utdanning har gått parallelt. Hver linje viser når, og det meste kan åpnes for detaljer.',
+      en: 'Work, elected roles and education have run side by side. Each line shows when, and most can be opened for details.',
     },
-    chartLabel: {
-      no: 'Tidslinje over arbeid, verv og utdanning fra 2018 til i dag',
-      en: 'Timeline of work, elected roles and education from 2018 to today',
-    },
-    chartListNote: {
-      no: 'Den samme informasjonen står i listen under, under Ledelse og under Utdanning',
-      en: 'The same information is in the list below, under Leadership and under Education',
-    },
-    chartHint: { no: 'Velg en linje for å gå til detaljene.', en: 'Choose a bar to jump to its details.' },
-    scrollHint: { no: 'Sveip sideveis for tidligere år.', en: 'Swipe sideways for earlier years.' },
-    legend: {
-      employment: { no: 'Arbeid', en: 'Work' },
-      project: { no: 'Prosjekt', en: 'Project' },
-      role: { no: 'Verv', en: 'Elected role' },
-      education: { no: 'Utdanning', en: 'Education' },
-      highlight: { no: 'Utvekslingsår', en: 'Exchange year' },
-    },
+    axisLabel: { no: 'Tidsakse fra 2018 til 2027', en: 'Time axis from 2018 to 2027' },
     today: { no: 'I dag', en: 'Today' },
     showDetails: { no: 'Vis detaljer', en: 'Show details' },
     hideDetails: { no: 'Skjul detaljer', en: 'Hide details' },
-    readCase: { no: 'Se prosjektet', en: 'See the project' },
+    readCase: { no: 'Les om prosjektet', en: 'Read about the project' },
+    readStory: { no: 'Les mer under Ledelse', en: 'Read more under Leadership' },
     ongoing: { no: 'Pågår', en: 'Ongoing' },
+    exchange: { no: 'Utvekslingsår i Australia', en: 'Exchange year in Australia' },
     tracks: {
       work: { no: 'Arbeid og prosjekter', en: 'Work and projects' },
       leadership: { no: 'Verv', en: 'Elected roles' },
       education: { no: 'Utdanning', en: 'Education' },
     } satisfies Record<Track, L>,
-  },
-
-  education: {
-    heading: { no: 'Utdanning', en: 'Education' },
-    intro: {
-      no: 'Fra medier og koding på videregående til master i informasjonssystemer.',
-      en: 'From media and coding at upper secondary school to a master’s in information systems.',
-    },
     journeyLabel: { no: 'Veien gjennom videregående', en: 'Through upper secondary school' },
     showCourses: { no: 'Vis emner', en: 'Show courses' },
     hideCourses: { no: 'Skjul emner', en: 'Hide courses' },
@@ -203,8 +276,7 @@ export const copy = {
       autumn: { no: 'Høst', en: 'Autumn' },
     },
     certificatesHeading: { no: 'Kurs', en: 'Courses' },
-    openCertificate: { no: 'Åpne kursbevis (PDF)', en: 'Open certificate (PDF)' },
-    opensInNewTab: { no: 'åpnes i ny fane', en: 'opens in a new tab' },
+    openCertificate: { no: 'Kursbevis (PDF)', en: 'Certificate (PDF)' },
   },
 
   contact: {
@@ -214,8 +286,9 @@ export const copy = {
       en: 'I am looking for a full-time role where organisations, information systems and digital transformation meet. My master’s finishes in June 2027, my start date is flexible, and I live in Agder but am open to relocating.',
     },
     emailLabel: { no: 'E-post', en: 'Email' },
-    copyEmail: { no: 'Kopier e-postadressen', en: 'Copy email address' },
+    copyEmail: { no: 'Kopier adressen', en: 'Copy address' },
     copied: { no: 'Kopiert', en: 'Copied' },
+    elsewhere: { no: 'Andre steder', en: 'Elsewhere' },
     formHeading: { no: 'Eller send en melding her', en: 'Or send a message here' },
     form: {
       name: { no: 'Navn', en: 'Name' },
@@ -252,6 +325,7 @@ export const copy = {
 
   cv: {
     heading: { no: 'CV', en: 'CV' },
+    short: { no: 'CV', en: 'CV' },
     view: { no: 'Se CV', en: 'View CV' },
     download: { no: 'Last ned CV', en: 'Download CV' },
     format: { no: 'PDF, 2 sider', en: 'PDF in Norwegian, 2 pages' },
@@ -260,8 +334,12 @@ export const copy = {
   },
 
   footer: {
-    builtWith: { no: 'Bygget med React og TypeScript.', en: 'Built with React and TypeScript.' },
+    builtWith: {
+      no: 'Bygget med React og TypeScript, satt i Archivo.',
+      en: 'Built with React and TypeScript, set in Archivo.',
+    },
     source: { no: 'Kildekoden ligger på GitHub', en: 'Source code on GitHub' },
+    top: { no: 'Til toppen', en: 'Back to top' },
   },
 
   external: { no: 'åpnes i ny fane', en: 'opens in a new tab' },

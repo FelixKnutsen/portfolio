@@ -1,0 +1,40 @@
+.figure {
+  display: grid;
+  gap: var(--space-3);
+}
+
+/* The plate behind it is already the night sky; the canvas only adds a soft glow under the town. */
+.stage {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  background: radial-gradient(60% 50% at 50% 55%, rgb(42 54 230 / 0.28), transparent 70%);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+  cursor: crosshair;
+}
+
+.tip {
+  position: absolute;
+  z-index: 1;
+  padding: 0.3em 0.65em;
+  background: var(--note);
+  color: var(--ink);
+  font-size: var(--fs-meta);
+  font-weight: 650;
+  font-stretch: 90%;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - 10px));
+}
+
+.caption {
+  color: var(--graphite);
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+}

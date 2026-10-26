@@ -1,135 +1,172 @@
-/* The one inverted section: the page ends on ink, like the final node on the map. */
+/* The page ends where it started: on the ultramarine field. */
 .contact {
-  --signal: var(--signal-on-ink);
-  --focus-ring: 0 0 0 3px var(--ink), 0 0 0 5px var(--signal-on-ink);
-  margin-top: var(--section-gap);
-  padding-block: clamp(var(--space-8), 9vw, var(--space-10));
-  background: var(--ink);
-  color: var(--paper);
+  padding-block: var(--section-pad) var(--space-8);
+  background: var(--blue);
+  color: var(--on-blue);
 }
 
 .inner {
   display: grid;
-  gap: var(--space-8);
+  gap: clamp(var(--space-7), 6vw, var(--space-9));
+}
+
+.head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-5) var(--space-6);
+  align-items: end;
 }
 
 .heading {
-  font-size: var(--fs-display);
+  grid-column: 1 / span 7;
+  font-size: var(--fs-section);
   font-weight: 800;
-  line-height: var(--lh-heading);
-  letter-spacing: var(--track-display);
+  font-stretch: var(--condensed);
+  line-height: 0.84;
+  letter-spacing: -0.012em;
 }
 
 .body {
-  max-width: var(--measure);
-  margin-top: var(--space-5);
-  font-family: var(--font-serif);
+  grid-column: 8 / -1;
+  max-width: 30rem;
+  color: var(--on-blue-soft);
   font-size: var(--fs-lede);
   line-height: 1.45;
-  color: color-mix(in srgb, var(--paper) 82%, var(--ink));
 }
 
 .emailBlock {
-  margin-top: var(--space-7);
-  /* The address is sized to the column, not the viewport, so it stays on one line in the two-column layout. */
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+  padding-block: var(--space-6);
+  border-block: var(--line-strong) solid var(--on-blue);
+  /* The address is sized to the frame, so it always fits on one line. */
   container-type: inline-size;
 }
 
 .emailLabel {
-  font-size: var(--fs-meta);
+  color: var(--on-blue-soft);
+  font-size: var(--fs-small);
   font-weight: 600;
-  color: color-mix(in srgb, var(--paper) 75%, var(--ink));
 }
 
 .email {
-  display: inline-block;
-  margin-top: var(--space-2);
-  font-size: clamp(1.25rem, 7.2cqi, 2.75rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  /* If it ever has to wrap, the <wbr> before the @ is the preferred break. */
-  overflow-wrap: anywhere;
-  text-decoration-line: underline;
-  text-decoration-thickness: var(--connector);
-  text-decoration-color: var(--signal);
-  text-underline-offset: 0.18em;
+  /* The address is 12.9em wide in this setting; it never wraps, so it is sized to fit. */
+  font-size: clamp(1.125rem, calc(100cqi / 13.2), 8rem);
+  font-weight: 800;
+  font-stretch: 108%;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  background: linear-gradient(var(--note), var(--note)) 0 100% / 0 0.12em no-repeat;
+  transition: background-size var(--dur-slow) var(--ease-out);
 }
 
-.email:hover {
-  color: var(--signal);
+.email:hover,
+.email:focus-visible {
+  background-size: 100% 0.12em;
 }
 
 .copy {
-  display: block;
-  min-height: 2.75rem;
-  margin-top: var(--space-2);
-  padding: 0;
-  border: 0;
-  background: none;
+  min-height: 2.5rem;
+  padding: 0 var(--space-4);
+  border: 1.5px solid var(--on-blue);
+  border-radius: var(--radius-chip);
+  background: transparent;
   font-size: var(--fs-small);
-  font-weight: 600;
-  color: color-mix(in srgb, var(--paper) 80%, var(--ink));
-  text-decoration: underline;
-  text-underline-offset: 0.25em;
-}
-
-.copy:hover,
-.copy[data-copied='true'] {
-  color: var(--signal);
-}
-
-.cvBlock {
-  margin-top: var(--space-6);
-}
-
-.profiles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  margin-top: var(--space-5);
-  list-style: none;
-}
-
-.profile {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.75rem;
-  padding: 0 var(--space-5);
-  border: var(--line) solid color-mix(in srgb, var(--paper) 55%, var(--ink));
-  border-radius: var(--radius-node);
-  font-weight: 600;
-  text-decoration: none;
+  font-weight: 650;
   transition:
-    border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out),
     color var(--dur-fast) var(--ease-out);
 }
 
-.profile:hover {
-  border-color: var(--signal);
-  color: var(--signal);
+.copy:hover {
+  background: var(--on-blue);
+  color: var(--blue);
 }
 
-/* ── Form ──────────────────────────────────────────────────────── */
+.copy[data-copied='true'] {
+  border-color: var(--note);
+  background: var(--note);
+  color: var(--ink);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-8) var(--space-6);
+  align-items: start;
+}
+
+.side {
+  grid-column: 1 / span 4;
+  display: grid;
+  gap: var(--space-7);
+}
+
+.sideLabel {
+  margin-bottom: var(--space-3);
+  font-size: var(--fs-small);
+  font-weight: 700;
+}
+
+.profiles {
+  display: grid;
+  border-top: var(--line) solid color-mix(in srgb, var(--on-blue) 40%, transparent);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 3.5rem;
+  border-bottom: var(--line) solid color-mix(in srgb, var(--on-blue) 40%, transparent);
+  font-size: var(--fs-h4);
+  font-weight: 700;
+  font-stretch: 110%;
+  text-decoration: none;
+  transition: padding var(--dur-base) var(--ease-out);
+}
+
+.profile:hover {
+  padding-left: var(--space-3);
+  color: var(--note);
+}
+
+/* ── Form ────────────────────────────────────────────── */
 
 .form {
+  grid-column: 6 / -1;
   display: grid;
   gap: var(--space-5);
-  align-content: start;
+  padding: clamp(var(--space-5), 3vw, var(--space-7));
+  border-radius: var(--radius-panel);
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+
+.form :focus-visible {
+  box-shadow: var(--focus-ring);
 }
 
 .formHeading {
   font-size: var(--fs-h4);
-  font-weight: 700;
+  font-weight: 720;
+  font-stretch: 106%;
 }
 
 .honeypot {
   position: absolute;
-  left: -9999px;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .row {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-5);
 }
 
@@ -140,50 +177,50 @@
 
 .label {
   font-size: var(--fs-small);
-  font-weight: 600;
+  font-weight: 650;
 }
 
 .optional {
-  font-weight: 400;
-  color: color-mix(in srgb, var(--paper) 72%, var(--ink));
+  color: var(--graphite);
+  font-weight: 450;
 }
 
 .input {
   width: 100%;
   min-height: 3rem;
   padding: var(--space-3) var(--space-4);
-  border: var(--line) solid color-mix(in srgb, var(--paper) 55%, var(--ink));
+  border: 1.5px solid var(--rule-strong);
   border-radius: var(--radius-field);
-  background: color-mix(in srgb, var(--paper) 6%, var(--ink));
-  color: var(--paper);
+  background: var(--paper);
   font-size: var(--fs-ui);
-  transition: border-color var(--dur-fast) var(--ease-out);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+
+.input:hover {
+  border-color: var(--ink);
+}
+
+.input:focus-visible {
+  border-color: var(--blue);
+  background: var(--paper-raised);
 }
 
 textarea.input {
   resize: vertical;
-  min-height: 8rem;
+  min-height: 9rem;
   line-height: 1.5;
 }
 
-.input:hover {
-  border-color: var(--paper);
-}
-
-.input:focus-visible {
-  border-color: var(--signal);
-  border-radius: var(--radius-field);
-}
-
 .field[data-invalid='true'] .input {
-  border-color: var(--danger-on-ink);
-  border-width: var(--line-strong);
+  border-color: var(--danger);
 }
 
 .error {
+  color: var(--danger);
   font-size: var(--fs-small);
   font-weight: 600;
-  color: var(--danger-on-ink);
 }
 
 .submitRow {
@@ -197,63 +234,65 @@ textarea.input {
   min-height: 3rem;
   padding: 0 var(--space-6);
   border: 0;
-  border-radius: var(--radius-node);
-  background: var(--paper);
-  color: var(--ink);
+  border-radius: var(--radius-chip);
+  background: var(--blue);
+  color: var(--on-blue);
   font-weight: 700;
   transition: background-color var(--dur-fast) var(--ease-out);
 }
 
 .submit:hover {
-  background: var(--signal);
+  background: var(--blue-deep);
 }
 
 .submit:disabled {
+  opacity: 0.6;
   cursor: progress;
-  opacity: 0.7;
 }
 
 .status {
-  flex: 1 1 14rem;
+  flex: 1;
+  min-width: 12rem;
   font-size: var(--fs-small);
   font-weight: 600;
 }
 
 .status:focus {
-  outline: none;
+  box-shadow: none;
 }
 
 .status[data-status='sent'] {
-  color: var(--success-on-ink);
+  color: var(--blue);
 }
 
 .status[data-status='failed'] {
-  color: var(--danger-on-ink);
+  color: var(--danger);
 }
 
 .privacy {
+  color: var(--graphite);
   font-size: var(--fs-meta);
-  color: color-mix(in srgb, var(--paper) 72%, var(--ink));
 }
 
-@media (min-width: 40rem) {
-  .row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 56rem) {
-  .inner {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--space-5);
-  }
-
-  .intro {
-    grid-column: 1 / span 6;
-  }
-
+@media (max-width: 56rem) {
+  .heading,
+  .body,
+  .side,
   .form {
-    grid-column: 8 / -1;
-    padding-top: var(--space-3);
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 40rem) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Twelve columns with wide gaps would be wider than a small phone; narrow the gaps there. */
+@media (max-width: 40rem) {
+  .head,
+  .columns {
+    column-gap: var(--space-2);
   }
 }

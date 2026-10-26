@@ -1,8 +1,6 @@
 .cv {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-2) var(--space-4);
+  display: grid;
+  gap: var(--space-3);
   font-size: var(--fs-small);
 }
 
@@ -11,15 +9,15 @@
 }
 
 .format {
-  font-weight: 400;
-  color: color-mix(in srgb, var(--paper) 72%, var(--ink));
+  margin-left: var(--space-2);
+  color: var(--on-blue-soft);
+  font-weight: 450;
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
-  list-style: none;
 }
 
 .action {
@@ -27,22 +25,22 @@
   align-items: center;
   gap: var(--space-1);
   min-height: 2.75rem;
-  padding: 0 var(--space-4);
-  border: var(--line) solid color-mix(in srgb, var(--paper) 55%, var(--ink));
-  border-radius: var(--radius-node);
-  font-weight: 600;
+  padding: 0 var(--space-5);
+  border: 1.5px solid var(--on-blue);
+  border-radius: var(--radius-chip);
+  font-weight: 650;
   text-decoration: none;
   transition:
-    border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out),
     color var(--dur-fast) var(--ease-out);
 }
 
 .action:hover {
-  border-color: var(--signal);
-  color: var(--signal);
+  background: var(--on-blue);
+  color: var(--blue);
 }
 
-/* A down arrow onto a line: "save to this device". */
+/* A down arrow: "save to this device". */
 .downloadMark::after {
   content: '\2193';
   display: inline-block;

@@ -1,218 +1,242 @@
-/* The one tinted band on the page: elected roles sit apart from work and education. */
 .section {
-  margin-top: var(--section-gap);
-  padding-block: clamp(var(--space-8), 8vw, var(--space-9));
-  background: var(--paper-sunk);
+  padding-block: var(--section-pad);
 }
 
 .grid {
   display: grid;
-  gap: var(--space-8);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(var(--space-7), 6vw, var(--space-9)) var(--space-6);
+  align-items: start;
 }
 
-.current {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
+/* ── The award: 25 boards, one chosen ───────────────── */
+
+.award {
+  grid-column: 1 / span 5;
+  display: grid;
+  gap: var(--space-5);
+}
+
+.dots {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(0.5rem, 1.2vw, 0.875rem);
+  max-width: 16rem;
+}
+
+.dot {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: var(--line-strong) solid var(--rule-strong);
+}
+
+.dot[data-chosen] {
+  border: 0;
+  background: var(--blue);
+  box-shadow:
+    0 0 0 4px var(--paper),
+    0 0 0 7px var(--note);
+}
+
+/* When the figure is seen, the boards appear one by one and the chosen one lands last. */
+@media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
+  .award[data-inview='false'] .dot {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  .award[data-inview='true'] .dot {
+    animation: dot-in 420ms var(--ease-out) both;
+    animation-delay: calc(var(--i) * 28ms);
+  }
+
+  .award[data-inview='true'] .dot[data-chosen] {
+    animation: chosen-in 700ms var(--ease-out) both;
+    animation-delay: 900ms;
+  }
+}
+
+@keyframes dot-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes chosen-in {
+  from {
+    transform: scale(0.2);
+    box-shadow:
+      0 0 0 4px var(--paper),
+      0 0 0 4px var(--note);
+  }
+  60% {
+    transform: scale(1.18);
+  }
+}
+
+.awardCaption {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 24rem;
   font-size: var(--fs-small);
-  font-weight: 600;
-  color: var(--ink-soft);
+  line-height: 1.5;
 }
 
-.currentPeriod {
-  font-weight: 400;
-  font-variant-numeric: tabular-nums;
+.awardLabel {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  font-stretch: var(--condensed);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
 }
 
-.nowMarker {
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: var(--radius-node);
-  background: var(--now);
-  box-shadow: 0 0 0 var(--line) var(--ink);
+/* ── Roles ───────────────────────────────────────────── */
+
+.nito {
+  grid-column: 7 / -1;
+  display: grid;
+  gap: var(--space-5);
+}
+
+.sta {
+  grid-column: 1 / span 7;
+  display: grid;
+  gap: var(--space-4);
+  padding-top: var(--space-5);
+  border-top: 3px solid var(--ink);
+}
+
+.earlier {
+  grid-column: 9 / -1;
+  display: grid;
+  gap: var(--space-2);
+  padding-top: var(--space-5);
+  border-top: var(--line) solid var(--rule-strong);
 }
 
 .roleTitle {
-  margin-top: var(--space-4);
   font-size: var(--fs-h3);
-  font-weight: 750;
-  line-height: 1.05;
-  letter-spacing: var(--track-heading);
-}
-
-.org {
-  margin-top: var(--space-2);
-  font-weight: 600;
+  font-weight: 760;
+  font-stretch: 108%;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .text {
   max-width: var(--measure);
-  margin-top: var(--space-5);
-  font-family: var(--font-serif);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  text-wrap: pretty;
 }
 
-.subhead {
-  margin-top: var(--space-6);
-  margin-bottom: var(--space-3);
-  font-size: var(--fs-meta);
-  font-weight: 600;
-  color: var(--ink-soft);
+.org {
+  color: var(--graphite);
+  font-weight: 560;
 }
 
-.focus {
-  list-style: none;
-  border-top: var(--line) solid var(--ink);
-}
-
-.focus li {
-  padding: var(--space-2) 0;
-  border-bottom: var(--line) solid var(--rule-strong);
-  font-size: var(--fs-body);
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.nitoTitle {
-  font-size: var(--fs-h3);
-  font-weight: 750;
-  line-height: 1.05;
-  letter-spacing: var(--track-heading);
-}
-
-/* Board member → chair → national board, on one connector. */
-.path {
-  position: relative;
-  display: grid;
-  gap: var(--space-5);
-  margin-top: var(--space-6);
-  list-style: none;
-}
-
-.path::before {
-  content: '';
-  position: absolute;
-  left: calc(0.5rem - var(--connector) / 2);
-  top: 0.6rem;
-  bottom: 0.6rem;
-  width: var(--connector);
-  background: var(--signal);
-}
-
-.path li {
-  position: relative;
-  display: grid;
-  gap: var(--space-1);
-  padding-left: var(--space-6);
-}
-
-.pathNode {
-  position: absolute;
-  left: 0;
-  top: 0.3rem;
-  width: 1rem;
-  height: 1rem;
-  border-radius: var(--radius-node);
-  border: var(--connector) solid var(--signal);
-  background: var(--paper);
-}
-
-.path li[data-current='true'] .pathNode {
-  background: var(--signal);
-}
-
-.pathRole {
-  font-weight: 700;
-}
-
-.pathMeta {
-  font-size: var(--fs-small);
-  color: var(--ink-soft);
-}
-
-.awardRow {
+.current {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2) var(--space-4);
-  margin-top: var(--space-1);
   font-size: var(--fs-small);
-  font-weight: 600;
+  font-weight: 650;
 }
 
-.award {
-  justify-self: start;
-  margin-top: var(--space-1);
-  padding: 0.15rem 0.6rem;
-  border: var(--line) solid var(--ink);
-  background: var(--now);
+.current span {
+  padding: 0.15em 0.6em;
+  background: var(--note);
+}
+
+.current time {
+  color: var(--graphite);
+  font-weight: 500;
+}
+
+.subhead {
+  color: var(--graphite);
   font-size: var(--fs-meta);
-  font-weight: 700;
-  transform: rotate(-1.5deg);
+  font-weight: 650;
 }
 
-.source {
-  margin-top: var(--space-3);
+.focus {
+  display: grid;
+  border-top: var(--line) solid var(--rule);
+}
+
+.focus li {
+  padding: var(--space-3) 0;
+  border-bottom: var(--line) solid var(--rule);
   font-size: var(--fs-small);
-  font-weight: 600;
 }
 
-@media (min-width: 56rem) {
-  .grid {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--space-5);
-    row-gap: var(--space-8);
-  }
-
-  .sta {
-    grid-column: 1 / span 7;
-  }
-
-  .nito {
-    grid-column: 9 / -1;
-    padding-top: var(--space-8);
-  }
+/* The NITO path is a real sequence: board member, chair, national board. */
+.path {
+  display: grid;
+  gap: var(--space-4);
+  padding-left: var(--space-6);
+  border-left: var(--connector) solid var(--blue);
 }
 
-.earlier {
-  max-width: var(--measure-wide);
+.pathItem {
+  position: relative;
+  display: grid;
+  gap: 2px;
 }
 
-.earlier .subhead {
-  margin-top: 0;
+.pathItem::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--space-6) * -1 - 7px);
+  top: 0.35em;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: var(--connector) solid var(--blue);
+}
+
+.pathItem[data-current='true']::before {
+  background: var(--blue);
+}
+
+.pathRole {
+  font-weight: 650;
+}
+
+.pathMeta {
+  color: var(--graphite);
+  font-size: var(--fs-small);
 }
 
 .earlierTitle {
   font-size: var(--fs-h4);
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 .earlierText {
-  margin-top: var(--space-2);
-  font-family: var(--font-serif);
-  font-size: var(--fs-body);
+  font-size: var(--fs-small);
   line-height: 1.55;
 }
 
-/* Anchored from the timeline: briefly mark where the visitor landed. */
-:is(.sta, .earlier, .path li):target {
-  animation: landed 1.6s var(--ease-out);
-}
+@media (max-width: 56rem) {
+  .award,
+  .nito,
+  .sta,
+  .earlier {
+    grid-column: 1 / -1;
+  }
 
-@keyframes landed {
-  from {
-    box-shadow:
-      -0.75rem 0 0 var(--signal-wash),
-      0.75rem 0 0 var(--signal-wash);
-    background: var(--signal-wash);
+  .dots {
+    max-width: 18rem;
   }
 }
 
-@media (min-width: 56rem) {
-  .earlier {
-    grid-column: 1 / span 7;
+/* Twelve columns with wide gaps would be wider than a small phone; narrow the gaps there. */
+@media (max-width: 40rem) {
+  .grid {
+    column-gap: var(--space-2);
   }
 }
