@@ -3,6 +3,7 @@ import { SECTION_IDS, copy } from '../content/copy';
 import { useActiveSection } from '../hooks/useActiveSection';
 import { useLocale } from '../i18n/LocaleContext';
 import { HTML_LANG, LOCALES, localePath, type Locale } from '../i18n/locale';
+import { trackEvent } from '../lib/analytics';
 import styles from './SiteHeader.module.css';
 
 function LanguageSwitch({ onSwitch }: { onSwitch?: () => void }) {
@@ -10,6 +11,7 @@ function LanguageSwitch({ onSwitch }: { onSwitch?: () => void }) {
 
   const choose = (event: MouseEvent<HTMLAnchorElement>, next: Locale) => {
     event.preventDefault();
+    if (next !== locale) trackEvent({ name: 'Language switch', to: next });
     setLocale(next);
     onSwitch?.();
   };

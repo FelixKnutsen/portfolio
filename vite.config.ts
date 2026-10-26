@@ -22,15 +22,18 @@ function withLocale(html: string, locale: Locale): string {
  */
 function localizedPages(): Plugin {
   let outDir = 'dist';
+  let ssr = false;
   return {
     name: 'localized-pages',
     configResolved(config) {
       outDir = resolve(config.root, config.build.outDir);
+      ssr = Boolean(config.build.ssr);
     },
     transformIndexHtml(html) {
       return withLocale(html.replace('<!--seo-->', `${SEO_START}${SEO_END}`), DEFAULT_LOCALE);
     },
     writeBundle() {
+      if (ssr) return;
       const built = readFileSync(resolve(outDir, 'index.html'), 'utf-8');
       for (const locale of LOCALES) {
         mkdirSync(resolve(outDir, locale), { recursive: true });
@@ -40,9 +43,11 @@ function localizedPages(): Plugin {
   };
 }
 
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react(), localizedPages()],
   define: {
     __CV_AVAILABLE__: JSON.stringify(existsSync(resolve(import.meta.dirname, 'public', CV_PUBLIC_PATH.slice(1)))),
   },
-});
+  // The server build (used only to prerender HTML) needs no copy of public/.
+  build: { copyPublicDir: !isSsrBuild },
+}));
