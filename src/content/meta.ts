@@ -1,4 +1,5 @@
 import { HTML_LANG, LOCALES, OG_LOCALE, SITE_URL, type L, type Locale } from '../i18n/locale.ts';
+import { contactDetails, copy } from './copy.ts';
 
 // Used both at runtime (to update the document head when the language
 // changes) and at build time (to write a static page per language).
@@ -26,17 +27,46 @@ export function pageUrl(locale: Locale): string {
 const escapeHtml = (value: string) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-/** Only facts that are verifiable from the public profile and this site. */
+/**
+ * ProfilePage + Person graph. Only facts stated on the page itself: the
+ * degree, the two current elected roles, the stated interests and public links.
+ */
 export function personJsonLd(locale: Locale): string {
+  const url = pageUrl(locale);
+  const personId = `${SITE_URL}/#person`;
   const data = {
     '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Felix Fabricius Knutsen',
-    url: pageUrl(locale),
-    image: `${SITE_URL}/images/felix-880.jpg`,
-    alumniOf: { '@type': 'CollegeOrUniversity', name: 'Universitetet i Agder', url: 'https://www.uia.no/' },
-    address: { '@type': 'PostalAddress', addressLocality: 'Kristiansand', addressCountry: 'NO' },
-    sameAs: ['https://www.linkedin.com/in/felix-knutsen/', 'https://github.com/FelixKnutsen'],
+    '@graph': [
+      {
+        '@type': 'ProfilePage',
+        '@id': `${url}#page`,
+        url,
+        name: meta.title[locale],
+        description: meta.description[locale],
+        inLanguage: HTML_LANG[locale],
+        mainEntity: { '@id': personId },
+      },
+      {
+        '@type': 'Person',
+        '@id': personId,
+        name: 'Felix Fabricius Knutsen',
+        url,
+        image: `${SITE_URL}/images/felix-880.jpg`,
+        description: copy.hero.role[locale],
+        email: `mailto:${contactDetails.email}`,
+        knowsAbout:
+          locale === 'no'
+            ? ['Informasjonssystemer', 'Digital transformasjon', 'Brukerorientert design']
+            : ['Information systems', 'Digital transformation', 'User-centred design'],
+        alumniOf: { '@type': 'CollegeOrUniversity', name: 'Universitetet i Agder', url: 'https://www.uia.no/' },
+        memberOf: [
+          { '@type': 'Organization', name: 'Studentorganisasjonen i Agder' },
+          { '@type': 'Organization', name: 'NITO Studentene' },
+        ],
+        address: { '@type': 'PostalAddress', addressLocality: 'Kristiansand', addressRegion: 'Agder', addressCountry: 'NO' },
+        sameAs: [contactDetails.linkedin, contactDetails.github],
+      },
+    ],
   };
   return JSON.stringify(data).replace(/</g, '\\u003c');
 }
@@ -54,6 +84,7 @@ export function renderHead(locale: Locale): string {
   return [
     `<title>${title}</title>`,
     `<meta name="description" content="${description}" />`,
+    `<meta name="robots" content="index, follow, max-image-preview:large" />`,
     `<link rel="canonical" href="${url}" />`,
     ...alternates,
     `<link rel="alternate" hreflang="x-default" href="${pageUrl('no')}" />`,
