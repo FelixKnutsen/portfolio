@@ -82,10 +82,8 @@ function RoleItem({ role, expanded, onToggle }: RoleItemProps) {
 
 export default function Experience() {
   const { t } = useLocale();
-  const [expanded, setExpanded] = useState<Set<string>>(() => {
-    const fromHash = typeof window === 'undefined' ? null : roleIdFromHash(window.location.hash);
-    return new Set(fromHash ? [fromHash] : []);
-  });
+  // Starts closed, as in the prerendered HTML. A role named in the URL is opened once the page is running (below).
+  const [expanded, setExpanded] = useState<Set<string>>(() => new Set());
 
   const open = useCallback((id: string) => {
     setExpanded((current) => (current.has(id) ? current : new Set(current).add(id)));
@@ -105,6 +103,7 @@ export default function Experience() {
       const id = roleIdFromHash(window.location.hash);
       if (id) open(id);
     };
+    onHashChange();
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
   }, [open]);

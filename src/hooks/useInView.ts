@@ -3,7 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 /** Becomes `true` the first time the element scrolls into view, then stops observing. */
 export function useInView<T extends Element>(threshold = 0.35) {
   const ref = useRef<T>(null);
-  const [inView, setInView] = useState(() => typeof IntersectionObserver === 'undefined');
+  // Starts `false` everywhere, including the prerender, so the hydrated page matches the HTML it takes over.
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const element = ref.current;

@@ -9,7 +9,8 @@ export default function SiteFooter() {
   return (
     <footer className={styles.footer}>
       <div className={`frame ${styles.inner}`}>
-        <p>© {new Date().getFullYear()} Felix Fabricius Knutsen</p>
+        {/* The year comes from the build in the prerendered HTML and can differ from the visitor's clock around New Year. */}
+        <p suppressHydrationWarning>© {new Date().getFullYear()} Felix Fabricius Knutsen</p>
         <p>
           {t(copy.footer.builtWith)} <ExternalLink href={contactDetails.repo}>{t(copy.footer.source)}</ExternalLink>
         </p>

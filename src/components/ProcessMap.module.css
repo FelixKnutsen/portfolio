@@ -318,8 +318,9 @@
   }
 }
 
-/* One orchestrated moment: when the map comes into view the connector draws through the lanes and each step lights up as it is reached. */
-@media (prefers-reduced-motion: no-preference) {
+/* One orchestrated moment: when the map comes into view the connector draws through the lanes and each step lights up as it is reached.
+   Only with scripting, since the prerendered HTML starts undrawn and only JavaScript draws it. */
+@media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
   .map[data-drawn='false'] .draw {
     clip-path: inset(-10% 100% -10% 0);
   }
