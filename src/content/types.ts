@@ -1,13 +1,13 @@
 import type { L } from '../i18n/locale';
 import type { Period } from '../lib/dates';
 
-/** The three lanes of the hero process map, and the lens used throughout the site. */
+/** The three columns the hero sorts the work into, and the lens used throughout the site. */
 export type Lens = 'people' | 'process' | 'technology';
 
-/** Lanes of the experience timeline. */
+/** Lanes of the background ledger. */
 export type Track = 'work' | 'leadership' | 'education';
 
-/** How an entry is labelled on the experience timeline: a short title and a short organisation name. */
+/** How an entry is labelled on the background ledger: a short title and a short organisation name. */
 export interface TimelineLabel {
   title: L;
   org: string;
@@ -16,7 +16,7 @@ export interface TimelineLabel {
 export interface Role {
   id: string;
   track: Track;
-  /** Projects (such as a thesis) are drawn differently from employment on the timeline. */
+  /** Projects (such as a thesis) are drawn differently from employment on the ledger. */
   kind?: 'project';
   title: L;
   timeline: TimelineLabel;
@@ -50,20 +50,25 @@ export interface Evidence {
   caption: L;
 }
 
+/** Which interactive illustration explains a case. Each is drawn by its own component. */
+export type Illustration = 'equipment' | 'website' | 'twin';
+
 export interface CaseStudy {
   id: string;
   org: string;
   context: L;
   period: Period;
   title: L;
+  /** The problem in one or two sentences, before anything about the solution. */
+  problem: L;
   lede: L;
-  /** The actual sequence of work, drawn as a process trace. Each step says what was done. */
+  illustration: Illustration;
+  /** The actual sequence of work. Each step says what was done. */
   steps: CaseStep[];
   /** Group work: the steps describe what the group did, not Felix alone. */
   team?: boolean;
   /** Felix's own part, when the work was done with others. */
   role?: L;
-  decision?: L;
   outcome?: L;
   learning?: L;
   evidence?: Evidence;
@@ -72,10 +77,27 @@ export interface CaseStudy {
   links?: ExternalLink[];
 }
 
+/** A fragment of real work, sorted into a column in the hero. */
 export interface MapNode {
   lens: Lens;
   label: L;
   source: L;
+  href: string;
+  /** Small screens show only the main fragments. */
+  minor?: boolean;
+}
+
+/** A way of working, with the project that shows it. */
+export interface Principle {
+  title: L;
+  text: L;
+  evidence: { label: L; href: string };
+}
+
+/** A method or tool, and where it was actually used. */
+export interface Skill {
+  name: L;
+  where: L;
   href: string;
 }
 

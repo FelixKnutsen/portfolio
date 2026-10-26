@@ -4,11 +4,13 @@ Personal portfolio for Felix Fabricius Knutsen, built with React, TypeScript and
 
 ## Concept
 
-The site is drawn as a process map. The hero is a swimlane diagram with three lanes (people, process and technology), and every node is a real step from the work further down the page. The same visual grammar returns in the case-study traces, the leadership path and the experience timeline.
+From how people work to systems that work. The site shows the job it describes: turning the loose, human side of an organisation into a structured system. See `docs/design-direction.md` for the full rationale.
 
-- Colour: cool map paper `#e8eae3`, green-black ink `#15201b`, one ultramarine connector `#3b45f2` reserved for links, focus, flow lines and current activity, and a highlighter yellow `#f2d54b` used only to mark what is current.
-- Type: Schibsted Grotesk for display and interface, and Source Serif 4 for reading text. Both are self-hosted in `public/fonts`.
-- Motion: a single orchestrated moment (the connector draws when the map scrolls into view), plus feedback on user actions. Everything respects `prefers-reduced-motion`.
+- Hero: real fragments of work (interviews, MoSCoW, process mapping, GraphQL, WordPress…) start scattered on an ultramarine field next to the problems they answered. As the visitor scrolls they sort themselves into three columns, people, process and technology, and every fragment links to the project that proves it. Pinned where the hero fits the viewport; on phones it sorts as the board scrolls into view. Without JavaScript or with reduced motion, the board is simply shown sorted.
+- Projects: each case has an interactive illustration of its idea. The Phonero equipment list re-sorts from device to person (FLIP animation, made-up data), the STA website shows its two audiences (the site and the editor's guide), and the Kristiansand kommune case has an isometric digital-twin grid drawn on a 2D canvas.
+- Colour: ultramarine `#2a36e6` for the system, cool paper `#f1f2f4` for reading, ink `#10142b` for the Approach section, and note yellow `#ffd54f` only for human things (problems, notes, what is current).
+- Type: one family, Archivo (variable weight and width), self-hosted in `public/fonts`. Display type is set wide and heavy; the width axis is what separates the loose notes from the sorted system.
+- Motion: one orchestrated, scroll-linked moment (the sort). Everything else answers an action: toggles, tabs, the menu and a cross-fade on language switch. Everything respects `prefers-reduced-motion`.
 
 ## Structure
 
@@ -17,8 +19,8 @@ src/
   content/      all copy and facts, typed so every string exists in Norwegian and English
   i18n/         locale helpers, routing (/no/, /en/) and the LocaleProvider
   components/   one component and one CSS module per section
-  hooks/        scroll-spy and in-view helpers
-  lib/          pure logic: dates, timeline packing, process-map routing, contact form
+  hooks/        the hero sort, scroll-spy, the surface under the header, in-view
+  lib/          pure logic: dates, the hero scatter, the digital-twin geometry, contact form
   styles/       design tokens and global styles
 ```
 
@@ -38,7 +40,7 @@ npm run dev        # local development
 npm run build      # typecheck and production build
 npm run typecheck  # TypeScript only
 npm run lint       # ESLint
-npm test           # Vitest: content parity across languages, routing, dates, timeline, form validation
+npm test           # Vitest: content parity across languages, links, routing, dates, hero scatter, twin geometry, form validation
 npm run preview    # serve the production build
 ```
 

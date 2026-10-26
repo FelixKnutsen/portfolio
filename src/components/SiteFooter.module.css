@@ -1,16 +1,40 @@
 .footer {
-  --signal: var(--signal-on-ink);
-  --focus-ring: 0 0 0 3px var(--ink), 0 0 0 5px var(--signal-on-ink);
-  background: var(--ink);
-  color: color-mix(in srgb, var(--paper) 78%, var(--ink));
+  padding-block: var(--space-6) var(--space-7);
+  background: var(--blue);
+  color: var(--on-blue-soft);
   font-size: var(--fs-small);
 }
 
 .inner {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
   gap: var(--space-3) var(--space-6);
-  padding-block: var(--space-5) var(--space-6);
-  border-top: var(--line) solid color-mix(in srgb, var(--paper) 25%, var(--ink));
+  padding-top: var(--space-5);
+  border-top: var(--line) solid color-mix(in srgb, var(--on-blue) 35%, transparent);
+}
+
+.name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--on-blue);
+  font-weight: 650;
+}
+
+.mark {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.link {
+  color: var(--on-blue);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+
+.link:hover {
+  text-decoration-color: currentColor;
 }

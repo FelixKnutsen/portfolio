@@ -1,0 +1,154 @@
+.approach {
+  padding-block: var(--section-pad);
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.approach :focus-visible {
+  box-shadow: var(--focus-ring-on-blue);
+}
+
+.principles {
+  display: grid;
+  border-top: var(--line-strong) solid var(--on-ink);
+}
+
+.principle {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-3) var(--space-6);
+  padding-block: clamp(var(--space-5), 3vw, var(--space-7));
+  border-bottom: var(--line) solid color-mix(in srgb, var(--on-ink) 20%, transparent);
+}
+
+.principleTitle {
+  grid-column: 1 / span 7;
+  font-size: clamp(1.5rem, 3vw, 2.75rem);
+  font-weight: 760;
+  font-stretch: var(--wide);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.principle:hover .principleTitle {
+  color: var(--note);
+}
+
+.principleBody {
+  grid-column: 9 / -1;
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  color: var(--on-ink-soft);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+}
+
+.evidence {
+  justify-self: start;
+  color: var(--on-ink-blue);
+  font-weight: 620;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+
+.evidence:hover {
+  color: var(--note);
+  text-decoration-color: currentColor;
+}
+
+.skills {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: clamp(var(--space-8), 8vw, var(--space-9));
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.caption {
+  padding-bottom: var(--space-4);
+  font-size: var(--fs-h4);
+  font-weight: 720;
+  font-stretch: 106%;
+  text-align: left;
+}
+
+.table thead th {
+  padding: var(--space-2) var(--space-4) var(--space-2) 0;
+  border-bottom: var(--line-strong) solid var(--on-ink);
+  color: var(--on-ink-soft);
+  font-size: var(--fs-meta);
+  font-weight: 650;
+  text-align: left;
+}
+
+.table tbody th,
+.table td {
+  padding: var(--space-4) var(--space-4) var(--space-4) 0;
+  border-bottom: var(--line) solid color-mix(in srgb, var(--on-ink) 20%, transparent);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table tbody th {
+  width: 55%;
+  font-weight: 600;
+}
+
+.where {
+  color: var(--on-ink-blue);
+  font-weight: 560;
+  text-decoration: none;
+}
+
+.where:hover {
+  color: var(--note);
+  text-decoration: underline;
+}
+
+.coursework {
+  color: var(--on-ink-soft);
+  font-size: var(--fs-small);
+}
+
+@media (max-width: 56rem) {
+  .principleTitle,
+  .principleBody {
+    grid-column: 1 / -1;
+  }
+
+  .table tbody th {
+    width: auto;
+  }
+}
+
+@media (max-width: 40rem) {
+  .table thead {
+    display: none;
+  }
+
+  .table tbody tr {
+    display: grid;
+    gap: var(--space-1);
+    padding-block: var(--space-4);
+    border-bottom: var(--line) solid color-mix(in srgb, var(--on-ink) 20%, transparent);
+  }
+
+  .table tbody th,
+  .table td {
+    padding: 0;
+    border: 0;
+  }
+}
+
+/* Twelve columns with wide gaps would be wider than a small phone; narrow the gaps there. */
+@media (max-width: 40rem) {
+  .principle {
+    column-gap: var(--space-2);
+  }
+}

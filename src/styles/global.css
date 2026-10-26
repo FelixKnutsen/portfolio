@@ -22,12 +22,10 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: var(--fs-ui);
   line-height: var(--lh-body);
-  font-feature-settings:
-    'ss01',
-    'tnum' 0;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: clip;
@@ -42,17 +40,40 @@ ul,
 ol,
 dl,
 dd,
-figure {
+figure,
+blockquote {
   margin: 0;
 }
 
 ul,
 ol {
   padding: 0;
+  list-style: none;
+}
+
+/* Norwegian builds long compounds ("læringsmiljøpolitisk"); they may break rather than overflow a phone. */
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+dt,
+dd,
+a {
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 40rem) {
+  h2,
+  h3 {
+    hyphens: auto;
+  }
 }
 
 img,
-svg {
+svg,
+canvas {
   display: block;
   max-width: 100%;
 }
@@ -71,18 +92,22 @@ button {
 a {
   color: inherit;
   text-decoration-thickness: var(--line);
-  text-underline-offset: 0.2em;
+  text-underline-offset: 0.22em;
 }
 
 :focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
-  border-radius: 2px;
+  border-radius: 3px;
+}
+
+[data-surface='blue'] :focus-visible {
+  box-shadow: var(--focus-ring-on-blue);
 }
 
 ::selection {
-  background: var(--signal);
-  color: var(--paper-raised);
+  background: var(--note);
+  color: var(--ink);
 }
 
 [hidden] {
@@ -114,11 +139,11 @@ a {
   position: fixed;
   top: var(--space-3);
   left: var(--space-3);
-  z-index: 50;
+  z-index: 60;
   padding: var(--space-3) var(--space-4);
-  background: var(--ink);
-  color: var(--paper);
-  font-weight: 600;
+  background: var(--note);
+  color: var(--ink);
+  font-weight: 650;
 }
 
 /* Page frame shared by every section. */
@@ -129,17 +154,23 @@ a {
   padding-inline: var(--gutter);
 }
 
-/* Inline text link with the connector colour. */
+/* Inline text link in the system colour. */
 .link {
-  color: var(--signal);
+  color: var(--blue);
+  font-weight: 560;
   text-decoration-line: underline;
-  text-decoration-color: color-mix(in srgb, var(--signal) 40%, transparent);
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
   transition: text-decoration-color var(--dur-fast) var(--ease-out);
 }
 
 .link:hover {
-  color: var(--signal-deep);
+  color: var(--blue-deep);
   text-decoration-color: currentColor;
+}
+
+[data-surface='blue'] .link,
+[data-surface='ink'] .link {
+  color: inherit;
 }
 
 .external-mark::after {
@@ -147,7 +178,15 @@ a {
   display: inline-block;
   margin-left: 0.2em;
   font-size: 0.85em;
+  font-weight: 400;
   text-decoration: none;
+}
+
+/* Language switch: a short cross-fade of the whole page where View Transitions exist. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 260ms;
+  animation-timing-function: var(--ease-out);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -159,6 +198,7 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
+
 main:focus {
   box-shadow: none;
 }

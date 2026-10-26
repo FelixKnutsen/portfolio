@@ -1,0 +1,788 @@
+/*
+  A, "Feature". One serif at every size, newsprint and ink, and oxblood used
+  the way a newspaper uses its one colour: for the masthead rule, kickers and
+  pull quotes. Hierarchy comes from scale and placement, not from boxes.
+*/
+
+@font-face {
+  font-family: 'Newsreader';
+  src: url('../fonts/newsreader.woff2') format('woff2-variations');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  src: url('../fonts/newsreader-italic.woff2') format('woff2-variations');
+  font-weight: 200 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --paper: #e9e5dc;
+  --paper-deep: #dcd6ca;
+  --ink: #1c1a17;
+  --ink-soft: #4b4540;
+  --muted: #6a6158;
+  --oxblood: #7a2117;
+  --margin: clamp(20px, 5vw, 76px);
+  --gap: clamp(16px, 2vw, 28px);
+  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Newsreader', Georgia, serif;
+  font-optical-sizing: auto;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--oxblood);
+}
+
+:focus-visible {
+  outline: 2px solid var(--oxblood);
+  outline-offset: 3px;
+}
+
+/* ── Masthead ─────────────────────────────────────── */
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin: 0 var(--margin);
+  padding: 22px 0 14px;
+  border-bottom: 1px solid var(--ink);
+  box-shadow: 0 3px 0 -1px var(--paper), 0 4px 0 -1px var(--ink);
+}
+
+.mast-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.mast-nav {
+  display: flex;
+  gap: 22px;
+  font-style: italic;
+}
+
+.mast-nav a {
+  text-decoration: none;
+}
+
+/* ── Cover ────────────────────────────────────────── */
+
+main {
+  padding: 0 var(--margin);
+}
+
+.cover {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  padding: clamp(40px, 7vw, 96px) 0 clamp(64px, 10vw, 140px);
+}
+
+.cover-title {
+  grid-column: 1 / span 8;
+  font-size: clamp(3.1rem, 7.4vw, 8.6rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+}
+
+.cover-title span,
+.cover-title em {
+  display: block;
+}
+
+.cover-title em {
+  font-weight: 300;
+  padding-left: 0.9em;
+}
+
+.cover-portrait {
+  grid-column: 9 / -1;
+  grid-row: 1 / span 3;
+  align-self: start;
+  margin-top: 0.6rem;
+}
+
+.cover-portrait img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.standfirst {
+  grid-column: 1 / span 6;
+  margin-top: clamp(28px, 4vw, 56px);
+  color: var(--ink-soft);
+  font-size: clamp(1.25rem, 1.75vw, 1.6rem);
+  line-height: 1.38;
+}
+
+.contents {
+  grid-column: 1 / span 7;
+  align-self: end;
+  margin-top: clamp(36px, 5vw, 72px);
+  border-top: 1px solid var(--ink);
+  counter-reset: feature;
+}
+
+.contents li {
+  counter-increment: feature;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+}
+
+.contents a {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 13rem) minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+  padding: 12px 0;
+  text-decoration: none;
+}
+
+.contents a::before {
+  content: counter(feature);
+  color: var(--oxblood);
+  font-style: italic;
+}
+
+.contents-org {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.contents-title {
+  font-size: 1.2rem;
+}
+
+.contents a:hover .contents-title {
+  text-decoration: underline;
+}
+
+/* ── Spreads ──────────────────────────────────────── */
+
+.spread {
+  padding: clamp(56px, 8vw, 120px) 0;
+  border-top: 3px solid var(--ink);
+}
+
+.spread-head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+}
+
+.kicker {
+  grid-column: 1 / -1;
+  margin-bottom: 18px;
+  color: var(--oxblood);
+  font-style: italic;
+  font-size: 1.05rem;
+}
+
+.spread-title {
+  grid-column: 1 / span 9;
+  font-size: clamp(2.4rem, 5.6vw, 5.8rem);
+  font-weight: 340;
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.spread-body {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: 40px;
+  margin-top: clamp(36px, 5vw, 72px);
+}
+
+.spread-text {
+  grid-column: 1 / span 5;
+}
+
+.spread-side {
+  grid-column: 8 / -1;
+}
+
+.dek {
+  font-size: clamp(1.3rem, 1.8vw, 1.65rem);
+  line-height: 1.36;
+}
+
+.facts {
+  display: grid;
+  margin-top: 28px;
+  border-top: 1px solid var(--ink);
+}
+
+.facts div {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+  font-size: 0.98rem;
+}
+
+.facts dt {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.plate {
+  grid-column: 7 / -1;
+  padding: clamp(20px, 3vw, 40px);
+  background: var(--paper-deep);
+}
+
+.pull {
+  margin: clamp(56px, 8vw, 110px) 0 0;
+  padding-left: clamp(0px, 8vw, 120px);
+}
+
+.pull p {
+  max-width: 22ch;
+  color: var(--oxblood);
+  font-size: clamp(1.9rem, 3.8vw, 3.6rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-indent: -0.42em;
+}
+
+.pull p::before {
+  content: '“';
+}
+
+.pull p::after {
+  content: '”';
+}
+
+.notes {
+  margin-top: clamp(48px, 6vw, 88px);
+  padding-top: 14px;
+  border-top: 1px solid var(--ink);
+}
+
+.notes-head {
+  margin-bottom: 14px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.notes ol {
+  columns: 3 16rem;
+  column-gap: var(--gap);
+  counter-reset: note;
+}
+
+.notes li {
+  counter-increment: note;
+  break-inside: avoid;
+  margin-bottom: 14px;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.notes li::before {
+  content: counter(note) ' ';
+  color: var(--oxblood);
+  font-weight: 600;
+}
+
+.notes li strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  margin-top: 24px;
+  font-style: italic;
+}
+
+/* STA: a laptop-sized screenshot with the phone version laid over its corner. */
+.gallery {
+  position: relative;
+  margin-top: clamp(36px, 5vw, 72px);
+  padding-right: clamp(40px, 12vw, 200px);
+  padding-bottom: clamp(40px, 6vw, 90px);
+}
+
+.shot-desktop {
+  width: 100%;
+  outline: 1px solid var(--ink);
+}
+
+.shot-phone {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: clamp(110px, 19vw, 280px);
+  border: 1px solid var(--ink);
+  border-radius: 22px;
+}
+
+.gallery figcaption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+/* Kristiansand: no screenshots to show, so the spread is carried by what was learned. */
+.big-quote {
+  margin-top: clamp(40px, 6vw, 90px);
+}
+
+.big-quote p {
+  max-width: 30ch;
+  font-size: clamp(1.8rem, 3.9vw, 3.9rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-indent: -0.4em;
+}
+
+.big-quote p::before {
+  content: '“';
+  color: var(--oxblood);
+}
+
+.big-quote p::after {
+  content: '”';
+  color: var(--oxblood);
+}
+
+.big-quote footer {
+  margin-top: 18px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.plan-figure {
+  grid-column: 7 / -1;
+}
+
+.plan rect {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.plan rect.open {
+  fill: var(--oxblood);
+  stroke: var(--oxblood);
+}
+
+/* ── Equipment list, set as a ledger ─────────────── */
+
+.eq-toggle {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 10px;
+}
+
+.eq-option {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: italic 1.05rem 'Newsreader', serif;
+  cursor: pointer;
+}
+
+.eq-option[aria-pressed='true'] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--oxblood);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+
+.eq-explain {
+  min-height: 3em;
+  margin-bottom: 14px;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.eq-list {
+  border-top: 1px solid var(--ink);
+}
+
+.eq-row,
+.eq-person {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.7fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  background: var(--paper-deep);
+  font-size: 1rem;
+}
+
+.eq[data-view='person'] .eq-row {
+  padding-left: 1.4rem;
+}
+
+.eq[data-view='person'] .eq-holder {
+  visibility: hidden;
+}
+
+.eq-person {
+  margin-top: 12px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.eq-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.eq-team,
+.eq-sim,
+.eq-count {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.eq-flag {
+  color: var(--oxblood);
+  font-style: italic;
+}
+
+/* ── Profile, elected roles, record, contact ─────── */
+
+.profile,
+.elected,
+.record,
+.contact {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  padding: clamp(56px, 8vw, 120px) 0;
+  border-top: 3px solid var(--ink);
+}
+
+.section-title {
+  grid-column: 1 / span 3;
+  font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+  font-style: italic;
+  font-weight: 350;
+  line-height: 1.05;
+}
+
+.profile-lead {
+  grid-column: 4 / span 6;
+  font-size: clamp(1.3rem, 1.9vw, 1.75rem);
+  line-height: 1.38;
+}
+
+.facts--wide {
+  grid-column: 4 / -1;
+  margin-top: 40px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--gap);
+  border-top: 0;
+}
+
+.facts--wide div {
+  grid-template-columns: 1fr;
+  gap: 4px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 0;
+}
+
+.approach {
+  grid-column: 4 / -1;
+  margin-top: 56px;
+}
+
+.approach h3,
+.record h3 {
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.approach ul {
+  columns: 3 14rem;
+  column-gap: var(--gap);
+}
+
+.approach li {
+  break-inside: avoid;
+  margin-bottom: 16px;
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+.approach strong {
+  display: block;
+  color: var(--ink);
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.award {
+  grid-column: 4 / span 4;
+  align-self: start;
+  padding-top: 14px;
+  border-top: 6px solid var(--oxblood);
+}
+
+.award h3 {
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.award .kicker {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.award p:not(.kicker) {
+  margin: 14px 0;
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+.award a {
+  font-style: italic;
+}
+
+.elected .listing {
+  grid-column: 9 / -1;
+}
+
+.listing li {
+  display: grid;
+  grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.listing-when {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.listing-what em {
+  display: block;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.record-cols {
+  grid-column: 4 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+.contact-email {
+  grid-column: 4 / -1;
+  font-size: clamp(1.7rem, 5.4vw, 5.6rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.contact-email:hover {
+  color: var(--oxblood);
+}
+
+.contact-links {
+  grid-column: 4 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 26px;
+  margin-top: 28px;
+  font-style: italic;
+}
+
+.colophon {
+  margin: 0 var(--margin);
+  padding: 18px 0 90px;
+  border-top: 1px solid var(--ink);
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* ── Images uncover from the top as they are reached, like a page being laid ─ */
+
+.js [data-reveal] {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.3s var(--ease);
+}
+
+.js [data-reveal].is-in {
+  clip-path: inset(0 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js [data-reveal] {
+    clip-path: none;
+    transition: none;
+  }
+}
+
+/* ── Narrow screens: one column, same order of reading ─ */
+
+@media (max-width: 52rem) {
+  .cover-title,
+  .standfirst,
+  .contents,
+  .spread-title,
+  .spread-text,
+  .spread-side,
+  .plate,
+  .plan-figure,
+  .section-title,
+  .profile-lead,
+  .facts--wide,
+  .approach,
+  .award,
+  .elected .listing,
+  .record-cols,
+  .contact-email,
+  .contact-links {
+    grid-column: 1 / -1;
+  }
+
+  .cover-portrait {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    margin-top: 32px;
+    max-width: 28rem;
+  }
+
+  .cover-title em {
+    padding-left: 0;
+  }
+
+  .contents a {
+    grid-template-columns: 1.6rem minmax(0, 1fr);
+  }
+
+  .contents-title {
+    grid-column: 2;
+  }
+
+  .section-title {
+    margin-bottom: 20px;
+  }
+
+  .facts--wide,
+  .record-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .elected .listing {
+    margin-top: 36px;
+  }
+
+  .gallery figcaption {
+    position: static;
+  }
+
+  .gallery {
+    padding-bottom: 0;
+  }
+
+  .shot-phone {
+    bottom: 2.2rem;
+  }
+}

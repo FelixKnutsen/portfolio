@@ -4,25 +4,6 @@ import { useLocale } from '../i18n/LocaleContext';
 import { trackEvent } from '../lib/analytics';
 import styles from './CvActions.module.css';
 
-/** A single "View CV" link for the hero's action row. Renders nothing if the PDF was missing at build time. */
-export function CvViewLink({ className }: { className?: string }) {
-  const { t } = useLocale();
-  if (!__CV_AVAILABLE__) return null;
-  return (
-    <a
-      className={className}
-      href={CV_PUBLIC_PATH}
-      target="_blank"
-      rel="noopener"
-      aria-label={t(copy.cv.viewLabel)}
-      onClick={() => trackEvent({ name: 'CV view', placement: 'hero' })}
-    >
-      {t(copy.cv.view)}
-      <span aria-hidden="true" className="external-mark" />
-    </a>
-  );
-}
-
 /** View and download links for the CV, shown in the contact section. Renders nothing if the PDF was missing at build time. */
 export default function CvActions() {
   const { t } = useLocale();

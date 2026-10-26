@@ -16,7 +16,6 @@ import styles from './Contact.module.css';
 type Status = 'idle' | 'sending' | 'sent' | 'failed';
 
 const EMPTY: ContactValues = { name: '', email: '', subject: '', message: '' };
-const [emailUser, emailDomain] = contactDetails.email.split('@');
 
 function CopyEmailButton() {
   const { t } = useLocale();
@@ -166,46 +165,49 @@ export default function Contact() {
   const { t } = useLocale();
 
   return (
-    <section id="contact" data-anchor className={styles.contact} aria-labelledby="contact-heading">
+    <section id="contact" data-anchor data-surface="blue" className={styles.contact} aria-labelledby="contact-heading">
       <div className={`frame ${styles.inner}`}>
-        <div className={styles.intro}>
+        <div className={styles.head}>
           <h2 id="contact-heading" className={styles.heading}>
             {t(copy.contact.heading)}
           </h2>
           <p className={styles.body}>{t(copy.contact.body)}</p>
-
-          <div className={styles.emailBlock}>
-            <p className={styles.emailLabel}>{t(copy.contact.emailLabel)}</p>
-            <a
-              className={styles.email}
-              href={`mailto:${contactDetails.email}`}
-              onClick={() => trackEvent({ name: 'Email click' })}
-            >
-              {emailUser}
-              <wbr />@{emailDomain}
-            </a>
-            <CopyEmailButton />
-          </div>
-
-          <div className={styles.cvBlock}>
-            <CvActions />
-          </div>
-
-          <ul className={styles.profiles}>
-            <li>
-              <ExternalLink href={contactDetails.linkedin} className={styles.profile}>
-                LinkedIn
-              </ExternalLink>
-            </li>
-            <li>
-              <ExternalLink href={contactDetails.github} className={styles.profile}>
-                GitHub
-              </ExternalLink>
-            </li>
-          </ul>
         </div>
 
-        <ContactForm />
+        <div className={styles.emailBlock}>
+          <p className={styles.emailLabel}>{t(copy.contact.emailLabel)}</p>
+          <a
+            className={styles.email}
+            href={`mailto:${contactDetails.email}`}
+            onClick={() => trackEvent({ name: 'Email click' })}
+          >
+            {contactDetails.email}
+          </a>
+          <CopyEmailButton />
+        </div>
+
+        <div className={styles.columns}>
+          <div className={styles.side}>
+            <CvActions />
+            <div className={styles.elsewhere}>
+              <p className={styles.sideLabel}>{t(copy.contact.elsewhere)}</p>
+              <ul className={styles.profiles}>
+                <li>
+                  <ExternalLink href={contactDetails.linkedin} className={styles.profile}>
+                    LinkedIn
+                  </ExternalLink>
+                </li>
+                <li>
+                  <ExternalLink href={contactDetails.github} className={styles.profile}>
+                    GitHub
+                  </ExternalLink>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <ContactForm />
+        </div>
       </div>
     </section>
   );

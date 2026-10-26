@@ -15,8 +15,8 @@ export const meta = {
   },
   ogImage: { no: '/images/og-no.jpg', en: '/images/og-en.jpg' },
   ogImageAlt: {
-    no: 'Portrett av Felix Fabricius Knutsen ved siden av navnet, teksten «Informasjonssystemer, digitalisering og ledelse» og et prosesskart.',
-    en: 'Portrait of Felix Fabricius Knutsen beside his name, the text “Information systems, digitalisation and leadership” and a process map.',
+    no: 'Portrett av Felix Fabricius Knutsen ved siden av teksten «Fra hvordan folk jobber til systemer som virker» på ultramarin bakgrunn.',
+    en: 'Portrait of Felix Fabricius Knutsen beside the line “From how people work to systems that work” on an ultramarine background.',
   },
 } satisfies Record<string, L>;
 

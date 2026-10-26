@@ -4,22 +4,17 @@ import styles from './SectionHead.module.css';
 interface SectionHeadProps {
   id: string;
   title: string;
-  /**
-   * `display` opens the page's main chapters with a heavy rule and very large type.
-   * `compact` is for reference sections, so a long page does not repeat one loud pattern.
-   */
-  variant?: 'display' | 'compact';
-  children?: ReactNode;
+  intro?: ReactNode;
 }
 
-/** Heading block for a main section: a lane rule, the title and an optional intro. */
-export default function SectionHead({ id, title, variant = 'display', children }: SectionHeadProps) {
+/** The heading and short introduction that open each section, on the same grid everywhere. */
+export default function SectionHead({ id, title, intro }: SectionHeadProps) {
   return (
-    <div className={styles.head} data-variant={variant}>
+    <div className={styles.head}>
       <h2 id={id} className={styles.title}>
         {title}
       </h2>
-      {children ? <div className={styles.intro}>{children}</div> : null}
+      {intro ? <p className={styles.intro}>{intro}</p> : null}
     </div>
   );
 }

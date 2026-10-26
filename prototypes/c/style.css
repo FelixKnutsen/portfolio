@@ -1,0 +1,727 @@
+/*
+  C, "Plan". Concrete, black and one deep pine green, with Host Grotesk at
+  modest sizes. Proportion and empty space do the work; the only large type
+  is the message itself and the email at the end.
+*/
+
+@font-face {
+  font-family: 'Host Grotesk';
+  src: url('../fonts/host-grotesk.woff2') format('woff2-variations');
+  font-weight: 300 800;
+  font-display: swap;
+}
+
+:root {
+  --concrete: #e4e2dd;
+  --concrete-deep: #d8d5ce;
+  --black: #151515;
+  --grey: #5f5c57;
+  --pine: #1f3a2c;
+  --pine-text: #e4e2dd;
+  --pine-soft: #a9b7ad;
+  --margin: clamp(18px, 3.4vw, 52px);
+  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--concrete);
+  color: var(--black);
+  font-family: 'Host Grotesk', system-ui, sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul,
+dl,
+dd,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 3px;
+}
+
+/* ── Top ──────────────────────────────────────────── */
+
+.top {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 20px;
+  padding: 16px var(--margin);
+  font-size: 0.875rem;
+  font-weight: 500;
+  mix-blend-mode: difference;
+  color: #fff;
+}
+
+.top a {
+  text-decoration: none;
+}
+
+.top nav {
+  display: flex;
+  gap: 22px;
+}
+
+/* ── Hero: half portrait, half text, on one baseline ─ */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100svh;
+}
+
+.hero-image {
+  position: relative;
+  background: var(--concrete-deep);
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+.hero-image figcaption {
+  position: absolute;
+  left: var(--margin);
+  bottom: 16px;
+  color: #fff;
+  font-size: 0.75rem;
+  mix-blend-mode: difference;
+}
+
+.hero-text {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 40px;
+  padding: 96px var(--margin) 40px;
+}
+
+.hero-id {
+  color: var(--grey);
+  font-size: 0.875rem;
+}
+
+.hero-text h1 {
+  align-self: center;
+  max-width: 15ch;
+  font-size: clamp(2.2rem, 3.9vw, 4.1rem);
+  font-weight: 450;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.hero-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.hero-facts div {
+  padding-top: 10px;
+  border-top: 1px solid var(--black);
+}
+
+dt {
+  color: var(--grey);
+  font-size: 0.8125rem;
+}
+
+dd {
+  font-size: 0.9375rem;
+}
+
+/* ── Work: an index beside a frame ────────────────── */
+
+.work {
+  padding: clamp(80px, 12vw, 180px) var(--margin) clamp(80px, 10vw, 140px);
+}
+
+.work-head,
+.record-head {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--margin);
+  align-items: baseline;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--black);
+}
+
+.work-head h2,
+.profile h2,
+.record h2,
+.contact h2 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.work-head p {
+  color: var(--grey);
+}
+
+.index {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--margin);
+  margin-top: 28px;
+}
+
+.frame {
+  position: sticky;
+  top: 72px;
+  align-self: start;
+  aspect-ratio: 4 / 3;
+  background: var(--concrete-deep);
+  overflow: hidden;
+}
+
+.frame-item {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: scale(1.025);
+  transition:
+    opacity 600ms var(--ease),
+    transform 900ms var(--ease);
+}
+
+.frame-item.is-on {
+  opacity: 1;
+  transform: none;
+}
+
+.frame-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+}
+
+.plan {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 8%;
+}
+
+.plan svg {
+  width: 100%;
+  height: auto;
+}
+
+.plan--list rect.row {
+  fill: none;
+  stroke: var(--black);
+  stroke-width: 1.2;
+}
+
+.plan--list rect.flag {
+  fill: none;
+  stroke: var(--black);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 3;
+}
+
+.plan--list rect.head {
+  fill: var(--pine);
+}
+
+.plan--list line {
+  stroke: var(--grey);
+  stroke-width: 0.8;
+}
+
+.plan--list text {
+  fill: var(--grey);
+  font: 500 12px 'Host Grotesk', sans-serif;
+}
+
+.plan-rule {
+  stroke: var(--black);
+}
+
+.rows {
+  border-top: 0;
+}
+
+.row {
+  border-bottom: 1px solid color-mix(in srgb, var(--black) 30%, transparent);
+}
+
+.row-head {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 11rem) minmax(0, 1fr) 1.25rem;
+  gap: 16px;
+  align-items: baseline;
+  width: 100%;
+  padding: 22px 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.row-year {
+  color: var(--grey);
+  font-variant-numeric: tabular-nums;
+}
+
+.row-org {
+  font-weight: 600;
+}
+
+.row-title {
+  font-size: clamp(1.25rem, 1.9vw, 1.75rem);
+  font-weight: 450;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  transition: transform 500ms var(--ease);
+}
+
+.row-head:hover .row-title {
+  transform: translateX(8px);
+}
+
+/* A plus that turns into a minus. */
+.row-mark {
+  position: relative;
+  align-self: center;
+  width: 14px;
+  height: 14px;
+}
+
+.row-mark::before,
+.row-mark::after {
+  content: '';
+  position: absolute;
+  inset: 6px 0 auto;
+  height: 1.5px;
+  background: var(--black);
+  transition: transform 400ms var(--ease);
+}
+
+.row-mark::after {
+  transform: rotate(90deg);
+}
+
+.row.is-open .row-mark::after {
+  transform: rotate(0deg);
+}
+
+/* The sheet unfolds to its natural height. */
+.sheet {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 650ms var(--ease);
+}
+
+.row.is-open .sheet {
+  grid-template-rows: 1fr;
+}
+
+.sheet-inner {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 32px;
+  padding-left: calc(3.5rem + 16px);
+}
+
+.row.is-open .sheet-inner {
+  padding-bottom: 36px;
+}
+
+.sheet-frame {
+  display: none;
+}
+
+.sheet-summary {
+  grid-column: 1 / -1;
+  max-width: 40rem;
+  font-size: 1.125rem;
+  line-height: 1.45;
+}
+
+.sheet-facts,
+.sheet-process,
+.sheet-result {
+  font-size: 0.875rem;
+}
+
+.sheet-facts div {
+  padding: 8px 0;
+  border-top: 1px solid color-mix(in srgb, var(--black) 20%, transparent);
+}
+
+.sheet-process h3,
+.sheet-result h3 {
+  margin-bottom: 8px;
+  color: var(--grey);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.sheet-process li {
+  padding: 8px 0;
+  border-top: 1px solid color-mix(in srgb, var(--black) 20%, transparent);
+  line-height: 1.45;
+}
+
+.sheet-process b {
+  display: block;
+  font-weight: 600;
+}
+
+.sheet-result {
+  grid-column: 1 / -1;
+  max-width: 40rem;
+}
+
+.sheet-note {
+  grid-column: 1 / -1;
+  color: var(--grey);
+  font-size: 0.8125rem;
+}
+
+.sheet-links {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+  font-weight: 500;
+}
+
+/* ── Profile: the one pine field ──────────────────── */
+
+.profile {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 28px var(--margin);
+  padding: clamp(80px, 11vw, 160px) var(--margin);
+  background: var(--pine);
+  color: var(--pine-text);
+}
+
+.profile-lead {
+  grid-column: 2;
+  font-size: clamp(1.4rem, 2.4vw, 2.3rem);
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+}
+
+.profile-now {
+  grid-column: 2;
+  max-width: 38rem;
+  color: var(--pine-soft);
+}
+
+.profile-now span {
+  display: block;
+  color: var(--pine-text);
+  font-weight: 600;
+}
+
+.profile-approach {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.profile-approach li {
+  padding-top: 12px;
+  border-top: 1px solid color-mix(in srgb, var(--pine-text) 40%, transparent);
+  color: var(--pine-soft);
+  font-size: 0.875rem;
+}
+
+.profile-approach b {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--pine-text);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* ── Record: one timeline, to scale ───────────────── */
+
+.record {
+  padding: clamp(80px, 11vw, 160px) var(--margin);
+}
+
+.record-head p {
+  max-width: 40rem;
+  color: var(--grey);
+}
+
+.timeline {
+  margin-top: 48px;
+  padding-left: 7rem;
+}
+
+.axis {
+  position: relative;
+  height: 24px;
+  border-bottom: 1px solid var(--black);
+  font-size: 0.75rem;
+  color: var(--grey);
+  font-variant-numeric: tabular-nums;
+}
+
+.axis span {
+  position: absolute;
+  top: 0;
+}
+
+.axis i {
+  position: absolute;
+  top: 0;
+  bottom: calc(-3 * 73px);
+  width: 1px;
+  background: var(--pine);
+  pointer-events: none;
+}
+
+.lane {
+  position: relative;
+  min-height: 72px;
+  border-bottom: 1px solid color-mix(in srgb, var(--black) 18%, transparent);
+}
+
+.lane-name {
+  position: absolute;
+  left: -7rem;
+  top: 16px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.lane-track {
+  position: relative;
+  height: 72px;
+}
+
+.bar {
+  position: absolute;
+  margin-top: 16px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  background: var(--black);
+  cursor: pointer;
+  transition: background-color 200ms;
+}
+
+.bar:hover,
+.bar:focus-visible,
+.bar.is-on {
+  background: var(--pine);
+  outline: 3px solid color-mix(in srgb, var(--pine) 30%, transparent);
+}
+
+.timeline-caption {
+  margin-top: 16px;
+  min-height: 1.6em;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+/* ── Contact ──────────────────────────────────────── */
+
+.contact {
+  padding: clamp(80px, 11vw, 160px) var(--margin) clamp(60px, 8vw, 120px);
+  border-top: 1px solid var(--black);
+}
+
+.email {
+  display: block;
+  margin-top: 28px;
+  font-size: clamp(1.7rem, 6.4vw, 7rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.email:hover {
+  color: var(--pine);
+}
+
+.contact-links {
+  display: flex;
+  gap: 24px;
+  margin-top: 32px;
+  font-weight: 500;
+}
+
+.foot {
+  padding: 16px var(--margin) 90px;
+  color: var(--grey);
+  font-size: 0.8125rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .frame-item,
+  .sheet,
+  .row-title,
+  .row-mark::after {
+    transition: none;
+  }
+}
+
+/* ── Narrow screens ───────────────────────────────── */
+
+@media (max-width: 56rem) {
+  /* On a phone the header scrolls away with the portrait instead of sitting over the text. */
+  .top {
+    position: absolute;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .hero-image {
+    height: 62svh;
+  }
+
+  .hero-text {
+    padding-top: 40px;
+    gap: 32px;
+  }
+
+  .hero-facts {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .work-head,
+  .record-head,
+  .index,
+  .profile {
+    grid-template-columns: 1fr;
+  }
+
+  .frame {
+    display: none;
+  }
+
+  .sheet-frame {
+    display: block;
+    grid-column: 1 / -1;
+    aspect-ratio: 4 / 3;
+    background: var(--concrete-deep);
+    overflow: hidden;
+  }
+
+  .sheet-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .row-head {
+    grid-template-columns: 3rem minmax(0, 1fr) 1.25rem;
+  }
+
+  .row-org {
+    grid-column: 2;
+  }
+
+  .row-title {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .row-mark {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+  }
+
+  .sheet-inner {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+  }
+
+  .profile-lead,
+  .profile-now,
+  .profile-approach {
+    grid-column: 1;
+  }
+
+  .profile-approach {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline {
+    padding-left: 0;
+  }
+
+  .lane-name {
+    position: static;
+    display: block;
+    padding-top: 12px;
+  }
+
+  .axis span:nth-child(even) {
+    display: none;
+  }
+}

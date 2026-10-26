@@ -5,7 +5,7 @@ import { certificates, degrees } from './education';
 import { renderLlmsTxt } from './llms';
 import { personJsonLd } from './meta';
 import { roles } from './roles';
-import { caseStudies, mapNodes } from './work';
+import { caseStudies, mapNodes, principles, problems, skills } from './work';
 
 /** Walks a value and returns every bilingual leaf as [path, value]. */
 function bilingualLeaves(value: unknown, path = 'copy'): [string, Record<string, unknown>][] {
@@ -24,6 +24,9 @@ const allBilingual = [
   ...bilingualLeaves(roles, 'roles'),
   ...bilingualLeaves(caseStudies, 'caseStudies'),
   ...bilingualLeaves(mapNodes, 'mapNodes'),
+  ...bilingualLeaves(problems, 'problems'),
+  ...bilingualLeaves(principles, 'principles'),
+  ...bilingualLeaves(skills, 'skills'),
   ...bilingualLeaves(degrees, 'degrees'),
   ...bilingualLeaves(certificates, 'certificates'),
 ];
@@ -73,11 +76,27 @@ describe('facts', () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it('links map nodes and stories only to sections that exist', () => {
+  it('links hero fragments, principles, skills and stories only to sections that exist', () => {
     const targets = new Set(['#leadership', ...caseStudies.map((study) => `#${study.id}`)]);
-    for (const href of [...mapNodes.map((node) => node.href), ...roles.flatMap((role) => role.storyHref ?? [])]) {
-      expect(targets.has(href)).toBe(true);
+    const hrefs = [
+      ...mapNodes.map((node) => node.href),
+      ...principles.map((principle) => principle.evidence.href),
+      ...skills.map((skill) => skill.href),
+      ...roles.flatMap((role) => role.storyHref ?? []),
+    ];
+    for (const href of hrefs) expect(targets.has(href)).toBe(true);
+  });
+
+  it('sorts at least one fragment into every column of the hero, and keeps most of them on small screens', () => {
+    for (const lens of ['people', 'process', 'technology'] as const) {
+      const inLens = mapNodes.filter((node) => node.lens === lens);
+      expect(inLens.length).toBeGreaterThan(0);
+      expect(inLens.filter((node) => !node.minor).length).toBeGreaterThanOrEqual(3);
     }
+  });
+
+  it('sets the hero headline as four lines in both languages', () => {
+    for (const locale of LOCALES) expect(copy.hero.headline[locale]).toHaveLength(4);
   });
 
   it('gives every timeline entry a short label in both languages', () => {

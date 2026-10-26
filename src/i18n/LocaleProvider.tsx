@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { flushSync } from 'react-dom';
 import { meta, pageUrl } from '../content/meta';
 import { LocaleContext } from './LocaleContext';
 import { HTML_LANG, OG_LOCALE, detectLocale, localeFromPath, localePath, type L, type Locale } from './locale';
@@ -79,7 +80,10 @@ export function LocaleProvider({ children, locale: fixedLocale }: LocaleProvider
       const anchor = captureAnchor();
       pendingAnchor.current = anchor;
       window.history.pushState(null, '', localePath(next, anchor?.id));
-      setLocaleState(next);
+      // Cross-fade the whole page where the browser supports view transitions and motion is welcome.
+      const fade = 'startViewTransition' in document && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (fade) document.startViewTransition(() => flushSync(() => setLocaleState(next)));
+      else setLocaleState(next);
     },
     [locale],
   );
