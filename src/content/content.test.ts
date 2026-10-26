@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { LOCALES } from '../i18n/locale';
 import { copy } from './copy';
 import { certificates, degrees } from './education';
+import { renderLlmsTxt } from './llms';
 import { roles } from './roles';
 import { caseStudies, mapNodes } from './work';
 
@@ -102,5 +103,19 @@ describe('facts', () => {
     for (const course of degrees.flatMap((degree) => degree.courses)) {
       if (course.href) expect(course.href).toMatch(/^https:\/\/www\.uia\.no\//);
     }
+  });
+});
+
+describe('llms.txt', () => {
+  const text = renderLlmsTxt();
+
+  it('links both language versions and lists every case study', () => {
+    expect(text).toContain('https://felixknutsen.com/en/');
+    expect(text).toContain('https://felixknutsen.com/no/');
+    for (const study of caseStudies) expect(text).toContain(study.title.en);
+  });
+
+  it('never prints a missing value', () => {
+    expect(text).not.toMatch(/undefined|null|\[object/);
   });
 });
