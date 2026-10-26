@@ -83,7 +83,7 @@ function RoleItem({ role, expanded, onToggle }: RoleItemProps) {
 export default function Experience() {
   const { t } = useLocale();
   const [expanded, setExpanded] = useState<Set<string>>(() => {
-    const fromHash = roleIdFromHash(window.location.hash);
+    const fromHash = typeof window === 'undefined' ? null : roleIdFromHash(window.location.hash);
     return new Set(fromHash ? [fromHash] : []);
   });
 
