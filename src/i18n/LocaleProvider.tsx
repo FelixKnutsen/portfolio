@@ -61,8 +61,14 @@ function captureAnchor(): ScrollAnchor | null {
   return best;
 }
 
-export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(initialLocale);
+interface LocaleProviderProps {
+  children: ReactNode;
+  /** Set when prerendering at build time, where there is no URL or browser to read the language from. */
+  locale?: Locale;
+}
+
+export function LocaleProvider({ children, locale: fixedLocale }: LocaleProviderProps) {
+  const [locale, setLocaleState] = useState<Locale>(() => fixedLocale ?? initialLocale());
   const pendingAnchor = useRef<ScrollAnchor | null>(null);
 
   const setLocale = useCallback(

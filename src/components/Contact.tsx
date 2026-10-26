@@ -10,6 +10,7 @@ import {
 } from '../lib/contactForm';
 import CvActions from './CvActions';
 import ExternalLink from './ExternalLink';
+import { trackEvent } from '../lib/analytics';
 import styles from './Contact.module.css';
 
 type Status = 'idle' | 'sending' | 'sent' | 'failed';
@@ -72,9 +73,11 @@ function ContactForm() {
     try {
       const ok = await sendContactMessage(values, t(form.subject));
       setStatus(ok ? 'sent' : 'failed');
+      trackEvent({ name: 'Contact form', result: ok ? 'sent' : 'failed' });
       if (ok) setValues(EMPTY);
     } catch {
       setStatus('failed');
+      trackEvent({ name: 'Contact form', result: 'failed' });
     }
     summaryRef.current?.focus();
   };
@@ -172,7 +175,11 @@ export default function Contact() {
 
           <div className={styles.emailBlock}>
             <p className={styles.emailLabel}>{t(copy.contact.emailLabel)}</p>
-            <a className={styles.email} href={`mailto:${contactDetails.email}`}>
+            <a
+              className={styles.email}
+              href={`mailto:${contactDetails.email}`}
+              onClick={() => trackEvent({ name: 'Email click' })}
+            >
               {contactDetails.email}
             </a>
             <CopyEmailButton />

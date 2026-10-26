@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { LOCALES } from '../i18n/locale';
 import { copy } from './copy';
 import { certificates, degrees } from './education';
+import { renderLlmsTxt } from './llms';
+import { personJsonLd } from './meta';
 import { roles } from './roles';
 import { caseStudies, mapNodes } from './work';
 
@@ -102,5 +104,31 @@ describe('facts', () => {
     for (const course of degrees.flatMap((degree) => degree.courses)) {
       if (course.href) expect(course.href).toMatch(/^https:\/\/www\.uia\.no\//);
     }
+  });
+});
+
+describe('structured data', () => {
+  it.each(LOCALES)('is valid JSON with a Person as the main entity (%s)', (locale) => {
+    const json = personJsonLd(locale);
+    expect(json).not.toContain('<');
+    const graph = JSON.parse(json)['@graph'] as Record<string, unknown>[];
+    const page = graph.find((node) => node['@type'] === 'ProfilePage');
+    const person = graph.find((node) => node['@type'] === 'Person');
+    expect(page?.mainEntity).toEqual({ '@id': person?.['@id'] });
+    expect(person?.name).toBe('Felix Fabricius Knutsen');
+  });
+});
+
+describe('llms.txt', () => {
+  const text = renderLlmsTxt();
+
+  it('links both language versions and lists every case study', () => {
+    expect(text).toContain('https://felixknutsen.com/en/');
+    expect(text).toContain('https://felixknutsen.com/no/');
+    for (const study of caseStudies) expect(text).toContain(study.title.en);
+  });
+
+  it('never prints a missing value', () => {
+    expect(text).not.toMatch(/undefined|null|\[object/);
   });
 });

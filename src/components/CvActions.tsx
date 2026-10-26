@@ -1,6 +1,7 @@
 import { copy } from '../content/copy';
 import { CV_DOWNLOAD_NAME, CV_PUBLIC_PATH } from '../content/cvFile';
 import { useLocale } from '../i18n/LocaleContext';
+import { trackEvent } from '../lib/analytics';
 import styles from './CvActions.module.css';
 
 /** A single "View CV" link for the hero's action row. Renders nothing if the PDF was missing at build time. */
@@ -8,7 +9,14 @@ export function CvViewLink({ className }: { className?: string }) {
   const { t } = useLocale();
   if (!__CV_AVAILABLE__) return null;
   return (
-    <a className={className} href={CV_PUBLIC_PATH} target="_blank" rel="noopener" aria-label={t(copy.cv.viewLabel)}>
+    <a
+      className={className}
+      href={CV_PUBLIC_PATH}
+      target="_blank"
+      rel="noopener"
+      aria-label={t(copy.cv.viewLabel)}
+      onClick={() => trackEvent({ name: 'CV view', placement: 'hero' })}
+    >
       {t(copy.cv.view)}
       <span aria-hidden="true" className="external-mark" />
     </a>
@@ -34,6 +42,7 @@ export default function CvActions() {
             rel="noopener"
             type="application/pdf"
             aria-label={t(copy.cv.viewLabel)}
+            onClick={() => trackEvent({ name: 'CV view', placement: 'contact' })}
           >
             {t(copy.cv.view)}
             <span aria-hidden="true" className="external-mark" />
@@ -46,6 +55,7 @@ export default function CvActions() {
             download={CV_DOWNLOAD_NAME}
             type="application/pdf"
             aria-label={t(copy.cv.downloadLabel)}
+            onClick={() => trackEvent({ name: 'CV download', placement: 'contact' })}
           >
             {t(copy.cv.download)}
             <span aria-hidden="true" className={styles.downloadMark} />
