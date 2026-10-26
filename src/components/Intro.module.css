@@ -1,0 +1,134 @@
+.intro {
+  padding-block: var(--section-pad);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-7) var(--space-6);
+  align-items: start;
+}
+
+.statement {
+  grid-column: 1 / span 8;
+  font-size: clamp(1.875rem, 3.7vw, 3.625rem);
+  font-weight: 640;
+  font-stretch: 100%;
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+  text-wrap: balance;
+}
+
+.body {
+  grid-column: 1 / span 8;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+.body p:first-child {
+  font-weight: 560;
+}
+
+.portrait {
+  grid-column: 10 / -1;
+  grid-row: 1 / span 3;
+  position: relative;
+}
+
+/* The portrait is pinned to the wall like everything else that is human here: slightly askew, casting a shadow. */
+.portrait img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 0.5rem solid var(--paper-raised);
+  border-radius: 2px;
+  background: var(--paper-sunk);
+  box-shadow: 0 28px 40px -28px rgb(16 20 43 / 0.55);
+  transform: rotate(1.8deg);
+}
+
+/* The photo credit sits on a note stuck to the corner of the photo. */
+.portrait figcaption {
+  position: absolute;
+  left: calc(var(--space-4) * -1);
+  bottom: var(--space-5);
+  padding: 0.35em 0.7em;
+  background: var(--note);
+  color: var(--ink);
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  font-stretch: 88%;
+  transform: rotate(-2.5deg);
+}
+
+.facts {
+  grid-column: 1 / span 8;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--space-6);
+  border-top: var(--line-strong) solid var(--ink);
+}
+
+.fact {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+  padding-block: var(--space-4);
+  border-bottom: var(--line) solid var(--rule);
+}
+
+.fact dt {
+  color: var(--graphite);
+  font-size: var(--fs-meta);
+  font-weight: 650;
+}
+
+.fact dd {
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
+@media (max-width: 56rem) {
+  .statement,
+  .body,
+  .facts {
+    grid-column: 1 / -1;
+  }
+
+  .portrait {
+    grid-column: 1 / span 7;
+    grid-row: auto;
+    max-width: 22rem;
+    margin-left: var(--space-4);
+  }
+}
+
+@media (max-width: 40rem) {
+  .layout {
+    gap: var(--space-6);
+  }
+
+  .body,
+  .facts {
+    grid-template-columns: 1fr;
+  }
+
+  .body {
+    gap: var(--space-4);
+  }
+
+  .portrait {
+    grid-column: 1 / span 10;
+  }
+}
+
+/* Twelve columns with wide gaps would be wider than a small phone; narrow the gaps there. */
+@media (max-width: 40rem) {
+  .layout {
+    column-gap: var(--space-2);
+  }
+}

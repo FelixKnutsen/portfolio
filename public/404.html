@@ -4,21 +4,80 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <title>Fant ikke siden – Felix Fabricius Knutsen</title>
+    <meta name="theme-color" content="#2a36e6" />
+    <title>Fant ikke siden · Page not found – Felix Fabricius Knutsen</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
     <style>
-      body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #e8eae3; color: #15201b; font-family: 'Segoe UI', system-ui, sans-serif; }
-      main { padding: 2rem 1rem; max-width: 36rem; }
-      h1 { font-size: clamp(2.5rem, 9vw, 4.5rem); line-height: 1; letter-spacing: -0.04em; margin: 0 0 1.5rem; }
-      p { font-size: 1.125rem; line-height: 1.5; margin: 0 0 1rem; }
-      a { color: #3b45f2; font-weight: 600; }
+      @font-face {
+        font-family: 'Archivo';
+        src: url('/fonts/archivo-latin.woff2') format('woff2-variations');
+        font-weight: 100 900;
+        font-stretch: 62% 125%;
+        font-display: swap;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: grid;
+        align-items: center;
+        padding: 2rem clamp(1rem, 6vw, 4rem);
+        background: #2a36e6;
+        color: #fff;
+        font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+      }
+      main { display: grid; gap: 2.5rem; max-width: 64rem; }
+      .note {
+        justify-self: start;
+        padding: 0.4em 0.8em;
+        background: #ffd54f;
+        color: #10142b;
+        font-weight: 700;
+        font-stretch: 80%;
+        transform: rotate(-2deg);
+      }
+      .pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 2rem 3rem; }
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2.5rem, 7vw, 4.5rem);
+        font-weight: 820;
+        font-stretch: 118%;
+        line-height: 0.92;
+        letter-spacing: -0.03em;
+      }
+      p { margin: 0 0 1.25rem; color: #d4d7ff; font-size: 1.125rem; line-height: 1.5; }
+      a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 3rem;
+        padding: 0 1.5rem;
+        border-radius: 999px;
+        background: #ffd54f;
+        color: #10142b;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      a:hover { background: #fff; }
+      a:focus-visible { outline: none; box-shadow: 0 0 0 2px #2a36e6, 0 0 0 4px #ffd54f; }
     </style>
   </head>
   <body>
     <main>
-      <h1>Fant ikke siden</h1>
-      <p>Adressen finnes ikke. <a href="/no/">Gå til forsiden</a>.</p>
-      <p lang="en">This page does not exist. <a href="/en/">Go to the home page</a>.</p>
+      <p class="note">404</p>
+      <div class="pair">
+        <section>
+          <h1>Fant ikke siden</h1>
+          <p>Adressen finnes ikke, eller den er flyttet.</p>
+          <a href="/no/">Til forsiden</a>
+        </section>
+        <section lang="en">
+          <h1>Page not found</h1>
+          <p>This address does not exist, or it has moved.</p>
+          <a href="/en/">Go to the home page</a>
+        </section>
+      </div>
     </main>
   </body>
 </html>

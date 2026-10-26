@@ -1,67 +1,165 @@
+/*
+  The hero: an ultramarine field with the claim, and a board where fragments
+  of real work settle into three columns as the visitor scrolls (see
+  useHeroSort). Without JavaScript, or with reduced motion, the board is
+  simply shown sorted.
+*/
+
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
-  grid-template-areas:
-    'name name'
-    'intro intro'
-    'now portrait'
-    'map map';
-  padding-top: clamp(var(--space-6), 6vw, var(--space-8));
+  --sort-distance: 85svh;
+  position: relative;
+  background: var(--blue);
+  color: var(--on-blue);
+}
+
+.hero[data-sort='live'][data-pin] {
+  height: calc(100svh + var(--sort-distance));
+}
+
+.stage {
+  /* 1 = sorted. JavaScript lowers it while the sort runs. */
+  --sort: 1;
+  position: relative;
+  display: flex;
+  min-height: 100svh;
+  overflow: clip;
+}
+
+.hero[data-sort='live'][data-pin] .stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+}
+
+/* Registered so it can be animated by CSS alone, for the fallback below. */
+@property --sort {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
+/*
+  When the sort is going to run, start unsorted, so the page does not flash
+  its sorted state before the script takes over. If the script never does,
+  the page sorts itself after a moment.
+*/
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .hero[data-sort='pending'] .stage {
+    --sort: 0;
+    animation: sort-fallback 0s 2.5s forwards;
+  }
+
+  /* Between hydration and the script's first frame, stay unsorted too. */
+  .hero[data-sort='live'] .stage:not([data-ready]) {
+    --sort: 0;
+  }
+}
+
+@keyframes sort-fallback {
+  to {
+    --sort: 1;
+  }
+}
+
+/* A fine grid emerges under the board as the work is sorted onto it. */
+.stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.1) 1px, transparent 1px);
+  background-size: 3rem 3rem;
+  background-position: calc(50% + 1.5rem) 0;
+  mask-image: linear-gradient(to bottom, transparent 30%, #000 75%);
+  opacity: var(--sort);
+  pointer-events: none;
+}
+
+.layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(var(--space-6), 8svh, var(--space-10));
+  padding-top: calc(var(--header-height) + clamp(var(--space-5), 5svh, var(--space-8)));
+  padding-bottom: clamp(var(--space-5), 4svh, var(--space-7));
+}
+
+/* ── Claim ───────────────────────────────────────────── */
+
+.copy {
+  container-type: inline-size;
 }
 
 .name {
-  grid-area: name;
-  font-size: var(--fs-name);
-  font-weight: 800;
-  line-height: var(--lh-tight);
-  letter-spacing: var(--track-name);
-  margin-left: -0.04em;
+  display: inline-block;
+  margin-bottom: clamp(var(--space-4), 2.4svh, var(--space-6));
+  font-size: var(--fs-lede);
+  font-weight: 650;
+  font-stretch: 100%;
+  letter-spacing: -0.01em;
 }
 
-.name span {
+.headline {
+  /* --fit is the width of the longest row in em (measured in both languages), so the claim fills the frame without overflowing. */
+  --fit: 13;
+  font-size: min(calc(100cqi / var(--fit)), 22svh);
+  font-weight: 820;
+  font-stretch: var(--wide);
+  line-height: var(--lh-hero);
+  letter-spacing: var(--track-hero);
+  text-wrap: nowrap;
+}
+
+.row {
   display: block;
 }
 
-.intro {
-  grid-area: intro;
-  margin-top: var(--space-6);
-  max-width: 34rem;
+.part {
+  display: inline-block;
+  padding-block: 0.04em 0.1em;
+  margin-block: -0.04em -0.1em;
+  overflow: clip;
+  vertical-align: top;
+}
+
+.partInner {
+  display: inline-block;
+  animation: rise 1000ms var(--ease-out) both;
+  animation-delay: calc(80ms + var(--i) * 90ms);
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(102%);
+  }
+}
+
+/*
+  The loose line: every word at its own width and weight, converging on the
+  headline's setting as --sort goes from 0 to 1.
+*/
+.word {
+  font-stretch: calc(var(--loose-width) + (var(--wide) - var(--loose-width)) * var(--sort));
+  font-weight: calc(var(--loose-weight) + (820 - var(--loose-weight)) * var(--sort));
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5) var(--space-7);
+  margin-top: clamp(var(--space-5), 3.5svh, var(--space-7));
 }
 
 .role {
-  font-size: var(--fs-small);
-  font-weight: 500;
-  color: var(--ink-soft);
-}
-
-.statement {
-  margin-top: var(--space-3);
-  font-size: clamp(1.375rem, 2.3vw, 2rem);
-  font-weight: 500;
-  line-height: 1.22;
-  letter-spacing: -0.015em;
-  text-wrap: pretty;
-}
-
-/* What Felix is looking for: the practical answer a recruiter needs first. */
-.seeking {
-  position: relative;
-  margin-top: var(--space-4);
-  padding-left: var(--space-5);
-  font-size: var(--fs-small);
+  max-width: 34rem;
+  color: var(--on-blue-soft);
+  font-size: var(--fs-body);
   line-height: 1.45;
-  color: var(--ink);
-}
-
-.seeking::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.3em;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: var(--radius-node);
-  border: var(--connector) solid var(--signal);
 }
 
 .actions {
@@ -69,159 +167,363 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-3) var(--space-5);
-  margin-top: var(--space-5);
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+  font-size: var(--fs-ui);
+  font-weight: 650;
+  text-decoration: none;
 }
 
 .primary {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-  min-height: 3rem;
-  padding: 0 var(--space-5);
-  background: var(--ink);
-  color: var(--paper);
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: var(--radius-node);
+  padding-inline: var(--space-5);
+  border-radius: var(--radius-chip);
+  background: var(--note);
+  color: var(--ink);
   transition: background-color var(--dur-fast) var(--ease-out);
 }
 
-/* The button carries the connector: a node that moves along when hovered. */
-.primary::after {
-  content: '';
-  width: 1.75rem;
-  height: 0.5rem;
-  background:
-    linear-gradient(var(--paper), var(--paper)) left center / calc(100% - 0.4rem) var(--line-strong) no-repeat,
-    radial-gradient(circle at calc(100% - 0.25rem) 50%, var(--signal-on-ink) 0.25rem, transparent 0.27rem);
-  transition: width var(--dur-base) var(--ease-out);
-}
-
 .primary:hover {
-  background: var(--signal-deep);
-}
-
-.primary:hover::after {
-  width: 2.25rem;
+  background: var(--on-blue);
 }
 
 .secondary {
-  font-weight: 600;
-  color: var(--ink);
+  padding-inline: var(--space-2);
   text-decoration-line: underline;
-  text-decoration-thickness: var(--line-strong);
-  text-decoration-color: var(--signal);
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
   text-underline-offset: 0.3em;
 }
 
 .secondary:hover {
-  color: var(--signal);
+  text-decoration-color: currentColor;
 }
 
-.now {
-  grid-area: now;
-  align-self: end;
-  display: flex;
+/* ── Board ───────────────────────────────────────────── */
+
+.board {
+  display: grid;
   gap: var(--space-3);
-  margin: var(--space-6) var(--space-7) var(--space-5) 0;
-  font-size: var(--fs-meta);
-  line-height: 1.45;
-  color: var(--ink-soft);
 }
 
-.nowMarker {
-  flex: none;
-  width: 0.75rem;
-  height: 0.75rem;
-  margin-top: 0.2rem;
-  border-radius: var(--radius-node);
-  background: var(--now);
-  box-shadow: 0 0 0 var(--line) var(--ink);
+.boardHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
 }
 
-/* The portrait is a duotone print in the site's own ink and paper, standing on the process map. */
-.portrait {
-  grid-area: portrait;
+/* The categories appear as the work settles into them. */
+.boardHeading,
+.columnHeading {
+  opacity: clamp(0, calc(var(--sort) * 2.5 - 1.5), 1);
+}
+
+.boardHeading {
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+
+.hint {
+  display: none;
+  font-size: var(--fs-small);
+  color: var(--on-blue-soft);
+  opacity: calc(1 - var(--sort) * 4);
+}
+
+.hero[data-sort='live'] .hint {
+  display: block;
+}
+
+.hint::after {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-left: 0.6em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-0.2em) rotate(45deg);
+  animation: nudge 1.6s var(--ease-in-out) infinite;
+}
+
+@keyframes nudge {
+  50% {
+    transform: translateY(0.05em) rotate(45deg);
+  }
+}
+
+.columns {
   position: relative;
-  align-self: end;
-  justify-self: end;
-  width: 100%;
-  max-width: 13.5rem;
-  margin: var(--space-6) 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.portrait img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  background: var(--paper-sunk);
-}
-
-.credit {
+/* The board's lines draw in as the work is sorted. */
+.columns::before {
+  content: '';
   position: absolute;
-  bottom: 0;
-  left: calc(-1 * var(--space-5));
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-size: 0.75rem;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  color: var(--ink-soft);
+  inset: 0 0 auto;
+  height: var(--line-strong);
+  background: var(--on-blue);
+  transform: scaleX(var(--sort));
+  transform-origin: left;
+}
+
+.column {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-4) 0;
+}
+
+.column:first-child {
+  padding-left: 0;
+}
+
+.column + .column::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--line);
+  background: color-mix(in srgb, var(--on-blue) 55%, transparent);
+  transform: scaleY(var(--sort));
+  transform-origin: top;
+}
+
+.columnHeading {
+  font-size: clamp(1.0625rem, 1.4vw, 1.375rem);
+  font-weight: 750;
+  font-stretch: var(--wider);
+  letter-spacing: -0.01em;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/*
+  Loose fragments are ghost outlines; sorted ones are solid index cards.
+  --fill (set by the sort, 1 when settled) blends between the two.
+*/
+.chip {
+  --fill: 1;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0.4em 0.95em;
+  border: 1.5px solid var(--on-blue);
+  border-radius: var(--radius-field);
+  background: color-mix(in srgb, var(--paper-raised) calc(var(--fill) * 100%), var(--blue));
+  color: color-mix(in srgb, var(--ink) calc(var(--fill) * 100%), var(--on-blue));
+  box-shadow: 0 12px 20px -14px rgb(6 9 60 / calc(var(--fill) * 0.7));
+  font-size: var(--fs-small);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.chip:hover {
+  border-color: var(--note);
+  background: var(--note);
+  color: var(--ink);
+}
+
+.chip:focus-visible {
+  opacity: 1 !important;
+}
+
+/* Where each fragment comes from. Read out everywhere, shown where there is room. */
+.chipSource {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
   white-space: nowrap;
 }
 
-.map {
-  grid-area: map;
+/*
+  Where there is room (large screens, and tall tablets), each column becomes
+  a stack of cards, like a sorted workshop wall, and every fragment shows its
+  source. Large screens fit two cards side by side.
+*/
+@media (min-width: 75rem) and (min-height: 46rem), (min-width: 40rem) and (min-height: 60rem) {
+  .chips {
+    display: grid;
+  }
+
+  .chip {
+    display: grid;
+    gap: 2px;
+    min-height: 0;
+    padding: 0.55em 0.9em 0.6em;
+    border-radius: var(--radius-field);
+    white-space: normal;
+  }
+
+  .chipLabel {
+    font-size: var(--fs-ui);
+    font-weight: 650;
+  }
+
+  .chipSource {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    color: color-mix(in srgb, var(--graphite) calc(var(--fill) * 100%), var(--on-blue-soft));
+    font-size: var(--fs-meta);
+    font-weight: 450;
+  }
+
+  .chip:hover .chipSource {
+    color: var(--ink);
+  }
 }
 
-@media (min-width: 56rem) {
+@media (min-width: 75rem) and (min-height: 46rem) {
+  .chips {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Fragments wait for the script to place them, so they never flash in their sorted place first. */
+@media (scripting: enabled) {
+  .hero[data-sort='pending'] .chip,
+  .hero[data-sort='live'] .stage:not([data-ready]) .chip {
+    opacity: 0;
+  }
+}
+
+/* If the script never runs, show the sorted board after a moment. */
+.hero[data-sort='pending'] .chip {
+  animation: appear 0s 2.5s forwards;
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── Notes: the problems the work started from ───────── */
+
+.notes {
+  position: absolute;
+  inset: 0;
+  display: none;
+  pointer-events: none;
+}
+
+.hero[data-sort='live'] .stage[data-ready] .notes {
+  display: block;
+}
+
+.note {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.55em 0.8em 0.6em;
+  background: var(--note);
+  color: var(--ink);
+  font-size: clamp(1rem, 1.5vw, 1.375rem);
+  font-weight: 700;
+  font-stretch: 78%;
+  line-height: 1.1;
+  white-space: nowrap;
+  box-shadow: 0 10px 24px -12px rgb(6 9 60 / 0.55);
+}
+
+/* Each problem is crossed out as the work gets sorted. */
+.note::after {
+  content: '';
+  position: absolute;
+  left: 0.6em;
+  right: 0.6em;
+  top: 52%;
+  height: 2px;
+  background: var(--ink);
+  transform: scaleX(calc(var(--sort) * 3));
+  transform-origin: left;
+}
+
+/* ── Smaller screens ─────────────────────────────────── */
+
+@media (max-width: 56rem) {
   .hero {
-    --name-size: clamp(4rem, min(8.8vw, 15vh), 9.5rem);
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-areas: none;
-    column-gap: var(--space-5);
-    padding-top: clamp(var(--space-5), 4vh, var(--space-8));
+    --sort-distance: 70svh;
   }
 
-  /* Two lines across the full width, sized against the viewport height so the map stays in the first screen. */
-  .name {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    font-size: var(--name-size);
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 40rem) {
+  .hero {
+    --sort-distance: 60svh;
   }
 
-  .name span:nth-child(-n + 2) {
-    display: inline;
+  .headline {
+    --fit: 7;
   }
 
-  .intro {
-    grid-column: 1 / span 6;
-    grid-row: 2;
-    margin-top: clamp(var(--space-5), 4vh, var(--space-7));
-    margin-bottom: clamp(var(--space-5), 4vh, var(--space-7));
+  .part {
+    display: block;
   }
 
-  .now {
-    grid-column: 7 / span 3;
-    grid-row: 2;
-    margin: 0 var(--space-5) clamp(var(--space-5), 4vh, var(--space-7)) 0;
+  .columns {
+    grid-template-columns: 1fr;
   }
 
-  /*
-    The portrait rises beside the second line of the name ("Knutsen" is short),
-    starting one name-line down so it never meets "Felix Fabricius", and stands
-    on the top edge of the process map.
-  */
-  .portrait {
-    grid-column: 10 / -1;
-    grid-row: 1 / 3;
-    max-width: 20rem;
-    margin: calc(var(--name-size) * 0.92) 0 0;
+  .column,
+  .column:first-child {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
   }
 
-  .map {
-    grid-column: 1 / -1;
-    grid-row: 3;
+  .column + .column::before {
+    inset: 0 0 auto;
+    width: auto;
+    height: var(--line);
+    transform: scaleX(var(--sort));
+    transform-origin: left;
+  }
+
+  .columnHeading {
+    padding-top: 0.5em;
+    font-size: var(--fs-small);
+    font-stretch: 100%;
+  }
+
+  .chip {
+    min-height: 2.25rem;
+    font-size: 0.875rem;
+  }
+
+  .chipItem[data-minor] {
+    display: none;
+  }
+
+  .note {
+    font-size: 0.9375rem;
   }
 }

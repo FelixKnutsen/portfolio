@@ -6,7 +6,7 @@ import { track } from '@vercel/analytics';
  * only recorded on Vercel plans that include them; elsewhere this is a no-op.
  */
 export type AnalyticsEvent =
-  | { name: 'CV view'; placement: 'hero' | 'contact' }
+  | { name: 'CV view'; placement: 'header' | 'contact' }
   | { name: 'CV download'; placement: 'contact' }
   | { name: 'Contact form'; result: 'sent' | 'failed' }
   | { name: 'Email click' }

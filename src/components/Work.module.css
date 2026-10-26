@@ -1,0 +1,368 @@
+.work {
+  padding-block: var(--section-pad);
+  border-top: var(--line) solid var(--rule);
+}
+
+.chapters {
+  display: grid;
+  gap: clamp(var(--space-9), 12vw, var(--space-10));
+}
+
+/* ── Contents: the three projects at a glance ───────── */
+
+.index {
+  margin-bottom: clamp(var(--space-9), 10vw, var(--space-10));
+  border-top: 3px solid var(--ink);
+}
+
+.indexLink {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: baseline;
+  gap: var(--space-2) var(--space-6);
+  padding-block: var(--space-5);
+  border-bottom: var(--line) solid var(--rule-strong);
+  text-decoration: none;
+}
+
+.indexOrg {
+  grid-column: 1 / span 4;
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  font-stretch: var(--condensed);
+  line-height: 1;
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.indexTitle {
+  grid-column: 5 / span 5;
+  justify-self: start;
+  font-size: var(--fs-lede);
+  font-weight: 520;
+  line-height: 1.3;
+  /* A highlighter stroke sweeps under the title on hover: the human mark on the system. */
+  background: linear-gradient(var(--note), var(--note)) 0 88% / 0 0.42em no-repeat;
+  transition: background-size var(--dur-slow) var(--ease-out);
+}
+
+.indexMeta {
+  grid-column: 10 / -1;
+  display: grid;
+  gap: 2px;
+  color: var(--graphite);
+  font-size: var(--fs-small);
+  line-height: 1.35;
+  font-variant-numeric: tabular-nums;
+}
+
+.indexLink:hover .indexOrg {
+  color: var(--blue);
+}
+
+.indexLink:hover .indexTitle,
+.indexLink:focus-visible .indexTitle {
+  background-size: 100% 0.42em;
+}
+
+.chapter {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.chapterHead {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-2) var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 3px solid var(--ink);
+}
+
+.org {
+  grid-column: 1 / span 8;
+  /* Scales with the viewport so long Norwegian compounds like "Studentorganisasjonen" fit a phone. */
+  font-size: clamp(1.75rem, 8.6vw, 6rem);
+  overflow-wrap: anywhere;
+  font-weight: 800;
+  font-stretch: var(--condensed);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+}
+
+.context {
+  grid-column: 9 / -1;
+  align-self: end;
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+  color: var(--graphite);
+  font-size: var(--fs-small);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.title {
+  grid-column: 1 / span 9;
+  margin-top: var(--space-5);
+  font-size: var(--fs-h3);
+  font-weight: 760;
+  font-stretch: 108%;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.text {
+  grid-column: 1 / span 5;
+  display: grid;
+  gap: var(--space-6);
+  font-size: var(--fs-body);
+}
+
+/*
+  Each illustration is shown on its own plate, in its own tone, running off
+  the right edge of the page like an exhibit wall.
+*/
+.chapter {
+  --bleed: calc(max(0px, (100vw - var(--page-max)) / 2) + var(--gutter));
+}
+
+.plate {
+  grid-column: 7 / -1;
+  align-self: stretch;
+  margin-right: calc(var(--bleed) * -1);
+  padding: clamp(var(--space-6), 4vw, var(--space-8)) var(--bleed) clamp(var(--space-6), 4vw, var(--space-8))
+    clamp(var(--space-5), 3.5vw, var(--space-8));
+  border-radius: var(--radius-panel) 0 0 var(--radius-panel);
+  background-color: var(--paper-sunk);
+  /* A workshop-wall dot grid. */
+  background-image: radial-gradient(circle at 1px 1px, rgb(16 20 43 / 0.14) 1px, transparent 1.6px);
+  background-size: 22px 22px;
+}
+
+.chapter[data-illustration='equipment'] .plate {
+  background-color: var(--blue-wash);
+}
+
+.chapter[data-illustration='twin'] .plate {
+  background-color: var(--ink);
+  background-image: radial-gradient(circle at 1px 1px, rgb(241 242 244 / 0.12) 1px, transparent 1.6px);
+  color: var(--on-ink);
+}
+
+.chapter[data-illustration='twin'] .plate figcaption {
+  color: var(--on-ink-soft);
+}
+
+.visual {
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-5));
+}
+
+.label {
+  margin-bottom: var(--space-2);
+  color: var(--graphite);
+  font-size: var(--fs-meta);
+  font-weight: 650;
+}
+
+/* The problem is the human side of the story, so it is written on a note. */
+.problem {
+  justify-self: start;
+  max-width: 30rem;
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  background: var(--note);
+  color: var(--ink);
+  transform: rotate(-0.8deg);
+}
+
+.problem .label {
+  color: var(--ink);
+}
+
+.problemText {
+  font-size: var(--fs-lede);
+  font-weight: 560;
+  font-stretch: 92%;
+  line-height: 1.3;
+}
+
+.lede {
+  font-size: var(--fs-lede);
+  line-height: 1.45;
+}
+
+.block p {
+  line-height: var(--lh-body);
+}
+
+.steps {
+  counter-reset: step;
+  display: grid;
+  border-top: var(--line) solid var(--rule);
+}
+
+.step {
+  counter-increment: step;
+  position: relative;
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4) 0 var(--space-4) 2.75rem;
+  border-bottom: var(--line) solid var(--rule);
+  line-height: 1.5;
+}
+
+/* Steps are a real sequence, so they are numbered, on the ultramarine connector. */
+.step::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: var(--space-4);
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--blue);
+  color: var(--on-blue);
+  font-size: var(--fs-meta);
+  font-weight: 700;
+}
+
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: calc(0.875rem - 1px);
+  top: calc(var(--space-4) + 1.75rem);
+  bottom: calc(var(--space-4) * -1);
+  width: var(--connector);
+  background: var(--blue);
+}
+
+.step strong {
+  font-weight: 680;
+}
+
+.step span {
+  color: var(--graphite);
+}
+
+.learning {
+  padding-left: var(--space-5);
+  border-left: 3px solid var(--blue);
+}
+
+.learning p {
+  font-size: var(--fs-lede);
+  line-height: 1.45;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.35em;
+  font-weight: 600;
+}
+
+.stack li:not(:last-child)::after {
+  content: ',';
+}
+
+.links {
+  display: grid;
+  border-top: var(--line) solid var(--rule);
+}
+
+.linkItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 3rem;
+  border-bottom: var(--line) solid var(--rule);
+  color: var(--blue);
+  font-weight: 620;
+  text-decoration: none;
+  transition: padding var(--dur-base) var(--ease-out);
+}
+
+.linkItem:hover {
+  padding-left: var(--space-3);
+  color: var(--blue-deep);
+}
+
+.note {
+  color: var(--graphite);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
+@media (max-width: 64rem) {
+  .text {
+    grid-column: 1 / span 6;
+  }
+}
+
+@media (max-width: 56rem) {
+  .org,
+  .context,
+  .title,
+  .text {
+    grid-column: 1 / -1;
+  }
+
+  .context {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .title {
+    margin-top: var(--space-4);
+  }
+
+  /* On one column the story reads: title, the problem, the illustration, then how it was solved. */
+  .text {
+    display: contents;
+  }
+
+  .text > * {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+
+  .text > .problem {
+    order: 1;
+  }
+
+  .plate {
+    grid-column: 1 / -1;
+    order: 2;
+    margin-inline: calc(var(--gutter) * -1);
+    padding: var(--space-6) var(--gutter);
+    border-radius: 0;
+  }
+
+  .visual {
+    position: static;
+  }
+
+  .indexLink {
+    grid-template-columns: 1fr;
+  }
+
+  .indexOrg,
+  .indexTitle,
+  .indexMeta {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Twelve columns with wide gaps would be wider than a small phone; narrow the gaps there. */
+@media (max-width: 40rem) {
+  .chapter,
+  .chapterHead,
+  .indexLink {
+    column-gap: var(--space-2);
+  }
+}

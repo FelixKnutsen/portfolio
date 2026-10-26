@@ -31,7 +31,7 @@ export function renderLlmsTxt(): string {
 
   return `# Felix Fabricius Knutsen
 
-> ${line(copy.hero.role.en)}. ${line(copy.hero.statement.en)} ${line(copy.hero.seeking.en)}
+> ${line(copy.hero.role.en)}. ${line(copy.intro.statement.en)} Looking for: ${line(copy.intro.facts.seeking.en)}
 
 This file summarises the portfolio at ${SITE_URL}. The full site is available in English and Norwegian.
 
