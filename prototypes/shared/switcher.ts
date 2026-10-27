@@ -6,6 +6,7 @@
 const options = [
   { key: 'a', label: 'A · Editorial', href: '/prototypes/a/' },
   { key: 'b', label: 'B · Instrument', href: '/prototypes/b/' },
+  { key: 'b2', label: 'B2 · Refined', href: '/prototypes/b2/' },
   { key: 'c', label: 'C · Plan', href: '/prototypes/c/' },
   { key: 'current', label: 'Current site', href: '/en/' },
 ];

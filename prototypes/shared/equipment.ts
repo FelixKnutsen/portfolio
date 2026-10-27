@@ -7,15 +7,26 @@ import { equipment, esc } from './content';
 
 type View = 'device' | 'person';
 
-export function mountEquipment(root: HTMLElement, options: { autoSwitch?: boolean } = {}): void {
+const ENGLISH = {
+  byDevice: 'By device',
+  byPerson: 'By person',
+  viewLabel: 'Show the list',
+  before: 'Before: a flat list of devices. Whoever holds each one is registered by hand, and mistakes stay put.',
+  after: 'After: equipment grouped under the person who holds it. A device lands in the right place through its SIM card.',
+  unregistered: 'Not registered',
+  devices: 'devices',
+};
+
+export function mountEquipment(root: HTMLElement, options: { autoSwitch?: boolean; labels?: Partial<typeof ENGLISH> } = {}): void {
+  const text = { ...ENGLISH, ...options.labels };
   let view: View = 'device';
   let touched = false;
 
   root.classList.add('eq');
   root.innerHTML = `
-    <div class="eq-toggle" role="group" aria-label="Show the list">
-      <button type="button" class="eq-option" data-view="device" aria-pressed="true">By device</button>
-      <button type="button" class="eq-option" data-view="person" aria-pressed="false">By person</button>
+    <div class="eq-toggle" role="group" aria-label="${esc(text.viewLabel)}">
+      <button type="button" class="eq-option" data-view="device" aria-pressed="true">${esc(text.byDevice)}</button>
+      <button type="button" class="eq-option" data-view="person" aria-pressed="false">${esc(text.byPerson)}</button>
     </div>
     <p class="eq-explain" aria-live="polite"></p>
     <ul class="eq-list"></ul>`;
@@ -32,7 +43,7 @@ export function mountEquipment(root: HTMLElement, options: { autoSwitch?: boolea
       return [
         {
           key: `p-${person.id}`,
-          html: `<li class="eq-person" data-key="p-${person.id}"><span class="eq-name">${esc(person.name)}</span><span class="eq-team">${esc(person.team)}</span><span class="eq-count">${owned.length} devices</span></li>`,
+          html: `<li class="eq-person" data-key="p-${person.id}"><span class="eq-name">${esc(person.name)}</span><span class="eq-team">${esc(person.team)}</span><span class="eq-count">${owned.length} ${esc(text.devices)}</span></li>`,
         },
         ...owned.map((device) => ({ key: device.id, html: deviceRow(device) })),
       ];
@@ -41,7 +52,7 @@ export function mountEquipment(root: HTMLElement, options: { autoSwitch?: boolea
 
   const deviceRow = (device: (typeof equipment.devices)[number]) => {
     const holder = equipment.people.find((person) => person.id === device.holder)!;
-    const who = device.unregistered && view === 'device' ? '<span class="eq-flag">Not registered</span>' : esc(holder.name);
+    const who = device.unregistered && view === 'device' ? `<span class="eq-flag">${esc(text.unregistered)}</span>` : esc(holder.name);
     return `<li class="eq-row" data-key="${device.id}"><span class="eq-device">${esc(device.name)}</span><span class="eq-sim">…${device.sim}</span><span class="eq-holder">${who}</span></li>`;
   };
 
@@ -52,10 +63,7 @@ export function mountEquipment(root: HTMLElement, options: { autoSwitch?: boolea
       .map((row) => row.html)
       .join('');
     root.dataset.view = view;
-    explain.textContent =
-      view === 'device'
-        ? 'Before: a flat list of devices. Whoever holds each one is registered by hand, and mistakes stay put.'
-        : 'After: equipment grouped under the person who holds it. A device lands in the right place through its SIM card.';
+    explain.textContent = view === 'device' ? text.before : text.after;
     buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.view === view)));
     if (!animate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     list.querySelectorAll<HTMLElement>('[data-key]').forEach((el) => {
