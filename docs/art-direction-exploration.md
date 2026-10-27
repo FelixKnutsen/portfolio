@@ -62,3 +62,22 @@ To keep A from drifting into the generic warm-serif look: keep the paper greyer 
 - Dot grids and the index-card wall.
 - The giant condensed section titles.
 - The repeated tellings of the same projects.
+
+## B2: Prototype B refined (27 October 2026)
+
+`/prototypes/b2/` (add `?lang=no` for Norwegian). The original B is unchanged at `/prototypes/b/` for comparison.
+
+**Opening.** The model is drawn complete and still on load. It no longer spins or opens up as the visitor scrolls. The headline, the model and the three projects all fit on the first screen at 1440 × 900. On a 390 × 844 phone, the headline and the complete model fit on the first screen. Turning the model (drag, or arrow keys on the focused model) and choosing a project's thread are optional.
+
+**Model.** The model now has three plates and one thread per project. Only the selected thread is labelled, using three verified fragments from the content model, where B labelled twelve nodes at once. Each layer carries the principle that belongs to it, so the principles have one place instead of a separate section. The geometry is fitted to its box at every angle, so labels and plates no longer collide. The layer labels are HTML text, and the selected thread is also given as text for screen readers.
+
+**Type scale.** The headline is 28–40px at weight 380, down from 42–86px. Project titles are 22–26px, down from 32–54px. Body text is 17px, secondary text 15px and data 13px mono. Amber marks only what is active or what to do next.
+
+**One place per fact.** Each project has a single summary (the case study's own lede), its role and contribution or status, its thread, the visual, then links and an optional "How the work was done". The process log, stack and notes live only there. The separate principles list is gone. The about section holds the longer introduction and the facts, and the record section holds roles, the award and education.
+
+**Measured.** The desktop page is 4,303px tall, against B's 6,254px. The mobile page is about the same length as B (7,509px against 7,100px), because B2 adds the portrait and keeps the visuals full width. There is no horizontal scroll at 390px. Text contrast on the dark olive background is 12.5:1 for chalk, 7.1:1 for dim text and 8.3:1 for amber (WCAG AA needs 4.5:1).
+
+**Still open.**
+- The equipment illustration's team names (Sales, Warehouse, Finance) are English in the Norwegian version.
+- The prototype has no contact form. The production form stays as it is.
+- Mobile length could come down further by collapsing the record section.
