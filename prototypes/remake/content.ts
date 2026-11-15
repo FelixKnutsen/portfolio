@@ -58,11 +58,10 @@ const sentences: Record<string, string> = {
   kommune: firstSentence(t(study('kommune').lede)),
 };
 
-/** The line under each visual. The full captions sit in the project's details. */
+/** The line under the Phonero and STA visuals. Kristiansand kommune's illustration has none. */
 export const captions: Record<string, string> = {
   phonero: t(copy.equipment.caption),
   sta: 'stastudent.vercel.app',
-  kommune: firstSentence(t(copy.twin.caption)),
 };
 
 export const stops: (Project & { sentence: string; year: string; intro: string })[] = full.map((project) => ({

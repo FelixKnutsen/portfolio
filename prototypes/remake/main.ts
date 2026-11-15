@@ -24,7 +24,6 @@ import {
   t,
   text,
   today,
-  twinLabels,
   ui,
   type Project,
   type ProjectKey,
@@ -38,8 +37,9 @@ const external = 'target="_blank" rel="noopener noreferrer"';
 type Stop = (typeof stops)[number];
 
 const visual = (project: Stop) => {
-  const caption = `<figcaption>${esc(captions[project.id])}</figcaption>`;
-  if (project.id === 'phonero') return `<figure class="visual"><div id="equipment"></div>${caption}</figure>`;
+  if (project.id === 'phonero') {
+    return `<figure class="visual"><div id="equipment"></div><figcaption>${esc(captions.phonero)}</figcaption></figure>`;
+  }
   if (project.id === 'sta') {
     return `<figure class="visual">
       <div class="shots">
@@ -49,10 +49,11 @@ const visual = (project: Stop) => {
       <figcaption><a href="https://stastudent.vercel.app" ${external}>${esc(captions.sta)}</a></figcaption>
     </figure>`;
   }
-  return `<figure class="visual"><div class="twin"><canvas aria-hidden="true"></canvas><output class="twin-readout">${esc(t(ui.twinIdle))}</output></div>${caption}</figure>`;
+  // No caption: the illustration speaks for itself next to the project text.
+  return `<figure class="visual"><div class="twin"><canvas aria-hidden="true"></canvas><output class="twin-readout">${esc(t(ui.twinIdle))}</output></div></figure>`;
 };
 
-const longCaption = (project: Project) => (project.id === 'sta' ? t(ui.shot) : project.id === 'kommune' ? twinLabels.caption : '');
+const longCaption = (project: Project) => (project.id === 'sta' ? t(ui.shot) : '');
 
 const details = (project: Stop) => `
   <details class="more">
