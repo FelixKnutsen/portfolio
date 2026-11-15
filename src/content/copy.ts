@@ -230,14 +230,8 @@ export const copy = {
       ],
     } satisfies L<string[]>,
     awardLabel: { no: 'Årets Lokallag 2026', en: 'Local Chapter of the Year 2026' },
-    awardFigure: {
-      no: '25 lokallagsstyrer i NITO Studentene. Ett ble kåret.',
-      en: '25 local boards in NITO Studentene. One was chosen.',
-    },
-    awardFigureLabel: {
-      no: '25 prikker for de 25 lokallagsstyrene. Én er markert: Kristiansand, Årets Lokallag 2026.',
-      en: '25 dots for the 25 local boards. One is marked: Kristiansand, Local Chapter of the Year 2026.',
-    },
+    awardPhotoBy: { no: 'Foto', en: 'Photo' },
+    awardPost: { no: 'Innlegget på LinkedIn', en: 'The post on LinkedIn' },
     nitoHeading: { no: 'Styreleder, NITO Studentene Kristiansand', en: 'Chair, NITO Studentene Kristiansand' },
     nitoStory: {
       no: 'Som styreleder satte vi tidlig mål om at medlemskapet skulle være nyttig, lærerikt og gøy. I februar 2026 ble styret kåret til Årets Lokallag, som det beste av 25 lokallagsstyrer, blant annet for helhetlig drift, kreative arrangementer og god gjennomføring.',

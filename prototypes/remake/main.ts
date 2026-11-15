@@ -148,11 +148,14 @@ app.innerHTML = `
   </section>
 
   <section class="award" aria-labelledby="award-title">
-    <div class="dots" role="img" aria-label="${esc(award.figureLabel)}">${Array.from({ length: 25 }, (_, i) => `<i${i === 12 ? ' class="won"' : ''}></i>`).join('')}</div>
+    <figure class="photo photo--real award-photo">
+      <img src="${award.photo.src}" alt="${esc(award.photo.alt)}" width="629" height="419" loading="lazy" decoding="async">
+      ${award.photo.credit ? `<figcaption>${esc(t(text.photoBy))}: ${esc(award.photo.credit)}</figcaption>` : ''}
+    </figure>
     <div>
       <h2 id="award-title">${esc(award.title)}</h2>
-      <p class="sentence">${esc(award.figure)}</p>
-      <p class="links"><a href="${award.diploma}" target="_blank" rel="noopener">${esc(award.diplomaLabel)}</a></p>
+      <p class="sentence">${esc(award.caption)}</p>
+      <p class="links"><a href="${award.diploma}" target="_blank" rel="noopener">${esc(award.diplomaLabel)}</a> <a href="${award.post}" ${external}>${esc(award.postLabel)}</a></p>
     </div>
   </section>
 

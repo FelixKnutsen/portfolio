@@ -146,14 +146,9 @@
   background-color: var(--blue-wash);
 }
 
-.chapter[data-illustration='twin'] .plate {
-  background-color: var(--ink);
-  background-image: radial-gradient(circle at 1px 1px, rgb(241 242 244 / 0.12) 1px, transparent 1.6px);
-  color: var(--on-ink);
-}
-
-.chapter[data-illustration='twin'] .plate figcaption {
-  color: var(--on-ink-soft);
+/* A case told in text only gets a wider column instead of an empty plate. */
+.chapter[data-illustration='none'] .text {
+  grid-column: 1 / span 7;
 }
 
 .visual {

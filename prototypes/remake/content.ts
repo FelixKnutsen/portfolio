@@ -8,7 +8,7 @@
 */
 import { copy } from '../../src/content/copy';
 import { degrees } from '../../src/content/education';
-import { moments as allMoments } from '../../src/content/moments';
+import { awardMoment, moments as allMoments } from '../../src/content/moments';
 import { roles } from '../../src/content/roles';
 import { caseStudies } from '../../src/content/work';
 import { formatDate, toYearFraction, type Period } from '../../src/lib/dates';
@@ -82,8 +82,10 @@ export const moments = allMoments.map((m) => ({
 
 export const award = {
   title: t(copy.leadership.awardLabel),
-  figure: t(copy.leadership.awardFigure),
-  figureLabel: t(copy.leadership.awardFigureLabel),
+  caption: t(awardMoment.caption),
+  photo: { src: awardMoment.photo.src, alt: t(awardMoment.photo.alt), credit: awardMoment.photo.credit },
+  post: awardMoment.post,
+  postLabel: t(copy.leadership.awardPost),
   diploma: '/certificates/nito-arets-lokallag-2026.pdf',
   diplomaLabel: t(copy.leadership.awardDiploma),
 };

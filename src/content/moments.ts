@@ -24,8 +24,8 @@ export const moments: Moment[] = [
         en: 'The full city council chamber in Kristiansand during the seminar, with a talk on two screens',
       },
       credit: null,
-      // Shows the audience and speakers.
-      approved: false,
+      // Shows the audience and speakers. Approved by Felix on 15 November 2026.
+      approved: true,
     },
   },
   {
@@ -87,3 +87,26 @@ export const moments: Moment[] = [
     },
   },
 ];
+
+/** The Local Chapter of the Year award, shown like the LinkedIn post: the team on stage. */
+export const awardMoment: Moment = {
+  id: 'award',
+  // Posted 16 February 2026 about the conference the weekend before.
+  date: '2026-02',
+  caption: {
+    no: 'Styret jeg ledet i NITO Studentene Kristiansand ble kåret til Årets Lokallag på lokallagskonferansen i februar 2026.',
+    en: 'The board I chaired at NITO Studentene Kristiansand was named Local Chapter of the Year at the local chapter conference in February 2026.',
+  },
+  org: 'NITO Studentene',
+  post: post('7429150417521057792'),
+  photo: {
+    src: '/images/linkedin/nito-arets-team-2026-stage.webp',
+    alt: {
+      no: 'Styret i NITO Studentene Kristiansand på scenen under kåringen, foran lerretet som viser prisen',
+      en: 'The NITO Studentene Kristiansand board on stage at the award, in front of the screen announcing it',
+    },
+    credit: 'Bjarne Krogstad',
+    // Shows the whole board. Approved by Felix on 15 November 2026.
+    approved: true,
+  },
+};

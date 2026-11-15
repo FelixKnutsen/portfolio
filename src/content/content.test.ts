@@ -4,7 +4,7 @@ import { copy } from './copy';
 import { certificates, degrees } from './education';
 import { renderLlmsTxt } from './llms';
 import { personJsonLd } from './meta';
-import { moments } from './moments';
+import { awardMoment, moments } from './moments';
 import { roles } from './roles';
 import { caseStudies, mapNodes, principles, problems, skills } from './work';
 
@@ -31,6 +31,7 @@ const allBilingual = [
   ...bilingualLeaves(degrees, 'degrees'),
   ...bilingualLeaves(certificates, 'certificates'),
   ...bilingualLeaves(moments, 'moments'),
+  ...bilingualLeaves(awardMoment, 'awardMoment'),
 ];
 
 describe('bilingual content', () => {
@@ -136,18 +137,19 @@ describe('moments', () => {
   });
 
   it('links every moment to one of Felix’s LinkedIn posts', () => {
-    for (const moment of moments) {
+    for (const moment of [...moments, awardMoment]) {
       expect(moment.post).toMatch(/^https:\/\/www\.linkedin\.com\/feed\/update\/urn:li:activity:\d+\/$/);
     }
   });
 
   it('only points to photos that exist', () => {
     const files = Object.keys(import.meta.glob('/public/images/linkedin/*')).map((path) => path.replace('/public', ''));
-    for (const moment of moments) expect(files).toContain(moment.photo.src);
+    for (const moment of [...moments, awardMoment]) expect(files).toContain(moment.photo.src);
   });
 
   it('has unique ids', () => {
-    expect(new Set(moments.map((moment) => moment.id)).size).toBe(moments.length);
+    const ids = [...moments, awardMoment].map((moment) => moment.id);
+    expect(new Set(ids).size).toBe(ids.length);
   });
 });
 

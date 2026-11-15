@@ -1,7 +1,6 @@
-import type { CSSProperties } from 'react';
 import { copy } from '../content/copy';
+import { awardMoment } from '../content/moments';
 import { roles } from '../content/roles';
-import { useInView } from '../hooks/useInView';
 import { useLocale } from '../i18n/LocaleContext';
 import { formatPeriod } from '../lib/dates';
 import ExternalLink from './ExternalLink';
@@ -17,30 +16,29 @@ const byId = (id: string) => {
 const STA_BOARD_PAGE = { no: 'https://stastudent.no/om-oss/sta-styret/', en: 'https://stastudent.no/en/sta-styret/' };
 const AWARD_DIPLOMA = '/certificates/nito-arets-lokallag-2026.pdf';
 const NITO_PATH = ['nito-board', 'nito-chair', 'nito-central'].map(byId);
-const BOARDS = 25;
-/** Which dot is Kristiansand. Any position would do; this one sits off-centre so the eye has to find it. */
-const CHOSEN = 17;
 
+/** The award as the LinkedIn post showed it: the board on stage, one line and the diploma. */
 function AwardFigure() {
   const { t } = useLocale();
-  const { ref, inView } = useInView<HTMLElement>(0.4);
+  const { photo, caption, post } = awardMoment;
 
   return (
-    <figure ref={ref} className={styles.award} data-inview={inView}>
-      <div className={styles.dots} role="img" aria-label={t(copy.leadership.awardFigureLabel)}>
-        {Array.from({ length: BOARDS }, (_, index) => (
-          <span
-            key={index}
-            className={styles.dot}
-            data-chosen={index === CHOSEN ? '' : undefined}
-            style={{ '--i': index } as CSSProperties}
-          />
-        ))}
+    <figure className={styles.award}>
+      <div className={styles.awardPhoto}>
+        <img src={photo.src} alt={t(photo.alt)} width={629} height={419} loading="lazy" decoding="async" />
+        {photo.credit ? (
+          <span className={styles.credit}>
+            {t(copy.leadership.awardPhotoBy)}: {photo.credit}
+          </span>
+        ) : null}
       </div>
       <figcaption className={styles.awardCaption}>
         <strong className={styles.awardLabel}>{t(copy.leadership.awardLabel)}</strong>
-        <span>{t(copy.leadership.awardFigure)}</span>
-        <ExternalLink href={AWARD_DIPLOMA}>{t(copy.leadership.awardDiploma)}</ExternalLink>
+        <span>{t(caption)}</span>
+        <span className={styles.awardLinks}>
+          <ExternalLink href={AWARD_DIPLOMA}>{t(copy.leadership.awardDiploma)}</ExternalLink>
+          <ExternalLink href={post}>{t(copy.leadership.awardPost)}</ExternalLink>
+        </span>
       </figcaption>
     </figure>
   );

@@ -655,30 +655,20 @@ figure.thread {
 
 .award {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   align-items: center;
   gap: clamp(32px, 6vw, 96px);
   padding-top: clamp(64px, 10vh, 112px);
   padding-bottom: clamp(24px, 4vh, 48px);
 }
 
-.dots {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: clamp(10px, 1.6vw, 20px);
-  width: clamp(180px, 24vw, 300px);
+/* The award photo keeps its own shape instead of the strip's 4:5 frames. */
+.award-photo {
+  aspect-ratio: auto;
 }
 
-.dots i {
-  aspect-ratio: 1;
-  border: 1px solid rgb(235 231 218 / 0.4);
-  border-radius: 50%;
-}
-
-.dots i.won {
-  border-color: var(--amber);
-  background: var(--amber);
-  box-shadow: 0 0 0 6px rgb(240 180 69 / 0.18);
+.award-photo img {
+  height: auto;
 }
 
 .award .links {
@@ -883,10 +873,6 @@ figure.thread {
 
   .award {
     grid-template-columns: 1fr;
-  }
-
-  .dots {
-    width: 160px;
   }
 
   .chart {

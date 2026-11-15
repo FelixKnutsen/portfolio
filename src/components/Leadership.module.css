@@ -9,70 +9,42 @@
   align-items: start;
 }
 
-/* ── The award: 25 boards, one chosen ───────────────── */
+/* ── The award: the board on stage, as in the LinkedIn post ── */
 
 .award {
   grid-column: 1 / span 5;
   display: grid;
   gap: var(--space-5);
+  margin: 0;
 }
 
-.dots {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: clamp(0.5rem, 1.2vw, 0.875rem);
-  max-width: 16rem;
+.awardPhoto {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-panel);
+  background: var(--paper-sunk);
 }
 
-.dot {
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: var(--line-strong) solid var(--rule-strong);
+.awardPhoto img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.dot[data-chosen] {
-  border: 0;
-  background: var(--blue);
-  box-shadow:
-    0 0 0 4px var(--paper),
-    0 0 0 7px var(--note);
+.credit {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 2px 8px;
+  background: rgb(0 0 0 / 0.55);
+  color: rgb(255 255 255 / 0.9);
+  font-size: 0.6875rem;
 }
 
-/* When the figure is seen, the boards appear one by one and the chosen one lands last. */
-@media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
-  .award[data-inview='false'] .dot {
-    opacity: 0;
-    transform: scale(0.4);
-  }
-
-  .award[data-inview='true'] .dot {
-    animation: dot-in 420ms var(--ease-out) both;
-    animation-delay: calc(var(--i) * 28ms);
-  }
-
-  .award[data-inview='true'] .dot[data-chosen] {
-    animation: chosen-in 700ms var(--ease-out) both;
-    animation-delay: 900ms;
-  }
-}
-
-@keyframes dot-in {
-  from {
-    opacity: 0;
-    transform: scale(0.4);
-  }
-}
-
-@keyframes chosen-in {
-  from {
-    transform: scale(0.2);
-    box-shadow:
-      0 0 0 4px var(--paper),
-      0 0 0 4px var(--note);
-  }
-  60% {
-    transform: scale(1.18);
-  }
+.awardLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
 }
 
 .awardCaption {
@@ -227,10 +199,6 @@
   .sta,
   .earlier {
     grid-column: 1 / -1;
-  }
-
-  .dots {
-    max-width: 18rem;
   }
 }
 

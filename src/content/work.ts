@@ -159,7 +159,6 @@ export const caseStudies: CaseStudy[] = [
       no: 'Et halvår som innovasjonsjeger sammen med en medstudent. Vi skulle forstå hvordan avdelingen jobber, kartlegge teknologi og løsninger, og hente gode ideer fra andre kommuner, med særlig fokus på digitale tvillinger.',
       en: 'Six months as an innovation scout with a fellow student. Our job was to understand how the department works, map technology and solutions, and bring in good ideas from other municipalities, with a particular focus on digital twins.',
     },
-    illustration: 'twin',
     team: true,
     steps: [
       {

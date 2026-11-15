@@ -6,7 +6,6 @@ import { formatPeriod } from '../lib/dates';
 import EquipmentDemo from './EquipmentDemo';
 import ExternalLink from './ExternalLink';
 import SectionHead from './SectionHead';
-import TwinCanvas from './TwinCanvas';
 import WebsiteDemo from './WebsiteDemo';
 import styles from './Work.module.css';
 
@@ -16,8 +15,8 @@ function Illustration({ study }: { study: CaseStudy }) {
       return <EquipmentDemo />;
     case 'website':
       return <WebsiteDemo evidence={study.evidence} />;
-    case 'twin':
-      return <TwinCanvas />;
+    default:
+      return null;
   }
 }
 
@@ -27,7 +26,7 @@ function Chapter({ study }: { study: CaseStudy }) {
   const headingId = `${study.id}-heading`;
 
   return (
-    <article id={study.id} data-anchor className={styles.chapter} data-illustration={study.illustration} aria-labelledby={headingId}>
+    <article id={study.id} data-anchor className={styles.chapter} data-illustration={study.illustration ?? 'none'} aria-labelledby={headingId}>
       <header className={styles.chapterHead}>
         <p className={styles.org}>{study.org}</p>
         <p className={styles.context}>
@@ -109,11 +108,13 @@ function Chapter({ study }: { study: CaseStudy }) {
       </div>
 
       {/* The illustration sits on its own plate, which runs off the edge of the page. */}
-      <div className={styles.plate}>
-        <div className={styles.visual}>
-          <Illustration study={study} />
+      {study.illustration ? (
+        <div className={styles.plate}>
+          <div className={styles.visual}>
+            <Illustration study={study} />
+          </div>
         </div>
-      </div>
+      ) : null}
     </article>
   );
 }

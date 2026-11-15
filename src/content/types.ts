@@ -51,7 +51,7 @@ export interface Evidence {
 }
 
 /** Which interactive illustration explains a case. Each is drawn by its own component. */
-export type Illustration = 'equipment' | 'website' | 'twin';
+export type Illustration = 'equipment' | 'website';
 
 export interface CaseStudy {
   id: string;
@@ -62,7 +62,8 @@ export interface CaseStudy {
   /** The problem in one or two sentences, before anything about the solution. */
   problem: L;
   lede: L;
-  illustration: Illustration;
+  /** Left out when the case is told in text only. */
+  illustration?: Illustration;
   /** The actual sequence of work. Each step says what was done. */
   steps: CaseStep[];
   /** Group work: the steps describe what the group did, not Felix alone. */
