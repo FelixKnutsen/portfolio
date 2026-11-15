@@ -4,6 +4,7 @@ import { copy } from './copy';
 import { certificates, degrees } from './education';
 import { renderLlmsTxt } from './llms';
 import { personJsonLd } from './meta';
+import { moments } from './moments';
 import { roles } from './roles';
 import { caseStudies, mapNodes, principles, problems, skills } from './work';
 
@@ -29,6 +30,7 @@ const allBilingual = [
   ...bilingualLeaves(skills, 'skills'),
   ...bilingualLeaves(degrees, 'degrees'),
   ...bilingualLeaves(certificates, 'certificates'),
+  ...bilingualLeaves(moments, 'moments'),
 ];
 
 describe('bilingual content', () => {
@@ -123,6 +125,29 @@ describe('facts', () => {
     for (const course of degrees.flatMap((degree) => degree.courses)) {
       if (course.href) expect(course.href).toMatch(/^https:\/\/www\.uia\.no\//);
     }
+  });
+});
+
+describe('moments', () => {
+  it('dates each moment to a month, newest first', () => {
+    for (const moment of moments) expect(moment.date).toMatch(/^\d{4}-(0[1-9]|1[0-2])$/);
+    const dates = moments.map((moment) => moment.date);
+    expect(dates).toEqual([...dates].sort().reverse());
+  });
+
+  it('links every moment to one of Felix’s LinkedIn posts', () => {
+    for (const moment of moments) {
+      expect(moment.post).toMatch(/^https:\/\/www\.linkedin\.com\/feed\/update\/urn:li:activity:\d+\/$/);
+    }
+  });
+
+  it('only points to photos that exist', () => {
+    const files = Object.keys(import.meta.glob('/public/images/linkedin/*')).map((path) => path.replace('/public', ''));
+    for (const moment of moments) expect(files).toContain(moment.photo.src);
+  });
+
+  it('has unique ids', () => {
+    expect(new Set(moments.map((moment) => moment.id)).size).toBe(moments.length);
   });
 });
 

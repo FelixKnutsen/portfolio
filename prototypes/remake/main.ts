@@ -133,8 +133,14 @@ app.innerHTML = `
         .map(
           (m) => `
       <li>
-        <div class="photo" role="img" aria-label="${esc(t(text.photoPending))}"><span>${esc(t(text.photoPending))}</span></div>
-        <p>${esc(m.title)}<small>${esc(m.org)}, ${esc(m.year)}</small></p>
+        ${
+          m.photo
+            ? `<figure class="photo photo--real"><img src="${m.photo.src}" alt="${esc(m.photo.alt)}" loading="lazy" decoding="async">${
+                m.photo.credit ? `<figcaption>${esc(t(text.photoBy))}: ${esc(m.photo.credit)}</figcaption>` : ''
+              }</figure>`
+            : `<div class="photo" role="img" aria-label="${esc(t(text.photoPending))}"><span>${esc(t(text.photoPending))}</span></div>`
+        }
+        <p><a href="${m.post}" target="_blank" rel="noopener" aria-label="${esc(m.caption)}. ${esc(t(text.source))}">${esc(m.caption)}</a><small>${esc(m.org)}, ${esc(m.date)}</small></p>
       </li>`,
         )
         .join('')}

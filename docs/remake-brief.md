@@ -1,6 +1,6 @@
 # Remake brief (15 November 2026)
 
-Status: approved by Felix and built as `/prototypes/remake/` (add `?lang=no`). Phase 2 (LinkedIn) is still blocked, so the photo strip holds labelled placeholders. Results are at the end.
+Status: approved by Felix and built as `/prototypes/remake/` (add `?lang=no`). Phase 2 (LinkedIn) was done on 15 November 2026 from a desktop session: `docs/linkedin-inventory.md` lists all ten of Felix's posts, and the photo strip shows real moments. Results are at the end.
 
 ## What the live site measures (felixknutsen.com, English)
 
@@ -52,7 +52,10 @@ Felix works between the people doing the job and the code that supports it, and 
 4. Numbers set large where they are verified: 1 of 25 local boards, a 50% elected position, three languages on the STA site.
 5. One screen per idea on desktop, so the page reads as about six stops instead of one long scroll.
 
-## Blocked: LinkedIn
+## LinkedIn (was blocked, now done)
+
+Done on 15 November 2026 with option 1 below. The notes that follow are kept for the record.
+
 
 LinkedIn cannot be read from this cloud session. It refuses requests that are not from a logged-in browser, and automated access was blocked by the session's safety rules. `docs/linkedin-inventory.md` is therefore an empty template. Options:
 
@@ -84,7 +87,7 @@ Visible words, without expanding anything (English, live site against remake):
 - Lint, typecheck, 352 tests and the production build pass. The build contains no prototype files.
 
 Not done:
-- The four photos are placeholders. Their captions are verified roles, to be replaced by real moments from the LinkedIn inventory.
+- The photo strip shows four real moments from `src/content/moments.ts`. Three have photos of Felix alone. The fourth (the KartAI seminar in Bystyresalen) stays a labelled frame until Felix approves the photo, because it shows other people. Facts added for the strip are waiting for Felix to confirm.
 - The contact form opens an email draft in the prototype. The production form service is not wired in.
 - The "light its thread as it comes into view" idea became a small model beside each project with that project's thread lit. Nothing moves on scroll.
 - The team names in the equipment list are still English in the Norwegian version.

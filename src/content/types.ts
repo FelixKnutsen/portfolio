@@ -128,3 +128,29 @@ export interface Certificate {
   issuer: string;
   href?: string;
 }
+
+/** A photo from one of Felix's own LinkedIn posts. See docs/linkedin-inventory.md. */
+export interface MomentPhoto {
+  /** Path under public/. */
+  src: string;
+  alt: L;
+  /** The photographer as named in the post, or null when the post does not say. */
+  credit: string | null;
+  /**
+   * False while the photo shows identifiable people other than Felix and he has not
+   * approved it. Such photos are kept but never shown.
+   */
+  approved: boolean;
+}
+
+/** A real moment from a LinkedIn post, for the "Seen in action" photo strip. */
+export interface Moment {
+  id: string;
+  /** When it happened, YYYY-MM. */
+  date: string;
+  caption: L;
+  org: string;
+  /** The LinkedIn post this comes from. */
+  post: string;
+  photo: MomentPhoto;
+}

@@ -1,17 +1,19 @@
 /*
   Content for the remake. It reuses B2's reading of the bilingual content
   model and adds what this page needs: one visible sentence per project,
-  the roles and education as a timeline, and the photo strip. The strip's
-  photos are placeholders until the LinkedIn inventory exists
-  (docs/linkedin-inventory.md). Its captions are verified roles.
+  the roles and education as a timeline, and the photo strip. The strip
+  shows real moments from Felix's LinkedIn posts (src/content/moments.ts,
+  docs/linkedin-inventory.md). A photo of other people stays a labelled
+  frame until Felix approves it.
 */
 import { copy } from '../../src/content/copy';
 import { degrees } from '../../src/content/education';
+import { moments as allMoments } from '../../src/content/moments';
 import { roles } from '../../src/content/roles';
 import { caseStudies } from '../../src/content/work';
-import { toYearFraction, type Period } from '../../src/lib/dates';
+import { formatDate, toYearFraction, type Period } from '../../src/lib/dates';
 import type { L } from '../../src/i18n/locale';
-import { projects as full, t, type Project } from '../b2/content';
+import { locale, projects as full, t, type Project } from '../b2/content';
 
 export * from '../b2/content';
 
@@ -23,7 +25,9 @@ export const text = {
   },
   more: { no: 'Rolle, prosess og teknologi', en: 'Role, process and technology' },
   seen: { no: 'Utenfor prosjektene', en: 'Beyond the projects' },
-  photoPending: { no: 'Bilde kommer', en: 'Photo to come' },
+  photoPending: { no: 'Bilde venter på godkjenning', en: 'Photo awaiting approval' },
+  photoBy: { no: 'Foto', en: 'Photo' },
+  source: { no: 'Innlegget på LinkedIn', en: 'The post on LinkedIn' },
   timeline: { no: 'Tidslinje', en: 'Timeline' },
   today: copy.background.today,
   send: copy.contact.form.submit,
@@ -68,13 +72,14 @@ export const stops: (Project & { sentence: string; year: string; intro: string }
   intro: t(study(project.id).lede),
 }));
 
-const role = (id: string) => roles.find((item) => item.id === id)!;
-
-/** Captions are verified roles. The photos come from LinkedIn once the inventory is filled in. */
-export const moments = ['nito-chair', 'sta', 'nito-central', 'parliament'].map((id) => {
-  const item = role(id);
-  return { title: t(item.timeline.title), org: item.timeline.org, year: item.period.start.slice(0, 4) };
-});
+/** Real moments from LinkedIn. Unapproved photos are left out, so the page never loads them. */
+export const moments = allMoments.map((m) => ({
+  caption: t(m.caption),
+  org: m.org,
+  date: formatDate(m.date, locale),
+  post: m.post,
+  photo: m.photo.approved ? { src: m.photo.src, alt: t(m.photo.alt), credit: m.photo.credit } : null,
+}));
 
 export const award = {
   title: t(copy.leadership.awardLabel),
