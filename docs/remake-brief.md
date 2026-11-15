@@ -87,7 +87,7 @@ Visible words, without expanding anything (English, live site against remake):
 - Lint, typecheck, 352 tests and the production build pass. The build contains no prototype files.
 
 Not done:
-- The photo strip shows four real moments from `src/content/moments.ts`. Three have photos of Felix alone. The fourth (the KartAI seminar in Bystyresalen) stays a labelled frame until Felix approves the photo, because it shows other people. Facts added for the strip are waiting for Felix to confirm.
+- The photo strip shows four real moments from `src/content/moments.ts`. Three have photos of Felix alone. The fourth (the KartAI seminar in Bystyresalen) stays a labelled frame until Felix approves the photo, because it shows other people. Felix confirmed the facts added for the strip on 15 November 2026.
 - The contact form opens an email draft in the prototype. The production form service is not wired in.
 - The "light its thread as it comes into view" idea became a small model beside each project with that project's thread lit. Nothing moves on scroll.
 - The team names in the equipment list are still English in the Norwegian version.

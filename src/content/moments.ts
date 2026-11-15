@@ -2,7 +2,7 @@ import type { Moment } from './types';
 
 // Source: Felix's own LinkedIn posts, read 15 November 2026 (docs/linkedin-inventory.md).
 // Dates are the month of the event as the post describes it. Newest first.
-// Waiting for Felix to confirm: listed in that inventory and in the pull request notes.
+// Captions, months and photo credits confirmed by Felix on 15 November 2026.
 
 const post = (id: string) => `https://www.linkedin.com/feed/update/urn:li:activity:${id}/`;
 
