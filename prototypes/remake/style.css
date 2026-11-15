@@ -338,6 +338,15 @@ g.thread text.tag {
   order: 2;
 }
 
+/* A stop without a visual: the text alone, at a readable width. */
+.stop--text {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.stop--text .stop-text {
+  max-width: 40rem;
+}
+
 .meta {
   margin-bottom: 12px;
   color: var(--amber);
@@ -488,27 +497,6 @@ figure.thread {
   border: 1px solid rgb(235 231 218 / 0.35);
   border-radius: 14px;
   box-shadow: 0 12px 36px rgb(0 0 0 / 0.4);
-}
-
-.twin {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  border: 1px solid var(--line);
-  background: var(--raised);
-}
-
-.twin canvas {
-  position: absolute;
-  inset: 0;
-  cursor: crosshair;
-}
-
-.twin-readout {
-  position: absolute;
-  left: 12px;
-  top: 10px;
-  color: var(--amber);
-  font: var(--t-data) var(--mono);
 }
 
 /* Equipment list */

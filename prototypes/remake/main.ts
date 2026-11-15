@@ -29,7 +29,6 @@ import {
   type ProjectKey,
 } from './content';
 import { ANGLE_MAX, ANGLE_MIN, ANGLE_START, drawModel } from './model';
-import { mountTwin } from './twin';
 
 document.documentElement.lang = locale === 'no' ? 'nb' : 'en';
 const other = locale === 'no' ? 'en' : 'no';
@@ -49,8 +48,8 @@ const visual = (project: Stop) => {
       <figcaption><a href="https://stastudent.vercel.app" ${external}>${esc(captions.sta)}</a></figcaption>
     </figure>`;
   }
-  // No caption: the illustration speaks for itself next to the project text.
-  return `<figure class="visual"><div class="twin"><canvas aria-hidden="true"></canvas><output class="twin-readout">${esc(t(ui.twinIdle))}</output></div></figure>`;
+  // Kristiansand kommune has no visual: its text and thread stand on their own.
+  return '';
 };
 
 const longCaption = (project: Project) => (project.id === 'sta' ? t(ui.shot) : '');
@@ -110,7 +109,7 @@ app.innerHTML = `
     ${stops
       .map(
         (p, index) => `
-    <article class="stop${index % 2 ? ' stop--flip' : ''}" id="${p.id}" aria-labelledby="${p.id}-title">
+    <article class="stop${visual(p) ? (index % 2 ? ' stop--flip' : '') : ' stop--text'}" id="${p.id}" aria-labelledby="${p.id}-title">
       ${visual(p)}
       <div class="stop-text">
         <p class="meta">${esc(p.orgShort)} <span>${esc(p.year)}</span></p>
@@ -258,7 +257,6 @@ document.querySelectorAll<SVGSVGElement>('[data-thread]').forEach((small) => {
 /* ── Project visuals and the form ──────────────────── */
 
 mountEquipment(document.getElementById('equipment')!, { autoSwitch: false, labels: equipmentLabels });
-mountTwin(document.querySelector<HTMLElement>('.twin')!);
 
 // The production site sends through its own form service. Here the form only opens an email draft.
 document.querySelector<HTMLFormElement>('.form')!.addEventListener('submit', (event) => {

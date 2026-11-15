@@ -47,7 +47,7 @@ Felix works between the people doing the job and the code that supports it, and 
 ## What makes it impressive
 
 1. The model opens the page and each project section lights its own thread as it comes into view, so the idea carries through instead of being stated once.
-2. Every project leads with something to look at or use: the working equipment list, the real STA site on two screens, the digital-twin grid.
+2. Phonero and STA lead with something to look at or use: the working equipment list and the real STA site on two screens. Kristiansand kommune had a digital-twin block grid, which Felix removed on 15 November 2026 as out of place. That stop is now text and its thread only.
 3. A photo strip of real moments, which the site has never had.
 4. Numbers set large where they are verified: 1 of 25 local boards, a 50% elected position, three languages on the STA site.
 5. One screen per idea on desktop, so the page reads as about six stops instead of one long scroll.
