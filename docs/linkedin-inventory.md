@@ -35,6 +35,6 @@ Photos were saved from screenshots of the feed at display size (about 420 to 630
 
 Other reposts (Kristiansand kommune, KIWI, Phonero, Xledger, Adrian Kristoffer Viken, Dagfinn Øksendal on DiBK) don't add facts about Felix beyond those above.
 
-## To check
+## Settled
 
-- **Award name.** The post and the slide in the stage photo say **"Årets team"**. The site, `src/content/copy.ts`, and the diploma file name (`nito-arets-lokallag-2026.pdf`) say **"Årets Lokallag 2026"**. The criteria on the slide match what the site says. Which is the official name?
+- **Award name.** The official name is **"Årets Lokallag 2026"** (confirmed by Felix, 15 November 2026), as the site and the diploma say. The February 2026 post and the slide in the stage photo call it "Årets team". Use "Årets Lokallag" in all site copy and captions.
