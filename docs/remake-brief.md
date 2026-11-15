@@ -1,6 +1,6 @@
-# Remake brief (draft, 15 November 2026)
+# Remake brief (15 November 2026)
 
-Status: Phase 1 is done. Phase 2 (LinkedIn) is blocked, see the end. Nothing is built yet. This brief needs Felix's approval first.
+Status: approved by Felix and built as `/prototypes/remake/` (add `?lang=no`). Phase 2 (LinkedIn) is still blocked, so the photo strip holds labelled placeholders. Results are at the end.
 
 ## What the live site measures (felixknutsen.com, English)
 
@@ -59,3 +59,32 @@ LinkedIn cannot be read from this cloud session. It refuses requests that are no
 1. Run Phase 2 from a desktop session with a browser logged in to LinkedIn.
 2. Request a LinkedIn data export (Settings, Data privacy, Get a copy of your data, choose Posts) and add the files and photos to the repository.
 3. Send the post links and photos directly.
+
+## Built: measured results
+
+Visible words, without expanding anything (English, live site against remake):
+
+| Section | Live | Remake | Budget |
+|---|---|---|---|
+| Opening | 166 | 40 (including the three thread names in the model) | 40 |
+| Phonero | 522 for all three | 46 of prose, plus 58 words of data inside the equipment list | 60 |
+| STA | | 42 | 60 |
+| Kristiansand kommune | | 45 | 60 |
+| Beyond the projects (photo strip) | 252 | 35 | 60 |
+| Award | | 19 | 25 |
+| Timeline | 472 | 70 | 80 |
+| Contact | 92 | 11 | 25 |
+| **Whole page** | **1,725** | **about 385 with all labels drawn in the models** | at least 50% fewer |
+
+- The page has 78% fewer visible words than the live site. Norwegian: about 335 against 1,496.
+- Page height: 4,878px on desktop (live 10,591px) and 6,251px on a phone (live 14,859px). No horizontal scroll at 390px.
+- Phonero is over budget only if the made-up device rows in the interactive list are counted as words.
+- Keyboard order: skip link, navigation, the model (arrow keys turn it), then each project's controls and details. No console errors.
+- Colours are B2's, so contrast is unchanged: 12.5:1, 7.1:1 and 8.3:1 on the dark background.
+- Lint, typecheck, 352 tests and the production build pass. The build contains no prototype files.
+
+Not done:
+- The four photos are placeholders. Their captions are verified roles, to be replaced by real moments from the LinkedIn inventory.
+- The contact form opens an email draft in the prototype. The production form service is not wired in.
+- The "light its thread as it comes into view" idea became a small model beside each project with that project's thread lit. Nothing moves on scroll.
+- The team names in the equipment list are still English in the Norwegian version.
